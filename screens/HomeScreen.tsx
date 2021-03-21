@@ -21,8 +21,6 @@ function HomeScreen() {
 
 export default function HomeNavigator(props:any) {
 
-    console.log("props");
-    console.log(props);
 
     const Tab = createMaterialTopTabNavigator();
     const _goBack = () => console.log('Went back');
