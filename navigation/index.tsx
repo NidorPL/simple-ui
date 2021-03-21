@@ -1,9 +1,11 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { ColorSchemeName, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {DrawerContent} from "../drawerContent";
+import HomeScreen from "../screens/HomeScreen";
 import {
     useTheme,
     Avatar,
@@ -26,18 +28,12 @@ import LinkingConfiguration from './LinkingConfiguration';
 const Stack = createStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator();
 
-function HomeScreen() {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen2</Text>
-        </View>
-    );
-}
+
 
 function StackNavigator () {
     return  (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
+            <Stack.Screen name="Root" component={HomeScreen} />
             <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
         </Stack.Navigator>
     )
