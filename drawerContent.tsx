@@ -39,34 +39,14 @@ export function DrawerContent(props: any) {
                     styles.drawerContent,
                     {
                         backgroundColor: paperTheme.colors.surface,
-                        transform: [{ translateX }],
+
                     },
                 ]}
             >
                 <View style={styles.userInfoSection}>
-                    <Avatar.Image
-                        source={{
-                            uri:
-                                'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg',
-                        }}
-                        size={50}
-                    />
+                    <Avatar.Image source={require('../simple_ui/assets/images/logo.png')} size={80} />
                     <Title style={styles.title}>Smart UI</Title>
                     <Caption style={styles.caption}>Generically create your app</Caption>
-                    <View style={styles.row}>
-                        <View style={styles.section}>
-                            <Paragraph style={[styles.paragraph, styles.caption]}>
-                                202
-                            </Paragraph>
-                            <Caption style={styles.caption}>Following</Caption>
-                        </View>
-                        <View style={styles.section}>
-                            <Paragraph style={[styles.paragraph, styles.caption]}>
-                                159
-                            </Paragraph>
-                            <Caption style={styles.caption}>Followers</Caption>
-                        </View>
-                    </View>
                 </View>
                 <Drawer.Section style={styles.drawerSection}>
                     <Drawer.Item
@@ -101,7 +81,7 @@ export function DrawerContent(props: any) {
                 </Drawer.Section>
                 <Drawer.Section title="Connected Devices" style={styles.drawerSection}>
 
-                    <DrawerItem icon={({ color, size }) => (
+                    <Drawer.Item icon={({ color, size }) => (
                         <MaterialCommunityIcons
                             name="robot"
                             color={color}
@@ -111,7 +91,7 @@ export function DrawerContent(props: any) {
                                   label="Corona Chatbot"
 
                                   onPress={() => {}}/>
-                    <DrawerItem  icon={({ color, size }) => (
+                    <Drawer.Item  icon={({ color, size }) => (
                         <MaterialCommunityIcons
                             name="coffee"
                             color={color}
@@ -120,7 +100,7 @@ export function DrawerContent(props: any) {
                     )}
                                   label="Coffee Machine"
                                   onPress={() => {}}/>
-                    <DrawerItem  icon={({ color, size }) => (
+                    <Drawer.Item  icon={({ color, size }) => (
                         <MaterialCommunityIcons
                             name="stove"
                             color={color}

@@ -52,11 +52,11 @@ export default function App() {
                 theme === 'light'
                     ? {
                         ...DefaultTheme,
-                        colors: { ...DefaultTheme.colors, primary: '#1ba1f2' },
+                        colors: { ...DefaultTheme.colors },
                     }
                     : {
                         ...DarkTheme,
-                        colors: { ...DarkTheme.colors, primary: '#1ba1f2' },
+                        colors: { ...DarkTheme.colors },
                     }
             }>
             <Navigation colorScheme={colorScheme} />
