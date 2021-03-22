@@ -22,14 +22,9 @@ import Animated from "react-native-reanimated";
 
 export function DrawerContent(props: any) {
     const paperTheme = useTheme();
-    const { rtl, theme, toggleRTL, toggleTheme } = React.useContext(
+    const { theme, toggleTheme } = React.useContext(
         PreferencesContext
     );
-
-    const translateX = Animated.interpolate(props.progress, {
-        inputRange: [0, 0.5, 0.7, 0.8, 1],
-        outputRange: [-100, -85, -70, -45, 0],
-    });
 
     return (
         <DrawerContentScrollView {...props}>
@@ -106,7 +101,7 @@ export function DrawerContent(props: any) {
                             color={color}
                             size={size}
                         />
-                    )}
+                    )}s
                                  label="Oven"
                                  onPress={() => {}}/>
                 </Drawer.Section>
@@ -114,14 +109,6 @@ export function DrawerContent(props: any) {
                     <TouchableRipple onPress={toggleTheme}>
                         <View style={styles.preference}>
                             <Text>Dark Theme</Text>
-                            <View pointerEvents="none">
-                                <Switch value={theme === 'dark'} />
-                            </View>
-                        </View>
-                    </TouchableRipple>
-                    <TouchableRipple onPress={() => {}}>
-                        <View style={styles.preference}>
-                            <Text>RTL</Text>
                             <View pointerEvents="none">
                                 <Switch value={theme === 'dark'} />
                             </View>
