@@ -1,4 +1,6 @@
 import CoronaChatbot from "./modules/chatbot";
+import Oven from "./modules/oven";
+import Sensors from "./modules/sensor";
 
 const connectedModules = [CoronaChatbot];
 
