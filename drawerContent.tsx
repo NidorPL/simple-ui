@@ -72,7 +72,7 @@ export function DrawerContent(props: any) {
           />
         </Drawer.Section>
         <Drawer.Section title="Connected Devices" style={styles.drawerSection}>
-          {connectedDevices.map((device) => {
+          {connectedDevices.map((device, i) => {
             return (
               <Drawer.Item
                 icon={({ color, size }) => (
@@ -84,6 +84,7 @@ export function DrawerContent(props: any) {
                 )}
                 label={device.name}
                 onPress={() => {}}
+                key={"drawer-item" + i}
               />
             );
           })}
