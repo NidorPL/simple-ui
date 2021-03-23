@@ -1,7 +1,6 @@
 import {View} from "react-native";
 import {Text} from "react-native-paper";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as React from "react";
 import { Appbar } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
