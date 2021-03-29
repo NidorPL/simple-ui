@@ -6,9 +6,9 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import styled from "styled-components/native";
-import Header from "./components/header/header";
-import { resolveMessageFromType } from "./message-resolver";
-import api from "./api";
+import Header from "./header/header";
+import { resolveMessageFromType } from "../message-resolver";
+import api from "../api";
 
 export default function ChatDetailView() {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
@@ -62,7 +62,7 @@ export default function ChatDetailView() {
               style={isWeb && { outline: "none" }}
             />
             <SendButtonWrapper onPress={sendMessage}>
-              <SendButton source={require("./images/continue_icon.png")} />
+              <SendButton source={require("../images/continue_icon.png")} />
             </SendButtonWrapper>
           </ChatInputWrapper>
         </MessageContainer>

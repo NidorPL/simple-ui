@@ -15,7 +15,7 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
-import ChatDetailView from "../modules/chatbot/detailView";
+import ChatDetailView from "../modules/chatbot/components/ChatDetailView";
 import MainLayout from "../components/MainLayout";
 
 const Stack = createStackNavigator<RootStackParamList>();
