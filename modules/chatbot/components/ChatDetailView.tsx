@@ -5,10 +5,13 @@ import {
   Alert,
   KeyboardAvoidingView,
 } from "react-native";
+import * as Location from "expo-location";
 import styled from "styled-components/native";
 import Header from "./header/header";
 import { resolveMessageFromType } from "../message-resolver";
 import api from "../api";
+import axios from "axios";
+import config from "../config";
 
 export default function ChatDetailView() {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
@@ -34,8 +37,72 @@ export default function ChatDetailView() {
   const appendCovMessages = (messages) => {
     setConversationMessages([...conversationMessages, ...messages]);
   };
+
+  const resetMessageInput = () => {
+    setMessageInput("");
+  };
+
   const sendMessage = async () => {
-    console.log("sending");
+    let chatbotAnswers = [];
+    let location = {};
+
+    if (locationPermissionGranted === null) {
+      let { status } = await Location.requestPermissionsAsync();
+
+      if (status === "granted") {
+        setLocationPermissionGranted(true);
+      } else {
+        setLocationPermissionGranted(false);
+      }
+    } else {
+      try {
+        let { coords } = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Balanced,
+        });
+        location = {
+          ...location,
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        };
+      } catch (err) {
+        console.log("Location could not be send" + err.message);
+      }
+    }
+
+    try {
+      const { data } = await axios.get(`${config.connection.url}/chatbot`, {
+        params: {
+          request: `${messageInput}`,
+          ...location,
+        },
+        timeout: 3500,
+      });
+
+      chatbotAnswers.push(...data);
+    } catch (err) {
+      console.log("Error with request");
+      console.log(err.request);
+
+      if (isWeb) {
+        alert(err.message);
+      } else {
+        Alert.alert(err.message);
+      }
+    }
+
+    if (chatbotAnswers.length > 0 && typeof chatbotAnswers[0] !== "object") {
+      Alert.alert("No valid json received \n" + chatbotAnswers);
+    }
+    appendCovMessages([
+      {
+        type: "simple-message",
+        text: messageInput,
+        fromChatbot: false,
+      },
+      ...chatbotAnswers,
+    ]);
+
+    resetMessageInput();
   };
 
   return (
