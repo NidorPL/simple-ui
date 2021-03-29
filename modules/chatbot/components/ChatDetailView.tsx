@@ -12,6 +12,7 @@ import { resolveMessageFromType } from "../message-resolver";
 import api from "../api";
 import axios from "axios";
 import config from "../config";
+import { services } from "../services";
 
 export default function ChatDetailView() {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
@@ -44,30 +45,11 @@ export default function ChatDetailView() {
 
   const sendMessage = async () => {
     let chatbotAnswers = [];
-    let location = {};
 
-    if (locationPermissionGranted === null) {
-      let { status } = await Location.requestPermissionsAsync();
-
-      if (status === "granted") {
-        setLocationPermissionGranted(true);
-      } else {
-        setLocationPermissionGranted(false);
-      }
-    } else {
-      try {
-        let { coords } = await Location.getCurrentPositionAsync({
-          accuracy: Location.Accuracy.Balanced,
-        });
-        location = {
-          ...location,
-          latitude: coords.latitude,
-          longitude: coords.longitude,
-        };
-      } catch (err) {
-        console.log("Location could not be send" + err.message);
-      }
-    }
+    const location = await services.getLocation(
+      locationPermissionGranted,
+      setLocationPermissionGranted
+    );
 
     try {
       const { data } = await axios.get(`${config.connection.url}/chatbot`, {
