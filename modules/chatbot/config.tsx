@@ -5,8 +5,8 @@ export default {
      */
   name: "Corona Chatbot",
   icon: "robot",
-  chat: {
-    connectionUrl: "https://corona.brain4x.de",
+  connection: {
+    url: "https://corona.brain4x.de",
     init: "/chatbot-init",
     send: "/chatbot",
   },

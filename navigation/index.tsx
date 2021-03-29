@@ -27,8 +27,8 @@ function StackNavigator() {
       <Stack.Screen name="Root" component={HomeScreen} />
       <Stack.Screen
         name="Chatbot"
-        component={() => (
-          <MainLayout>
+        component={(props) => (
+          <MainLayout {...props}>
             <ChatDetailView />
           </MainLayout>
         )}
