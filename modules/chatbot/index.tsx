@@ -10,6 +10,8 @@ export function getMenuView(): MenuViewConfig {
   };
 }
 
+export function getDetailView() {}
+
 export default {
   getMenuView,
 };

@@ -1,5 +1,6 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { DrawerItem, DrawerContentScrollView } from "@react-navigation/drawer";
 import {
   useTheme,
@@ -17,13 +18,44 @@ import Animated from "react-native-reanimated";
 import { PreferencesContext } from "./context/preferencesContext";
 import { getDrawerItems } from "./module-registration";
 
-export function DrawerContent(props: any) {
+export type StackNavigatorParamlist = {
+  FeedList: undefined;
+  Details: {
+    id: number;
+    name: string;
+    handle: string;
+    date: string;
+    content: string;
+    image: string;
+    avatar: string;
+    comments: number;
+    retweets: number;
+    hearts: number;
+  };
+};
+
+type Props = {
+  navigation?: StackNavigationProp<StackNavigatorParamlist>;
+};
+
+export function DrawerContent(props: Props) {
   const paperTheme = useTheme();
   const { theme, toggleTheme } = React.useContext(PreferencesContext);
 
   // load config from all modules
 
   const connectedDevices = getDrawerItems();
+
+  const switchToDevice = (device) => {
+    console.log("switching");
+    console.log(device);
+
+    console.log("props");
+    console.log(props);
+
+    console.log("pushed");
+    props.navigation && props.navigation.navigate("Chatbot");
+  };
 
   return (
     <DrawerContentScrollView {...props}>
@@ -37,10 +69,17 @@ export function DrawerContent(props: any) {
         ]}
       >
         <View style={styles.userInfoSection}>
-          <Avatar.Image
-            source={require("../simple_ui/assets/images/logo.png")}
-            size={80}
-          />
+          <TouchableOpacity
+            style={{ marginLeft: 10 }}
+            onPress={() => {
+              props.navigation.toggleDrawer();
+            }}
+          >
+            <Avatar.Image
+              source={require("../simple_ui/assets/images/logo.png")}
+              size={80}
+            />
+          </TouchableOpacity>
           <Title style={styles.title}>Smart UI</Title>
           <Caption style={styles.caption}>Generically create your app</Caption>
         </View>
@@ -83,7 +122,7 @@ export function DrawerContent(props: any) {
                   />
                 )}
                 label={device.name}
-                onPress={() => {}}
+                onPress={() => switchToDevice(device)}
                 key={"drawer-item" + i}
               />
             );
