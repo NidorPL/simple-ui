@@ -17,22 +17,41 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
 import ChatDetailView from "../modules/chatbot/components/ChatDetailView";
 import MainLayout from "../components/MainLayout";
+import config from "../config";
 
 const Stack = createStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator();
+
+// get connected devices
+
+/*
+    device {
+        name
+        moduleName
+        moduleConfig
+    }
+ */
+
+// module resolver
+
+// Komponente muss durch Register dynamisch gefetcht werden
 
 function StackNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={HomeScreen} />
-      <Stack.Screen
-        name="Chatbot"
-        component={(props) => (
-          <MainLayout {...props}>
-            <ChatDetailView />
-          </MainLayout>
-        )}
-      />
+      {config.connectedDevices.map((deviceConfig) => {
+        return (
+          <Stack.Screen
+            name={deviceConfig.name}
+            component={(props) => (
+              <MainLayout {...props}>
+                <ChatDetailView {...deviceConfig} />
+              </MainLayout>
+            )}
+          />
+        );
+      })}
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}

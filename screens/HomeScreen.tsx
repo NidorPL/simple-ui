@@ -35,7 +35,6 @@ export default function HomeNavigator(props: any) {
         <Appbar.Content title="Smart UI" subtitle="DAI Lab Project" />
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
       </Appbar.Header>
-      Hi bro
     </React.Fragment>
   );
 }

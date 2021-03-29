@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components/native";
-import config from "../../config";
-import abc from "../../";
+import { Platform } from "react-native";
 
 export default function Header({ resetDefaultScreen }) {
+  const isWeb = Platform.OS === "web";
+
   return (
-    <HeaderWrapper isWeb={config.isWeb}>
-      <LeftWrapper isWeb={config.isWeb}>
+    <HeaderWrapper isWeb={isWeb}>
+      <LeftWrapper isWeb={isWeb}>
         <Logo source={require("../../images/Logo_only.png")} />
         <LogoText source={require("../../images/Logo_Text_only.png")} />
       </LeftWrapper>
@@ -15,7 +16,7 @@ export default function Header({ resetDefaultScreen }) {
         onPress={resetDefaultScreen}
         underlayColor="lightgrey"
       >
-        <RightWrapper isWeb={config.isWeb}>
+        <RightWrapper isWeb={isWeb}>
           <RestartImage source={require("../../images/restart-icon.png")} />
           <RestartText>Neu starten</RestartText>
         </RightWrapper>

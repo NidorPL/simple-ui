@@ -11,10 +11,14 @@ import Header from "./header/header";
 import { resolveMessageFromType } from "../message-resolver";
 import api from "../api";
 import axios from "axios";
-import config from "../config";
 import { services } from "../services";
 
-export default function ChatDetailView() {
+// config interface
+/*
+    connection url
+   */
+
+export default function ChatDetailView(config: object) {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
     null
   );
@@ -30,8 +34,7 @@ export default function ChatDetailView() {
   }, []);
 
   async function init() {
-    const initialMessages = await api.loadFirstMessages();
-    console.log(initialMessages);
+    const initialMessages = await api.loadFirstMessages(config.connection.url);
     appendCovMessages(initialMessages);
   }
 
@@ -44,33 +47,16 @@ export default function ChatDetailView() {
   };
 
   const sendMessage = async () => {
-    let chatbotAnswers = [];
-
     const location = await services.getLocation(
       locationPermissionGranted,
       setLocationPermissionGranted
     );
 
-    try {
-      const { data } = await axios.get(`${config.connection.url}/chatbot`, {
-        params: {
-          request: `${messageInput}`,
-          ...location,
-        },
-        timeout: 3500,
-      });
-
-      chatbotAnswers.push(...data);
-    } catch (err) {
-      console.log("Error with request");
-      console.log(err.request);
-
-      if (isWeb) {
-        alert(err.message);
-      } else {
-        Alert.alert(err.message);
-      }
-    }
+    const chatbotAnswers = await api.sendMessage(
+      messageInput,
+      location,
+      config.connection.url
+    );
 
     if (chatbotAnswers.length > 0 && typeof chatbotAnswers[0] !== "object") {
       Alert.alert("No valid json received \n" + chatbotAnswers);

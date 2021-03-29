@@ -16,7 +16,8 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated from "react-native-reanimated";
 import { PreferencesContext } from "./context/preferencesContext";
-import { getDrawerItems } from "./module-registration";
+import { getConnectedDevices } from "./module-registration";
+import config from "./config";
 
 export type StackNavigatorParamlist = {
   FeedList: undefined;
@@ -42,19 +43,8 @@ export function DrawerContent(props: Props) {
   const paperTheme = useTheme();
   const { theme, toggleTheme } = React.useContext(PreferencesContext);
 
-  // load config from all modules
-
-  const connectedDevices = getDrawerItems();
-
   const switchToDevice = (device) => {
-    console.log("switching");
-    console.log(device);
-
-    console.log("props");
-    console.log(props);
-
-    console.log("pushed");
-    props.navigation && props.navigation.navigate("Chatbot");
+    props.navigation && props.navigation.navigate(device.name);
   };
 
   return (
@@ -83,6 +73,7 @@ export function DrawerContent(props: Props) {
           <Title style={styles.title}>Smart UI</Title>
           <Caption style={styles.caption}>Generically create your app</Caption>
         </View>
+
         <Drawer.Section style={styles.drawerSection}>
           <Drawer.Item
             icon={({ color, size }) => (
@@ -110,8 +101,9 @@ export function DrawerContent(props: Props) {
             onPress={() => {}}
           />
         </Drawer.Section>
+
         <Drawer.Section title="Connected Devices" style={styles.drawerSection}>
-          {connectedDevices.map((device, i) => {
+          {config.connectedDevices.map((device, i) => {
             return (
               <Drawer.Item
                 icon={({ color, size }) => (
@@ -128,6 +120,7 @@ export function DrawerContent(props: Props) {
             );
           })}
         </Drawer.Section>
+
         <Drawer.Section title="Preferences" style={styles.drawerSection}>
           <TouchableRipple onPress={toggleTheme}>
             <View style={styles.preference}>

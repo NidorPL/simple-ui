@@ -1,13 +1,15 @@
 import CoronaChatbot from "./modules/chatbot";
 import Oven from "./modules/oven";
 import Sensors from "./modules/sensor";
+import config from "./config";
 
-const connectedModules = [CoronaChatbot];
+export function getConnectedDevices() {
+  return config.connectedDevices;
+}
 
-export function getDrawerItems() {
-  const menuViews = [];
-  for (const module of connectedModules) {
-    menuViews.push(module.getMenuView());
-  }
-  return menuViews;
+export function getConnectionUrl(deviceName: string) {
+  const selectedDevice = config.connectedDevices.find(
+    (device) => device.name === deviceName
+  );
+  return selectedDevice.connection.url;
 }

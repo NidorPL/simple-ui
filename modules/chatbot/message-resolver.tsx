@@ -19,14 +19,14 @@ export function resolveMessageFromType(
 ) {
   const { type, linkedRequest } = message;
 
-  const sendLinkedRequest = async (params) => {
-    if (linkedRequest) {
-      const newMessages = await api.sendLinkedRequest(linkedRequest, params);
-      if (newMessages) {
-        appendCovMessages(newMessages);
-      }
-    }
-  };
+  // const sendLinkedRequest = async (params) => {
+  //   if (linkedRequest) {
+  //     const newMessages = await api.sendLinkedRequest(linkedRequest, params);
+  //     if (newMessages) {
+  //       appendCovMessages(newMessages);
+  //     }
+  //   }
+  // };
 
   const resolveMessage = (type) => {
     switch (type) {
@@ -34,14 +34,14 @@ export function resolveMessageFromType(
         return (
           <SimpleMessage
             message={message}
-            sendLinkedRequest={sendLinkedRequest}
+            // sendLinkedRequest={sendLinkedRequest}
           />
         );
       default:
         return (
           <SimpleMessage
             message={message}
-            sendLinkedRequest={sendLinkedRequest}
+            // sendLinkedRequest={sendLinkedRequest}
           />
         );
       // case "chart-message":
