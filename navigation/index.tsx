@@ -18,6 +18,7 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import ChatDetailView from "../modules/chatbot/components/ChatDetailView";
 import MainLayout from "../components/MainLayout";
 import config from "../config";
+import { getComponentByName } from "../module-register";
 
 const Stack = createStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator();
@@ -46,7 +47,7 @@ function StackNavigator() {
             name={deviceConfig.name}
             component={(props) => (
               <MainLayout {...props}>
-                <ChatDetailView {...deviceConfig} />
+                {getComponentByName(deviceConfig)}
               </MainLayout>
             )}
           />

@@ -1,7 +1,8 @@
 export default {
   connectedDevices: [
     {
-      name: "Corona Chatbot",
+      name: "Corona Chat",
+      moduleName: "Chatbot",
       icon: "robot",
       connection: {
         url: "https://corona.brain4x.de",
@@ -10,7 +11,8 @@ export default {
       },
     },
     {
-      name: "Corona Chatbot2",
+      name: "Oven Chat",
+      moduleName: "Chatbot",
       icon: "stove",
       connection: {
         url: "https://corona.brain4x.de",
