@@ -16,7 +16,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated from "react-native-reanimated";
 import { PreferencesContext } from "./context/preferencesContext";
-import config from "./device-config";
+import config from "./config";
 
 export type StackNavigatorParamlist = {
   FeedList: undefined;

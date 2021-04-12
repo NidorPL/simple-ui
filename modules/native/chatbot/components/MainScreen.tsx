@@ -12,13 +12,14 @@ import { resolveMessageFromType } from "../message-resolver";
 import api from "../api";
 import axios from "axios";
 import { services } from "../services";
+import { ChatbotConfig, ChatbotMessage } from "../types";
 
 // config interface
 /*
     connection url
    */
 
-export default function ChatDetailView(config: object) {
+export default function MainChatbotScreen(config: ChatbotConfig) {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
     null
   );
@@ -34,13 +35,13 @@ export default function ChatDetailView(config: object) {
   }, []);
 
   async function init() {
-    const initialMessages = await api.loadFirstMessages(
-      config.moduleConfig.url
-    );
+    const initialMessages = await api.loadFirstMessages(config);
+
+    console.log(initialMessages);
     appendCovMessages(initialMessages);
   }
 
-  const appendCovMessages = (messages) => {
+  const appendCovMessages = (messages: ChatbotMessage[]) => {
     setConversationMessages([...conversationMessages, ...messages]);
   };
 
@@ -57,7 +58,7 @@ export default function ChatDetailView(config: object) {
     const chatbotAnswers = await api.sendMessage(
       messageInput,
       location,
-      config.moduleConfig.url
+      config
     );
 
     if (chatbotAnswers.length > 0 && typeof chatbotAnswers[0] !== "object") {

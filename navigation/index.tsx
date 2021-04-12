@@ -15,8 +15,8 @@ import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
 import MainLayout from "../components/MainLayout";
-import config from "../device-config";
-import { getComponentByName } from "../module-register";
+import config from "../config";
+import { getModuleScreen } from "../modules/module-register";
 
 const Stack = createStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator();
@@ -31,7 +31,7 @@ function StackNavigator() {
             name={deviceConfig.name}
             component={(props) => (
               <MainLayout {...props}>
-                {getComponentByName(deviceConfig)}
+                {getModuleScreen(deviceConfig)}
               </MainLayout>
             )}
           />
