@@ -2,8 +2,6 @@ import React from "react";
 import { Appbar } from "react-native-paper";
 
 export default function MainLayout(props: any) {
-  console.log("props");
-  console.log(props);
   const _handleMore = () => console.log("Shown more");
 
   function openDrawer() {

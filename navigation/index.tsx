@@ -10,32 +10,16 @@ import { ColorSchemeName, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DrawerContent } from "../drawerContent";
 import HomeScreen from "../screens/HomeScreen";
-
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
-import ChatDetailView from "../modules/chatbot/components/ChatDetailView";
 import MainLayout from "../components/MainLayout";
-import config from "../config";
+import config from "../device-config";
 import { getComponentByName } from "../module-register";
 
 const Stack = createStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator();
-
-// get connected devices
-
-/*
-    device {
-        name
-        moduleName
-        moduleConfig
-    }
- */
-
-// module resolver
-
-// Komponente muss durch Register dynamisch gefetcht werden
 
 function StackNavigator() {
   return (

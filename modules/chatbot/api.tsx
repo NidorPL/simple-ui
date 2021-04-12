@@ -37,22 +37,21 @@ const api = {
           request: `${messageInput}`,
           ...location,
         },
-        timeout: 3500,
+        timeout: 5000,
       });
 
       return data;
     } catch (err) {
       console.log("Error with request");
+      console.log(err.message);
       console.log(err.request);
 
-      if (isWeb) {
-        alert(err.message);
-      } else {
-        Alert.alert(err.message);
-      }
+      return {
+        type: "simple-message",
+        text:
+          "Ich kann dir deine Frage gerade nicht beantworten. Bitte versuche es später nocheinmal.",
+      };
     }
-
-    return [];
   },
 };
 

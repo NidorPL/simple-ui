@@ -34,7 +34,9 @@ export default function ChatDetailView(config: object) {
   }, []);
 
   async function init() {
-    const initialMessages = await api.loadFirstMessages(config.connection.url);
+    const initialMessages = await api.loadFirstMessages(
+      config.moduleConfig.url
+    );
     appendCovMessages(initialMessages);
   }
 
@@ -55,7 +57,7 @@ export default function ChatDetailView(config: object) {
     const chatbotAnswers = await api.sendMessage(
       messageInput,
       location,
-      config.connection.url
+      config.moduleConfig.url
     );
 
     if (chatbotAnswers.length > 0 && typeof chatbotAnswers[0] !== "object") {
