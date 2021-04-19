@@ -65,7 +65,7 @@ export function DrawerContent(props: Props) {
             }}
           >
             <Avatar.Image
-              source={require("../simple_ui/assets/images/logo.png")}
+              source={require("../assets/images/logo.png")}
               size={80}
             />
           </TouchableOpacity>

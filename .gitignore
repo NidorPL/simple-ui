@@ -17,5 +17,5 @@ web-build/
 
 # Project specific
 
-modules/custom-modules
-config.tsx
+src/modules/custom-modules
+src/config.tsx

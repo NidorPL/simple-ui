@@ -4,18 +4,28 @@ import { View } from "react-native";
 import { Paragraph } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function LabelIconRow(label: string, iconName: string) {
-  console.log(1);
-  console.log(label);
-  console.log(iconName);
+export const LabelIconRow = ({
+  label,
+  iconName,
+}: {
+  label: string;
+  iconName: string;
+}) => {
   return (
     <LabelValueContainer>
-      <Paragraph>{"label"}</Paragraph>
+      <Label>{label}</Label>
       <MaterialCommunityIcons name={iconName} size={35} />
     </LabelValueContainer>
   );
-}
+};
+
+const Label = styled(Paragraph)`
+  font-size: 20px;
+  margin-right: 10px;
+  margin-top: 10px;
+`;
 
 const LabelValueContainer = styled(View)`
   display: flex;
+  flex-direction: row;
 `;
