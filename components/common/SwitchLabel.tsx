@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { Switch } from "react-native-paper";
 import React from "react";
 
-export default function OvenMainCard() {
+export default function SwitchLabel() {
   const [isChecked, setChecked] = React.useState(false);
 
   const toggleSwitch = (isSelected: boolean) => {
@@ -15,7 +15,7 @@ export default function OvenMainCard() {
   };
 
   return (
-    <OptionContainer>
+    <SwitchContainer>
       <ChoiceText>{isChecked ? "On" : "Off"}</ChoiceText>
       <Switch
         value={isChecked}
@@ -23,11 +23,11 @@ export default function OvenMainCard() {
         ios_backgroundColor="#0E81C4"
         trackColor={{ false: "#767577", true: "#99C6E2" }}
       />
-    </OptionContainer>
+    </SwitchContainer>
   );
 }
 
-const OptionContainer = styled(View)`
+const SwitchContainer = styled(View)`
   display: flex;
   flex-direction: row;
   width: 100%;
