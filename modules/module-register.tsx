@@ -3,7 +3,7 @@ import Oven from "./native/oven";
 import Sensors from "./native/sensor";
 import * as React from "react";
 import ChatbotScreen from "./native/chatbot/MainScreen";
-import MainOvenScreen from "./native/oven/MainScreen";
+import MainOvenScreen from "./native/oven/OvenMainScreen";
 import { ChatbotConfig } from "./native/chatbot/chatbot-types";
 
 export function getModuleScreen(deviceConfig: ChatbotConfig) {

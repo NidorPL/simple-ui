@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import OvenHeader from "./components/OvenHeader";
-import { Button, Card, Title, Paragraph } from "react-native-paper";
+import { Button, Card, Title, Paragraph, IconButton } from "react-native-paper";
 import { ScrollView, View } from "react-native";
 import OvenMainCard from "./components/cards/OvenMainCard";
 import styled from "styled-components/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function MainOvenScreen(config: object) {
   // Header
@@ -23,8 +24,8 @@ export default function MainOvenScreen(config: object) {
         contentContainerStyle={{
           display: "grid" as "none",
           gridTemplateColumns: "1fr 1fr",
-          gridRowGap: "8px",
-          gridColumnGap: "8px",
+          gridRowGap: "15px",
+          gridColumnGap: "15px",
           padding: 8,
         }}
       >
@@ -41,18 +42,25 @@ export default function MainOvenScreen(config: object) {
         </Card>
 
         <Card>
-          <Card.Title title="Card Title" subtitle="Card Subtitle" />
+          <Card.Title title="Programm starten" />
           <Card.Content>
-            <Title>Card title</Title>
-            <Paragraph>Card content</Paragraph>
+            <ProgramStartContainer>
+              <IconButton
+                icon="plus-circle"
+                size={40}
+                onPress={() => console.log("Pressed")}
+              />
+            </ProgramStartContainer>
           </Card.Content>
-          <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-          <Card.Actions>
-            <Button>Cancel</Button>
-            <Button>Ok</Button>
-          </Card.Actions>
         </Card>
       </ScrollView>
     </Fragment>
   );
 }
+
+const ProgramStartContainer = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+`;
