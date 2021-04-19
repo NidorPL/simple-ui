@@ -1,10 +1,5 @@
-/*
-    Mapper can override existing functions
- */
-
 import axios from "axios";
-import { Alert } from "react-native";
-import { ChatbotMessage } from "../../native/chatbot/types";
+import { ChatbotMessage } from "../../native/chatbot/chatbot-types";
 
 export const CoronaChatMapper1: ChatbotApi = {
   name: "corona-bot1",
@@ -53,8 +48,10 @@ interface ChatbotConfig {
 }
 
 interface ChatbotApi {
-  loadFirstMessages(config: ChatbotConfig): ChatbotMessage[];
-  sendMessage(
+  name: string;
+  relatedModule: string;
+  loadFirstMessages?(config: ChatbotConfig): ChatbotMessage[];
+  sendMessage?(
     messageInput: string,
     location: object,
     config: ChatbotConfig

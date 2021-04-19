@@ -7,12 +7,12 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 import styled from "styled-components/native";
-import Header from "./header/header";
-import { resolveMessageFromType } from "../message-resolver";
-import api from "../api";
+import Header from "./components/header/header";
+import { resolveMessageFromType } from "./message-resolver";
+import api from "./api";
 import axios from "axios";
-import { services } from "../services";
-import { ChatbotConfig, ChatbotMessage } from "../types";
+import { services } from "./services";
+import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
 
 // config interface
 /*
@@ -100,7 +100,7 @@ export default function MainChatbotScreen(config: ChatbotConfig) {
               style={isWeb && { outline: "none" }}
             />
             <SendButtonWrapper onPress={sendMessage}>
-              <SendButton source={require("../images/continue_icon.png")} />
+              <SendButton source={require("./images/continue_icon.png")} />
             </SendButtonWrapper>
           </ChatInputWrapper>
         </MessageContainer>

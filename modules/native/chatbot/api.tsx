@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Alert, Platform } from "react-native";
-import { ChatbotConfig, ChatbotMessage } from "./types";
+import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
 import { getMapper } from "../../custom-mappers/mapper-register";
 
 interface ChatbotApi {

@@ -5,6 +5,7 @@ import * as React from "react";
 import { Appbar } from "react-native-paper";
 import { StyleSheet } from "react-native";
 import { Fragment } from "react";
+import MainOvenScreen from "../modules/native/oven/MainScreen";
 
 function HomeScreen() {
   return (
@@ -35,6 +36,7 @@ export default function HomeNavigator(props: any) {
         <Appbar.Content title="Smart UI" subtitle="DAI Lab Project" />
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
       </Appbar.Header>
+      <MainOvenScreen />
     </React.Fragment>
   );
 }

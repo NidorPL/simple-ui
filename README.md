@@ -24,6 +24,10 @@ Basic example:
 Every module has its own configuration. Please see the individual modules page for details.
 
 
+### Adding a new device
+
+- Extend the ```config.ts``` file with the new device  
+
 
 ### Adding a new module
 

@@ -11,5 +11,16 @@ export default {
         send: "/chatbot",
       },
     },
+    {
+      name: "Intelligent Oven",
+      icon: "stove",
+      moduleName: "Oven",
+      mapper: "default",
+      connection: {
+        url: "https://corona.brain4x.de",
+        init: "/chatbot-init",
+        send: "/chatbot",
+      },
+    },
   ],
 };

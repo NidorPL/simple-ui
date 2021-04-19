@@ -4,10 +4,11 @@ interface MenuViewConfig {
 }
 
 export function getMenuView(): MenuViewConfig {
-  return {
+  let newVar = {
     name: "Intelligent Oven",
     icon: "stove",
   };
+  return newVar;
 }
 
 export default {
