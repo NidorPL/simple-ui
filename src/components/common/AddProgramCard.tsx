@@ -1,8 +1,13 @@
 import { Card, IconButton } from "react-native-paper";
 import React from "react";
 import styled from "styled-components/native";
+import { ProgramType } from "./types";
 
-export default function AddProgamCard() {
+export default function AddProgamCard({
+  programs,
+}: {
+  programs: ProgramType[];
+}) {
   return (
     <Card>
       <Card.Title title="Programm starten" />

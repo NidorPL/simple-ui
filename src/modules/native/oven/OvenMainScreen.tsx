@@ -2,12 +2,10 @@ import React, { Fragment, useState, useRef, useEffect } from "react";
 import OvenHeader from "./components/OvenHeader";
 import { Button, Card, Title, Paragraph, IconButton } from "react-native-paper";
 import { ScrollView, View } from "react-native";
-import SwitchLabel from "../../../components/common/SwitchLabel";
-import styled from "styled-components/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import MainOvenCard from "./components/cards/MainOvenCard";
 import AddProgamCard from "../../../components/common/AddProgramCard";
-import OvenBakeProgram from "./programs/bake";
+import { ovenPrograms } from "./programs/program-registry";
 
 export default function MainOvenScreen(config: object) {
   // Header
@@ -42,8 +40,11 @@ export default function MainOvenScreen(config: object) {
         }}
       >
         <MainOvenCard />
-        <OvenBakeProgram />
-        <AddProgamCard />
+        {ovenPrograms.map(({ View }) => {
+          return View({ key: 1 });
+        })}
+
+        <AddProgamCard programs={ovenPrograms} />
       </ScrollView>
     </Fragment>
   );
