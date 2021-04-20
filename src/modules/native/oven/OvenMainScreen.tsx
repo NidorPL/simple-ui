@@ -8,26 +8,6 @@ import AddProgamCard from "../../../components/common/AddProgramCard";
 import { ovenPrograms } from "./programs/program-registry";
 
 export default function MainOvenScreen(config: object) {
-  // Header
-
-  // Statuse
-
-  // Programme
-
-  // Main controls
-
-  // <Title>Card title</Title>
-
-  /*
-        Logic here
-
-
-
-        Load available programs
-
-
-     */
-
   return (
     <Fragment>
       <ScrollView
