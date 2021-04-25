@@ -31,6 +31,7 @@ export default function HomeNavigator(props: any) {
                 name: "Bake",
                 title: "Backen...",
                 iconName: "chef-hat",
+                statusUrl: "http://localhost:3000/oven1/bake1/status",
               },
             },
             {
@@ -40,8 +41,9 @@ export default function HomeNavigator(props: any) {
               instanceConfig: {
                 name: "Vacuum1",
                 iconName: "robot-vacuum",
-                title: "Cleaning livining room...",
+                title: "Staubsaugen Wohnzimmer...",
                 mapper: "default",
+                statusUrl: "http://localhost:3000/vacuum1/status",
               },
             },
           ],

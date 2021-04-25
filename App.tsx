@@ -15,6 +15,9 @@ import Navigation from "./src/navigation/MainNavigation";
 import { PreferencesContext } from "./src/context/preferencesContext";
 
 import BottomTabNavigator from "./src/navigation/BottomTabNavigator";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -63,7 +66,9 @@ export default function App() {
                   }
             }
           >
-            <Navigation colorScheme={colorScheme} />
+            <QueryClientProvider client={queryClient}>
+              <Navigation colorScheme={colorScheme} />
+            </QueryClientProvider>
           </PaperProvider>
         </PreferencesContext.Provider>
       </SafeAreaProvider>
