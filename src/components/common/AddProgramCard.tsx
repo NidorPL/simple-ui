@@ -8,17 +8,16 @@ import {
 } from "react-native-paper";
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import { ProgramType } from "./types";
 import RNPickerSelect from "react-native-picker-select";
 
-export default function AddProgamCard({
-  programs,
-}: {
-  programs: ProgramType[];
-}) {
+export default function AddProgamCard({ programs }: { programs: any }) {
   const [isSelectProgramModalOpen, setIsSelectProgramModalOpen] = useState(
     false
   );
+
+  function addProgram() {
+    setIsSelectProgramModalOpen(false);
+  }
 
   return (
     <Card>
@@ -44,20 +43,14 @@ export default function AddProgamCard({
             <RNPickerSelect
               onValueChange={() => {}}
               items={programs.map((program) => ({
-                label: program.info.name,
-                value: program.info.name,
+                label: program.programConfig.name,
+                value: program.programConfig.name,
               }))}
               placeholder={{ label: "Choose program.." }}
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button
-              onPress={() => {
-                setIsSelectProgramModalOpen(false);
-              }}
-            >
-              Add Program
-            </Button>
+            <Button onPress={addProgram}>Add Program</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

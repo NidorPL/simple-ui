@@ -1,29 +1,9 @@
-import { View } from "react-native";
-import { Text } from "react-native-paper";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import * as React from "react";
 import { Appbar } from "react-native-paper";
-import { StyleSheet } from "react-native";
-import { Fragment } from "react";
-import MainOvenScreen from "../modules/native/oven/OvenMainScreen";
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen2</Text>
-    </View>
-  );
-}
+import { MainOvenScreen } from "../modules/native/oven/OvenMainScreen";
 
 export default function HomeNavigator(props: any) {
-  const Tab = createMaterialTopTabNavigator();
-  const _goBack = () => console.log("Went back");
-
-  const _handleSearch = () => console.log("Searching");
-
   const _handleMore = () => console.log("Shown more");
-
-  // <Appbar.BackAction onPress={_goBack} />
 
   function openDrawer() {
     props.navigation.openDrawer();
@@ -36,16 +16,36 @@ export default function HomeNavigator(props: any) {
         <Appbar.Content title="Smart UI" subtitle="DAI Lab Project" />
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
       </Appbar.Header>
-      <MainOvenScreen />
+      <MainOvenScreen
+        config={{
+          name: "Intelligent Oven",
+          icon: "stove",
+          moduleName: "Oven",
+          mapper: "default",
+          runningPrograms: [
+            {
+              moduleInfo: {
+                pModuleName: "LabeledProgress",
+              },
+              instanceConfig: {
+                name: "Bake",
+                title: "Backen...",
+                iconName: "chef-hat",
+              },
+            },
+            {
+              moduleInfo: {
+                pModuleName: "LabeledProgress",
+              },
+              instanceConfig: {
+                name: "Vacuum1",
+                title: "Cleaning livining room...",
+                iconName: "robot-vacuum",
+              },
+            },
+          ],
+        }}
+      />
     </React.Fragment>
   );
 }
-
-const styles = StyleSheet.create({
-  bottom: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-  },
-});

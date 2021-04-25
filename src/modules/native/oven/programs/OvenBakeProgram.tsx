@@ -1,11 +1,13 @@
 import React from "react";
 import { LabeledProgressCard } from "../../../../components/common/LabeledProgressCard";
-import { ProgramType } from "../../../../components/common/types";
+import { Program } from "../../../../components/common/common-types";
 
-export const OvenBakeProgram: ProgramType = {
+export const OvenBakeProgram: Program = {
   info: {
     name: "Bake",
+    // requiredConnectionUrls: ["startUrl", "stopUrl", "statusUrl"]
   },
+
   View: (props) => {
     return (
       <LabeledProgressCard

@@ -3,7 +3,7 @@ import Oven from "./native/oven";
 import Sensors from "./native/sensor";
 import * as React from "react";
 import ChatbotScreen from "./native/chatbot/MainScreen";
-import MainOvenScreen from "./native/oven/OvenMainScreen";
+import { MainOvenScreen } from "./native/oven/OvenMainScreen";
 import { ChatbotConfig } from "./native/chatbot/chatbot-types";
 
 export function getModuleScreen(deviceConfig: ChatbotConfig) {
@@ -11,7 +11,7 @@ export function getModuleScreen(deviceConfig: ChatbotConfig) {
     case "Chatbot":
       return <ChatbotScreen {...deviceConfig} />;
     case "Oven":
-      return <MainOvenScreen></MainOvenScreen>;
+      return <MainOvenScreen config={deviceConfig}></MainOvenScreen>;
 
     default:
       throw new Error(

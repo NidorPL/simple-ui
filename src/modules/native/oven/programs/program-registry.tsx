@@ -1,4 +1,14 @@
 import { OvenBakeProgram } from "./OvenBakeProgram";
-import { ProgramType } from "../../../../components/common/types";
+import {
+  ProgramModuleInfo,
+  Program,
+  ProgramConfig,
+} from "../../../../components/common/common-types";
+import { LabeledProgressProgram } from "../../../../programs/LabeledProgress/LabeledProgressProgramm";
 
-export const ovenPrograms: ProgramType[] = [OvenBakeProgram];
+const programs: Program[] = [OvenBakeProgram, LabeledProgressProgram];
+
+export const getProgramView = (pModuleName: string): JSX.Element => {
+  return programs.find((program) => program.info.programModule === pModuleName)
+    .View;
+};

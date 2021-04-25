@@ -11,7 +11,7 @@ import { Updates } from "expo";
 
 import useCachedResources from "./src/hooks/useCachedResources";
 import useColorScheme from "./src/hooks/useColorScheme";
-import Navigation from "./src/navigation";
+import Navigation from "./src/navigation/MainNavigation";
 import { PreferencesContext } from "./src/context/preferencesContext";
 
 import BottomTabNavigator from "./src/navigation/BottomTabNavigator";
