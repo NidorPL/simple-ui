@@ -15,20 +15,30 @@ export const LabeledProgressProgram: Program = {
 
     // get mapper
 
-    const { isLoading: isLoadingStatus, data: statusData } = useQuery(
-      "status" + instanceConfig.name,
-      () =>
-        labeledProgressApi.getStatus({
-          url: instanceConfig.statusUrl,
-        })
+    const api = labeledProgressApi; // or mapper
+
+    const {
+      isLoading: isLoadingStatus,
+      data: statusData,
+      error: isStatusErrored,
+    } = useQuery("status" + instanceConfig.name, () =>
+      api.getStatus({
+        url: instanceConfig.statusUrl,
+      })
     );
 
     return (
       <LabeledProgressCard
         title={instanceConfig.title}
-        label={isLoadingStatus ? "Loading..." : statusData.value}
+        label={
+          isLoadingStatus
+            ? "Loading..."
+            : isStatusErrored
+            ? "Network Error"
+            : statusData.value
+        }
         iconName={instanceConfig.iconName}
-        progress={isLoadingStatus ? 0 : statusData.progress}
+        progress={isLoadingStatus || isStatusErrored ? 0 : statusData.progress}
       />
     );
   },
