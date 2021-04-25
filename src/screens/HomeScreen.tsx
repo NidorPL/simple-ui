@@ -39,8 +39,9 @@ export default function HomeNavigator(props: any) {
               },
               instanceConfig: {
                 name: "Vacuum1",
-                title: "Cleaning livining room...",
                 iconName: "robot-vacuum",
+                title: "Cleaning livining room...",
+                mapper: "default",
               },
             },
           ],

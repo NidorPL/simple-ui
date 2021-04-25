@@ -11,6 +11,8 @@ export const LabeledProgressProgram: Program = {
   View: (instanceConfig: LabeledProgressInput) => {
     // functions to fetch values
 
+    // get mapper
+
     return (
       <LabeledProgressCard
         title={instanceConfig.title}
@@ -21,5 +23,3 @@ export const LabeledProgressProgram: Program = {
     );
   },
 };
-
-// chef-hat

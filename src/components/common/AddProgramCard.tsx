@@ -9,8 +9,9 @@ import {
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import RNPickerSelect from "react-native-picker-select";
+import { Program } from "./common-types";
 
-export default function AddProgamCard({ programs }: { programs: any }) {
+export default function AddProgamCard({ programs }: { programs: Program[] }) {
   const [isSelectProgramModalOpen, setIsSelectProgramModalOpen] = useState(
     false
   );
@@ -43,8 +44,8 @@ export default function AddProgamCard({ programs }: { programs: any }) {
             <RNPickerSelect
               onValueChange={() => {}}
               items={programs.map((program) => ({
-                label: program.programConfig.name,
-                value: program.programConfig.name,
+                label: program.instanceConfig.name,
+                value: program.instanceConfig.name,
               }))}
               placeholder={{ label: "Choose program.." }}
             />

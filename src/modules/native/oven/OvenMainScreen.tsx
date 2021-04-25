@@ -53,6 +53,7 @@ export const MainOvenScreen = ({ config }: { config: Device }) => {
         {runningPrograms.map((runningProgram) => {
           return runningProgram.View(runningProgram.instanceConfig);
         })}
+        <AddProgamCard programs={runningPrograms} />
       </ScrollView>
     </Fragment>
   );

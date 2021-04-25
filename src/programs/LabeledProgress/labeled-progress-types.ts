@@ -8,6 +8,7 @@ export interface LabeledProgressType {
 export interface LabeledProgressInput {
   title: string;
   iconName: string;
+  mapper: string;
   statusUrl: string;
   startUrl: string;
   stopUrl: string;
