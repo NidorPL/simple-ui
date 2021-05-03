@@ -1,9 +1,9 @@
+import React from "react";
 import { Card, Paragraph } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import SwitchLabel from "../../../../../components/common/SwitchLabel";
-import React from "react";
+import SwitchLabel from "../../../../components/common/SwitchLabel";
 
-export default function MainOvenCard() {
+export default function MainDeviceCard() {
   return (
     <Card>
       <Card.Title

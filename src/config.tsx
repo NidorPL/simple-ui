@@ -1,28 +1,26 @@
-import * as React from "react";
-import { Appbar } from "react-native-paper";
-
-export default function HomeNavigator(props: any) {
-  const _handleMore = () => console.log("Shown more");
-
-  function openDrawer() {
-    props.navigation.openDrawer();
-  }
-
-  return (
-    <React.Fragment>
-      <Appbar.Header>
-        <Appbar.Action icon="menu" onPress={openDrawer} />
-        <Appbar.Content title="Smart UI" subtitle="DAI Lab Project" />
-        <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
-      </Appbar.Header>
-    </React.Fragment>
-  );
-}
-
-/*
-<HubMainScreen
-        config={{
-          name: "ProgramHub",
+export default {
+  connectedDevices: [
+    {
+      name: "Corona Chat",
+      icon: "robot",
+      modules: [
+        {
+          moduleName: "Chat",
+          mapper: "corona-bot1",
+          connection: {
+            url: "https://corona.brain4x.de",
+            init: "/chatbot-init",
+            send: "/chatbot",
+          },
+        },
+      ],
+    },
+    {
+      name: "Intelligent Oven",
+      icon: "stove",
+      modules: [
+        {
+          moduleName: "ProgramHub",
           mapper: "default",
           runningPrograms: [
             {
@@ -58,6 +56,8 @@ export default function HomeNavigator(props: any) {
               },
             },
           ],
-        }}
-      />
- */
+        },
+      ],
+    },
+  ],
+};

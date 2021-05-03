@@ -5,13 +5,14 @@ import * as React from "react";
 import ChatbotScreen from "./native/chatbot/MainScreen";
 import { MainOvenScreen } from "./native/oven/OvenMainScreen";
 import { ChatbotConfig } from "./native/chatbot/chatbot-types";
+import { HubMainScreen } from "./native/programHub/HubMainScreen";
 
 export function getModuleScreen(deviceConfig: ChatbotConfig) {
   switch (deviceConfig.moduleName) {
-    case "Chatbot":
+    case "Chat":
       return <ChatbotScreen {...deviceConfig} />;
-    case "Oven":
-      return <MainOvenScreen config={deviceConfig}></MainOvenScreen>;
+    case "ProgramHub":
+      return <HubMainScreen config={deviceConfig}></HubMainScreen>;
 
     default:
       throw new Error(

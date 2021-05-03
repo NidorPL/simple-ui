@@ -31,7 +31,7 @@ function StackNavigator() {
             name={deviceConfig.name}
             component={(props) => (
               <MainLayout {...props}>
-                {getModuleScreen(deviceConfig)}
+                {getModuleScreen(deviceConfig.modules[0])}
               </MainLayout>
             )}
           />

@@ -1,8 +1,8 @@
 import React from "react";
-import { Program } from "../../components/common/common-types";
-import { LabeledProgressCard } from "../../components/common/LabeledProgressCard";
+import { Program } from "../../../../../components/common/common-types";
+import { LabeledProgressCard } from "../../../../../components/common/LabeledProgressCard";
 import { LabeledProgressInput } from "./labeled-progress-types";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { labeledProgressApi } from "./labeled-progress-api";
 
 export const LabeledProgressProgram: Program = {
@@ -11,10 +11,6 @@ export const LabeledProgressProgram: Program = {
   },
 
   View: (instanceConfig: LabeledProgressInput) => {
-    // functions to fetch values
-
-    // get mapper
-
     const api = labeledProgressApi; // or mapper
 
     const {
@@ -23,7 +19,7 @@ export const LabeledProgressProgram: Program = {
       error: isStatusErrored,
     } = useQuery("status" + instanceConfig.name, () =>
       api.getStatus({
-        url: instanceConfig.statusUrl,
+        url: instanceConfig.connection.statusUrl,
       })
     );
 

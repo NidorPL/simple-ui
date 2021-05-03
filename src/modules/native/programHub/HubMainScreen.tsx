@@ -1,28 +1,18 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
-import OvenHeader from "./components/OvenHeader";
-import { Button, Card, Title, Paragraph, IconButton } from "react-native-paper";
-import { ScrollView, View } from "react-native";
+import React, { Fragment } from "react";
+import { ScrollView } from "react-native";
 
-import MainOvenCard from "./components/cards/MainOvenCard";
 import AddProgamCard from "../../../components/common/AddProgramCard";
-import {
-  getProgramView,
-  ovenPrograms,
-  programs,
-} from "./programs/program-registry";
+
 import {
   Device,
   Program,
   ProgramConfig,
-  ProgramModuleInfo,
 } from "../../../components/common/common-types";
+import MainDeviceCard from "./components/MainDeviceCard";
+import { getProgramView } from "./program-registry";
 
-export const MainOvenScreen = ({ config }: { config: Device }) => {
-  // config get program configs
-
-  console.log("Oven config");
-  console.log(config.runningPrograms);
-
+export const HubMainScreen = ({ config }: { config: Device }) => {
+  // Load programs from device ?
   const runningPrograms: Program[] = config.runningPrograms.map(
     (programConfig: ProgramConfig): Program => ({
       moduleInfo: programConfig.moduleInfo,
@@ -30,13 +20,6 @@ export const MainOvenScreen = ({ config }: { config: Device }) => {
       View: getProgramView(programConfig.moduleInfo.pModuleName),
     })
   );
-
-  // resolve programs from config
-
-  /*
-        runningPrograms :
-
-     */
 
   return (
     <Fragment>
@@ -49,7 +32,7 @@ export const MainOvenScreen = ({ config }: { config: Device }) => {
           padding: 8,
         }}
       >
-        <MainOvenCard />
+        <MainDeviceCard />
         {runningPrograms.map((runningProgram, index) => {
           return (
             <Fragment key={runningProgram.instanceConfig.name}>
