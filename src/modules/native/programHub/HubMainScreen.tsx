@@ -35,7 +35,7 @@ export const HubMainScreen = ({ config }: { config: Device }) => {
         <MainDeviceCard />
         {runningPrograms.map((runningProgram, index) => {
           return (
-            <Fragment key={runningProgram.instanceConfig.name}>
+            <Fragment key={config.name + runningProgram.instanceConfig.name}>
               {runningProgram.View(runningProgram.instanceConfig)}
             </Fragment>
           );

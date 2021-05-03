@@ -16,7 +16,6 @@ import { RootStackParamList } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import MainLayout from "../components/MainLayout";
 import config from "../config";
-import { getModuleScreen } from "../modules/module-register";
 import DeviceScreenNavigator from "./DeviceScreenNavigator";
 
 const Stack = createStackNavigator<RootStackParamList>();

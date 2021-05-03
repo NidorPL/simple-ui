@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native";
 import { Program } from "../../../../../components/common/common-types";
 import { LabeledProgressCard } from "../../../../../components/common/LabeledProgressCard";
 import { LabeledProgressInput } from "./labeled-progress-types";

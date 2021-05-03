@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Module } from "../components/common/common-types";
@@ -33,7 +34,7 @@ export default function DeviceScreenNavigator({
             name={module.moduleName}
             children={() => getModuleScreen(module)}
             options={{
-              tabBarLabel: () => module.moduleName,
+              tabBarLabel: () => <Text>{module.moduleName}</Text>,
               tabBarIcon: ({ color, size }) => (
                 <MaterialCommunityIcons
                   name={module.iconName}
