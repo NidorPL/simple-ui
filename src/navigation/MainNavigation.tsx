@@ -12,11 +12,12 @@ import { DrawerContent } from "../drawerContent";
 import HomeScreen from "../screens/HomeScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList } from "../types";
-import BottomTabNavigator from "./BottomTabNavigator";
+
 import LinkingConfiguration from "./LinkingConfiguration";
 import MainLayout from "../components/MainLayout";
 import config from "../config";
 import { getModuleScreen } from "../modules/module-register";
+import DeviceScreenNavigator from "./DeviceScreenNavigator";
 
 const Stack = createStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator();
@@ -26,12 +27,16 @@ function StackNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={HomeScreen} />
       {config.connectedDevices.map((deviceConfig) => {
+        console.log("deviceConfig");
+        console.log(deviceConfig);
+
         return (
           <Stack.Screen
+            key={deviceConfig.name}
             name={deviceConfig.name}
-            component={(props) => (
+            children={(props) => (
               <MainLayout {...props}>
-                {getModuleScreen(deviceConfig.modules[0])}
+                <DeviceScreenNavigator modules={deviceConfig.modules} />
               </MainLayout>
             )}
           />

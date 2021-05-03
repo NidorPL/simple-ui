@@ -14,7 +14,6 @@ import useColorScheme from "./src/hooks/useColorScheme";
 import Navigation from "./src/navigation/MainNavigation";
 import { PreferencesContext } from "./src/context/preferencesContext";
 
-import BottomTabNavigator from "./src/navigation/BottomTabNavigator";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();

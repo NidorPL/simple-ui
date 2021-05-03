@@ -1,22 +1,23 @@
-export interface ProgramModuleInfo {
-  pModuleName: string; // to resolve the module
+export interface ProgramConfig {
+  moduleInfo: {
+    pModuleName: string; // to resolve the module
+  };
+  instanceConfig: {
+    name: string;
+  };
 }
 
-export interface ProgramInstanceConfig {
-  name: string;
+export interface Module {
+  moduleName: string;
+  mapper: string;
+  iconName: string;
+  runningPrograms: ProgramConfig[];
 }
 
 export interface Device {
   name: string;
   icon: string;
-  moduleName: string;
-  mapper: string;
-  runningPrograms: ProgramConfig[];
-}
-
-export interface ProgramConfig {
-  moduleInfo: ProgramModuleInfo;
-  instanceConfig: ProgramInstanceConfig;
+  modules: Module[];
 }
 
 export interface Program extends ProgramConfig {

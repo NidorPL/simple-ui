@@ -7,6 +7,7 @@ export default {
         {
           moduleName: "Chat",
           mapper: "corona-bot1",
+          iconName: "robot",
           connection: {
             url: "https://corona.brain4x.de",
             init: "/chatbot-init",
@@ -22,6 +23,7 @@ export default {
         {
           moduleName: "ProgramHub",
           mapper: "default",
+          iconName: "desktop-mac-dashboard",
           runningPrograms: [
             {
               moduleInfo: {

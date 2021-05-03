@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Appbar } from "react-native-paper";
+import DeviceScreenNavigator from "../navigation/DeviceScreenNavigator";
+import config from "../config";
 
 export default function HomeNavigator(props: any) {
   const _handleMore = () => console.log("Shown more");
@@ -15,49 +17,7 @@ export default function HomeNavigator(props: any) {
         <Appbar.Content title="Smart UI" subtitle="DAI Lab Project" />
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
       </Appbar.Header>
+      <DeviceScreenNavigator modules={config.connectedDevices[1].modules} />
     </React.Fragment>
   );
 }
-
-/*
-<HubMainScreen
-        config={{
-          name: "ProgramHub",
-          mapper: "default",
-          runningPrograms: [
-            {
-              moduleInfo: {
-                pModuleName: "LabeledProgress",
-              },
-              instanceConfig: {
-                name: "Bake",
-                title: "Backen...",
-                iconName: "chef-hat",
-                connection: {
-                  statusUrl: "http://localhost:3000/oven1/bake1/status",
-                  startUrl: "...",
-                  stopUrl: "...",
-                },
-                mapper: "default",
-              },
-            },
-            {
-              moduleInfo: {
-                pModuleName: "LabeledProgress",
-              },
-              instanceConfig: {
-                name: "Vacuum1",
-                title: "Cleaning livining room...",
-                iconName: "robot-vacuum",
-                connection: {
-                  statusUrl: "http://localhost:3000/vacuum1/status",
-                  startUrl: "...",
-                  stopUrl: "...",
-                },
-                mapper: "default",
-              },
-            },
-          ],
-        }}
-      />
- */
