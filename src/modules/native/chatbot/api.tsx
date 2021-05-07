@@ -80,16 +80,18 @@ const defaultApi = {
         timeout: 5000,
       });
 
-      return data;
+      return data.map(answer => ({...answer, fromChatbot: true}));
     } catch (err) {
       console.log("Error with request");
       console.log(err.message);
       console.log(err.request);
+      console.log(err);
 
       return {
         type: "simple-message",
         text:
           "Ich kann dir deine Frage gerade nicht beantworten. Bitte versuche es später nocheinmal.",
+        fromChatbot: true
       };
     }
   },

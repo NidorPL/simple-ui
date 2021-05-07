@@ -59,6 +59,16 @@ export default {
             },
           ],
         },
+        {
+          moduleName: "Chat",
+          mapper: "corona-bot1",
+          iconName: "robot",
+          connection: {
+            url: "https://corona.brain4x.de",
+            init: "/chatbot-init",
+            send: "/chatbot",
+          },
+        },
       ],
     },
   ],
