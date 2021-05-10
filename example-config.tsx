@@ -4,7 +4,7 @@ export default {
       name: "Corona Chat",
       icon: "robot",
       moduleName: "Chatbot",
-      mapper: "default",
+      customApi: "default",
       connection: {
         url: "https://corona.brain4x.de",
         init: "/chatbot-init",

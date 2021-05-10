@@ -6,7 +6,7 @@ export default {
       modules: [
         {
           moduleName: "Chat",
-          mapper: "corona-bot1",
+          customApi: "corona-bot1",
           iconName: "robot",
           connection: {
             url: "https://corona.brain4x.de",
@@ -22,7 +22,7 @@ export default {
       modules: [
         {
           moduleName: "DataTable",
-          mapper: "default",
+          customApi: "default",
           iconName: "view-list",
           moduleConfig: {
             tableTitle: "Generic Data Table",
@@ -37,46 +37,48 @@ export default {
         },
         {
           moduleName: "ProgramHub",
-          mapper: "default",
+          customApi: "default",
           iconName: "desktop-mac-dashboard",
-          runningPrograms: [
-            {
-              moduleInfo: {
-                pModuleName: "LabeledProgress",
-              },
-              instanceConfig: {
-                name: "Bake",
-                title: "Backen...",
-                iconName: "chef-hat",
-                connection: {
-                  statusUrl: "http://localhost:3000/oven1/bake1/status",
-                  startUrl: "...",
-                  stopUrl: "...",
+          moduleConfig: {
+            runningPrograms: [
+              {
+                programInfo: {
+                  pModuleName: "LabeledProgress",
                 },
-                mapper: "default",
-              },
-            },
-            {
-              moduleInfo: {
-                pModuleName: "LabeledProgress",
-              },
-              instanceConfig: {
-                name: "Vacuum1",
-                title: "Cleaning livining room...",
-                iconName: "robot-vacuum",
-                connection: {
-                  statusUrl: "http://localhost:3000/vacuum1/status",
-                  startUrl: "...",
-                  stopUrl: "...",
+                programConfig: {
+                  name: "Bake",
+                  title: "Backen...",
+                  iconName: "chef-hat",
+                  connection: {
+                    statusUrl: "http://localhost:3000/oven1/bake1/status",
+                    startUrl: "...",
+                    stopUrl: "...",
+                  },
+                  customApi: "default",
                 },
-                mapper: "default",
               },
-            },
-          ],
+              {
+                programInfo: {
+                  pModuleName: "LabeledProgress",
+                },
+                programConfig: {
+                  name: "Vacuum1",
+                  title: "Cleaning living room...",
+                  iconName: "robot-vacuum",
+                  connection: {
+                    statusUrl: "http://localhost:3000/vacuum1/status",
+                    startUrl: "...",
+                    stopUrl: "...",
+                  },
+                  customApi: "default",
+                },
+              },
+            ],
+          },
         },
         {
           moduleName: "Chat",
-          mapper: "corona-bot1",
+          customApi: "corona-bot1",
           iconName: "robot",
           connection: {
             url: "https://corona.brain4x.de",

@@ -44,8 +44,8 @@ export default function AddProgamCard({ programs }: { programs: Program[] }) {
             <RNPickerSelect
               onValueChange={() => {}}
               items={programs.map((program) => ({
-                label: program.instanceConfig.name,
-                value: program.instanceConfig.name,
+                label: program.programConfig.name,
+                value: program.programConfig.name,
               }))}
               placeholder={{ label: "Choose program.." }}
             />

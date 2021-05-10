@@ -1,11 +1,4 @@
-export interface ProgramConfig {
-  moduleInfo: {
-    pModuleName: string; // to resolve the module
-  };
-  instanceConfig: {
-    name: string;
-  };
-}
+import { ProgramConfig } from "../../native-modules/programHub/program-hub-types";
 
 export interface Module {
   moduleName: string;
@@ -21,7 +14,7 @@ export interface Device {
 }
 
 export interface Program extends ProgramConfig {
-  View: JSX.Element;
+  View: any;
 }
 
 export interface MainConfig {

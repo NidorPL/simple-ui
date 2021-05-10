@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Module } from "../components/common/common-types";
+import { Module2 } from "../components/common/common-types";
 import { getModuleScreen } from "../registers/module-register";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 export default function DeviceScreenNavigator({
   modules,
 }: {
-  modules: Module[];
+  modules: Module2[];
 }) {
   const colorScheme = useColorScheme();
 

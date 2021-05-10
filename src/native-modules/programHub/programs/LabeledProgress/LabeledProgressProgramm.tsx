@@ -12,7 +12,7 @@ export const LabeledProgressProgram: Program = {
   },
 
   View: (instanceConfig: LabeledProgressInput) => {
-    const api = getAPI(instanceConfig.mapper, defaultLabeledProgressApi);
+    const api = getAPI(instanceConfig.customApi, defaultLabeledProgressApi);
 
     const {
       isLoading: isLoadingStatus,

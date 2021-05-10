@@ -10,14 +10,18 @@ import {
 } from "../../components/common/common-types";
 import MainDeviceCard from "./components/MainDeviceCard";
 import { getProgramView } from "../../registers/program-register";
+import { ProgramHubConfig } from "./program-hub-types";
 
-export const HubMainScreen = ({ config }: { config: Device }) => {
-  // Load programs from device ?
-  const runningPrograms: Program[] = config.runningPrograms.map(
+export const ProgramHubMainScreen = ({
+  programHubConfig,
+}: {
+  programHubConfig: ProgramHubConfig;
+}) => {
+  const runningPrograms: Program[] = programHubConfig.moduleConfig.runningPrograms.map(
     (programConfig: ProgramConfig): Program => ({
-      moduleInfo: programConfig.moduleInfo,
-      instanceConfig: programConfig.instanceConfig,
-      View: getProgramView(programConfig.moduleInfo.pModuleName),
+      programInfo: programConfig.programInfo,
+      programConfig: programConfig.programConfig,
+      View: getProgramView(programConfig.programInfo.pModuleName),
     })
   );
 
@@ -35,8 +39,8 @@ export const HubMainScreen = ({ config }: { config: Device }) => {
         <MainDeviceCard />
         {runningPrograms.map((runningProgram, index) => {
           return (
-            <Fragment key={config.name + runningProgram.instanceConfig.name}>
-              {runningProgram.View(runningProgram.instanceConfig)}
+            <Fragment key={runningProgram.programConfig.name}>
+              {runningProgram.View(runningProgram.programConfig)}
             </Fragment>
           );
         })}

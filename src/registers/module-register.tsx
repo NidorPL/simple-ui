@@ -1,22 +1,21 @@
 import * as React from "react";
-
 import { Module2 } from "../components/common/common-types";
-import { ChatMainScreen } from "../native-modules/chatbot/MainScreen";
-import { HubMainScreen } from "../native-modules/programHub/HubMainScreen";
+import { ChatMainScreen } from "../native-modules/chatbot/ChatMainScreen";
 import TableMainScreen from "../native-modules/DataTable/TableMainScreen";
+import { ProgramHubMainScreen } from "../native-modules/programHub/ProgramHubMainScreen";
 
-export function getModuleScreen(deviceConfig: Module2) {
-  switch (deviceConfig.moduleName) {
+export function getModuleScreen(module: Module2) {
+  switch (module.moduleName) {
     case "Chat":
-      return <ChatMainScreen {...deviceConfig} />;
+      return <ChatMainScreen {...module} />;
     case "ProgramHub":
-      return <HubMainScreen config={deviceConfig}></HubMainScreen>;
+      return (
+        <ProgramHubMainScreen programHubConfig={module}></ProgramHubMainScreen>
+      );
     case "DataTable":
-      return <TableMainScreen tableModuleConfig={deviceConfig} />;
+      return <TableMainScreen tableModuleConfig={module} />;
 
     default:
-      throw new Error(
-        "Couldnt resolve component name: " + deviceConfig.moduleName
-      );
+      throw new Error("Couldnt resolve component name: " + module.moduleName);
   }
 }

@@ -17,7 +17,7 @@ export default function TableMainScreen({
     connection,
   } = tableModuleConfig.moduleConfig;
 
-  let api = getAPI(tableModuleConfig.mapper, defaultTableApi);
+  let api = getAPI(tableModuleConfig.customApi, defaultTableApi);
 
   const {
     data: tableData,

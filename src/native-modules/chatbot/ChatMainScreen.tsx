@@ -24,7 +24,7 @@ export const ChatMainScreen = (config: ChatbotConfig) => {
 
   const scrollViewRef = useRef(null);
 
-  const api = getAPI(config.mapper, defaultChabotAPI);
+  const api = getAPI(config.customApi, defaultChabotAPI);
 
   useEffect(() => {
     loadFirstMessages();
