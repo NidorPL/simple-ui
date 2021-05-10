@@ -5,13 +5,12 @@ import {
   DefaultTheme,
   DarkTheme,
 } from "react-native-paper";
-// import {StatusBar} from "expo-status-bar";
 import { I18nManager } from "react-native";
 import { Updates } from "expo";
 
 import useCachedResources from "./src/hooks/useCachedResources";
 import useColorScheme from "./src/hooks/useColorScheme";
-import Navigation from "./src/navigation/MainNavigation";
+import Navigation from "./src/react-navigation/MainNavigation";
 import { PreferencesContext } from "./src/context/preferencesContext";
 
 import { QueryClient, QueryClientProvider } from "react-query";

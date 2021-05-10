@@ -1,14 +1,14 @@
 import * as React from "react";
-import ChatbotScreen from "../modules/native/chatbot/MainScreen";
-import { ChatbotConfig } from "../modules/native/chatbot/chatbot-types";
-import { HubMainScreen } from "../modules/native/programHub/HubMainScreen";
-import TableMainScreen from "../modules/native/DataTable/TableMainScreen";
+
 import { Module2 } from "../components/common/common-types";
+import { ChatMainScreen } from "../native-modules/chatbot/MainScreen";
+import { HubMainScreen } from "../native-modules/programHub/HubMainScreen";
+import TableMainScreen from "../native-modules/DataTable/TableMainScreen";
 
 export function getModuleScreen(deviceConfig: Module2) {
   switch (deviceConfig.moduleName) {
     case "Chat":
-      return <ChatbotScreen {...deviceConfig} />;
+      return <ChatMainScreen {...deviceConfig} />;
     case "ProgramHub":
       return <HubMainScreen config={deviceConfig}></HubMainScreen>;
     case "DataTable":

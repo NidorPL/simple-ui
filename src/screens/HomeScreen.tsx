@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Appbar } from "react-native-paper";
-import DeviceScreenNavigator from "../navigation/DeviceScreenNavigator";
+import DeviceScreenNavigator from "../react-navigation/DeviceScreenNavigator";
 import config from "../config";
 
 export default function HomeNavigator(props: any) {

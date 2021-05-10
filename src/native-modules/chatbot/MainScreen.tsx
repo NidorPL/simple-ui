@@ -11,9 +11,9 @@ import { resolveMessageFromType } from "./message-resolver";
 import { defaultChabotAPI } from "./default-chatbot-api";
 import { services } from "./services";
 import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
-import { getAPI } from "../../registers/custom-api-register";
+import { getAPI } from "../../registers/api-register";
 
-export default function MainChatbotScreen(config: ChatbotConfig) {
+export const ChatMainScreen = (config: ChatbotConfig) => {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
     null
   );
@@ -101,7 +101,7 @@ export default function MainChatbotScreen(config: ChatbotConfig) {
       </KeyboardAvoid>
     </Fragment>
   );
-}
+};
 
 const KeyboardAvoid = styled(KeyboardAvoidingView)`
   flex: 1;
