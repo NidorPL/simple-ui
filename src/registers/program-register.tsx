@@ -1,5 +1,5 @@
-import { Program } from "../../../components/common/common-types";
-import { LabeledProgressProgram } from "./programs/LabeledProgress/LabeledProgressProgramm";
+import { Program } from "../components/common/common-types";
+import { LabeledProgressProgram } from "../modules/native/programHub/programs/LabeledProgress/LabeledProgressProgramm";
 
 const programs: Program[] = [LabeledProgressProgram];
 

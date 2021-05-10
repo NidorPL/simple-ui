@@ -11,7 +11,7 @@ import { resolveMessageFromType } from "./message-resolver";
 import { defaultChabotAPI } from "./default-chatbot-api";
 import { services } from "./services";
 import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
-import { getAPI } from "../../custom-apis/custom-api-register";
+import { getAPI } from "../../registers/custom-api-register";
 
 export default function MainChatbotScreen(config: ChatbotConfig) {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(

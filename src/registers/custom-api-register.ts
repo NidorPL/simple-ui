@@ -1,4 +1,4 @@
-import { CoronaChatMapper1 } from "./corona-chat-mapper-1";
+import { CoronaChatMapper1 } from "../custom-elements/custom-apis/corona-chat-mapper-1";
 
 export function getCustomAPI(name: string) {
   switch (name) {

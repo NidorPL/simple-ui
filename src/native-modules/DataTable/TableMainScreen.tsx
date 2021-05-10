@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { useQuery } from "react-query";
 import { defaultTableApi } from "./defaultTableApi";
 import { TableConfig } from "./table-types";
-import { getAPI } from "../../custom-apis/custom-api-register";
+import { getAPI } from "../../registers/custom-api-register";
 
 export default function TableMainScreen({
   tableModuleConfig,

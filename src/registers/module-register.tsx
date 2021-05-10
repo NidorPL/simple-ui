@@ -1,8 +1,8 @@
 import * as React from "react";
-import ChatbotScreen from "./native/chatbot/MainScreen";
-import { ChatbotConfig } from "./native/chatbot/chatbot-types";
-import { HubMainScreen } from "./native/programHub/HubMainScreen";
-import TableMainScreen from "./native/DataTable/TableMainScreen";
+import ChatbotScreen from "../modules/native/chatbot/MainScreen";
+import { ChatbotConfig } from "../modules/native/chatbot/chatbot-types";
+import { HubMainScreen } from "../modules/native/programHub/HubMainScreen";
+import TableMainScreen from "../modules/native/DataTable/TableMainScreen";
 import { Module2 } from "../components/common/common-types";
 
 export function getModuleScreen(deviceConfig: Module2) {

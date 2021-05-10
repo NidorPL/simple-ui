@@ -1,10 +1,10 @@
 import React from "react";
 import { Text } from "react-native";
-import { Program } from "../../../../../components/common/common-types";
-import { LabeledProgressCard } from "../../../../../components/common/LabeledProgressCard";
+import { Program } from "../../../../components/common/common-types";
+import { LabeledProgressCard } from "../../../../components/common/LabeledProgressCard";
 import { LabeledProgressInput } from "./labeled-progress-types";
 import { useQuery } from "react-query";
-import { labeledProgressApi } from "./labeled-progress-api";
+import { defaultLabeledProgressApi } from "./default-labeled-progress-api";
 
 export const LabeledProgressProgram: Program = {
   info: {
@@ -12,7 +12,7 @@ export const LabeledProgressProgram: Program = {
   },
 
   View: (instanceConfig: LabeledProgressInput) => {
-    const api = labeledProgressApi; // or mapper
+    const api = defaultLabeledProgressApi; // or mapper
 
     const {
       isLoading: isLoadingStatus,

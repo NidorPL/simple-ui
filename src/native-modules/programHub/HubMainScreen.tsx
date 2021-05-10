@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
 import { ScrollView } from "react-native";
 
-import AddProgamCard from "../../../components/common/AddProgramCard";
+import AddProgamCard from "../../components/common/AddProgramCard";
 
 import {
   Device,
   Program,
   ProgramConfig,
-} from "../../../components/common/common-types";
+} from "../../components/common/common-types";
 import MainDeviceCard from "./components/MainDeviceCard";
-import { getProgramView } from "./program-registry";
+import { getProgramView } from "../../registers/program-register";
 
 export const HubMainScreen = ({ config }: { config: Device }) => {
   // Load programs from device ?

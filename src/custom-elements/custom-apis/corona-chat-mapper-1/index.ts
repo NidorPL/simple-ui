@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ChatbotMessage } from "../../native/chatbot/chatbot-types";
+import { ChatbotMessage } from "../../../modules/native/chatbot/chatbot-types";
 import { Alert } from "react-native";
 
 export const CoronaChatMapper1: ChatbotApi = {

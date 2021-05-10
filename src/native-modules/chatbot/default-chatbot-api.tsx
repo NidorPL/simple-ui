@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Alert } from "react-native";
 import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
-import { getCustomAPI } from "../../custom-apis/custom-api-register";
+import { getCustomAPI } from "../../registers/custom-api-register";
 
 interface ChatbotApi {
   loadFirstMessages(config: ChatbotConfig): ChatbotMessage[];
