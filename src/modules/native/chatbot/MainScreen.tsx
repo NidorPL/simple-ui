@@ -5,19 +5,13 @@ import {
   Alert,
   KeyboardAvoidingView,
 } from "react-native";
-import * as Location from "expo-location";
 import styled from "styled-components/native";
-import Header from "./components/header/header";
+import ChatbotHeader from "./components/header/header";
 import { resolveMessageFromType } from "./message-resolver";
-import api from "./api";
-import axios from "axios";
+import { defaultChabotAPI } from "./default-chatbot-api";
 import { services } from "./services";
 import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
-
-// config interface
-/*
-    connection url
-   */
+import { getAPI } from "../../custom-apis/custom-api-register";
 
 export default function MainChatbotScreen(config: ChatbotConfig) {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
@@ -30,14 +24,14 @@ export default function MainChatbotScreen(config: ChatbotConfig) {
 
   const scrollViewRef = useRef(null);
 
+  const api = getAPI(config.mapper, defaultChabotAPI);
+
   useEffect(() => {
-    init();
+    loadFirstMessages();
   }, []);
 
-  async function init() {
+  async function loadFirstMessages() {
     const initialMessages = await api.loadFirstMessages(config);
-
-    console.log(initialMessages);
     appendCovMessages(initialMessages);
   }
 
@@ -78,7 +72,7 @@ export default function MainChatbotScreen(config: ChatbotConfig) {
 
   return (
     <Fragment>
-      <Header></Header>
+      <ChatbotHeader></ChatbotHeader>
       <KeyboardAvoid behavior={Platform.OS === "ios" ? "padding" : null}>
         <MessageContainer>
           <StyledScrollView

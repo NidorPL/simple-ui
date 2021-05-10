@@ -12,48 +12,7 @@ interface ChatbotApi {
   ): ChatbotMessage[];
 }
 
-export default {
-  loadFirstMessages: async (config: ChatbotConfig) => {
-    let mapper: ChatbotApi = defaultApi;
-
-    if (config.mapper !== "default") {
-      const customMapper = getCustomAPI(config.mapper);
-      if (customMapper.loadFirstMessages) {
-        mapper = customMapper;
-      }
-    }
-
-    return mapper.loadFirstMessages(config);
-  },
-  sendMessage: async (
-    messageInput: string,
-    location: object,
-    config: ChatbotConfig
-  ) => {
-    let mapper: ChatbotApi = defaultApi;
-
-    if (config.mapper !== "default") {
-      mapper = getCustomAPI(config.mapper);
-    }
-
-    return mapper.sendMessage(messageInput, location, config);
-  },
-  // sendLinkedRequest: async (link, params) => {
-  //   try {
-  //     const { data } = await axios.get(`${config.connection.url}/${link}`, {
-  //       timeout: 3500,
-  //       params: {
-  //         ...params,
-  //       },
-  //     });
-  //     return data;
-  //   } catch (err) {
-  //     Alert.alert(`send link "${link}" "failed, ${err.message}`);
-  //   }
-  // },
-};
-
-const defaultApi = {
+export const defaultChabotAPI = {
   loadFirstMessages: async (config: ChatbotConfig) => {
     try {
       const { data } = await axios.get(`/chatbot-init`, {
@@ -95,4 +54,17 @@ const defaultApi = {
       };
     }
   },
+  // sendLinkedRequest: async (link, params) => {
+  //   try {
+  //     const { data } = await axios.get(`${config.connection.url}/${link}`, {
+  //       timeout: 3500,
+  //       params: {
+  //         ...params,
+  //       },
+  //     });
+  //     return data;
+  //   } catch (err) {
+  //     Alert.alert(`send link "${link}" "failed, ${err.message}`);
+  //   }
+  // },
 };

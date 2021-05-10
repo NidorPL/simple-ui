@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ChatbotMessage } from "../../native/chatbot/chatbot-types";
+import { Alert } from "react-native";
 
 export const CoronaChatMapper1: ChatbotApi = {
   name: "corona-bot1",
@@ -31,6 +32,18 @@ export const CoronaChatMapper1: ChatbotApi = {
             "Ich kann dir deine Frage gerade nicht beantworten. Bitte versuche es später nocheinmal.",
         },
       ];
+    }
+  },
+  loadFirstMessages: async (config: ChatbotConfig) => {
+    try {
+      const { data } = await axios.get(`/chatbot-init`, {
+        baseURL: config.connection.url,
+        timeout: 5000,
+        headers: { "Content-Type": "application/json" },
+      });
+      return data;
+    } catch (err) {
+      Alert.alert(err.message);
     }
   },
 };

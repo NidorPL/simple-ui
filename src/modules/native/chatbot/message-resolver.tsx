@@ -10,7 +10,7 @@ import SimpleMessage from "./components/messages/simple-message";
 // import LabelDataMessage from "./components/messages/label-data-message";
 // import SpoilerMessage from "./components/messages/spoiler-message";
 import styled from "styled-components/native";
-import api from "./api";
+import api from "./default-chatbot-api";
 
 export function resolveMessageFromType(
   message,
