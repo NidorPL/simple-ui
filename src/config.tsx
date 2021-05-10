@@ -21,6 +21,21 @@ export default {
       icon: "stove",
       modules: [
         {
+          moduleName: "DataTable",
+          mapper: "default",
+          iconName: "view-list",
+          moduleConfig: {
+            tableTitle: "Generic Data Table",
+            tableFields: ["Name", "Quantität", "Einheit", "Verfallsdatum"],
+            connection: {
+              baseUrl: "http://localhost:3000",
+              get: "/table1/data",
+              edit: "/table1/edit",
+              delete: "/table1/delete",
+            },
+          },
+        },
+        {
           moduleName: "ProgramHub",
           mapper: "default",
           iconName: "desktop-mac-dashboard",

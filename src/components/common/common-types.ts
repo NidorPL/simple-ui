@@ -27,3 +27,14 @@ export interface Program extends ProgramConfig {
 export interface MainConfig {
   connectedDevices: Device[];
 }
+
+/*
+  Types as they should be
+ */
+
+export interface Module2 {
+  moduleName: string;
+  mapper: string;
+  iconName: string;
+  moduleConfig: object;
+}

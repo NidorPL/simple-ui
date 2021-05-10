@@ -14,9 +14,6 @@ export default function DeviceScreenNavigator({
 }: {
   modules: Module[];
 }) {
-  console.log("modules");
-  console.log(modules);
-
   const colorScheme = useColorScheme();
 
   return (
@@ -25,9 +22,6 @@ export default function DeviceScreenNavigator({
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
       {modules.map((module) => {
-        console.log("module");
-        console.log(module);
-
         return (
           <Tab.Screen
             key={module.moduleName}

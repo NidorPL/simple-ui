@@ -26,9 +26,6 @@ function StackNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={HomeScreen} />
       {config.connectedDevices.map((deviceConfig) => {
-        console.log("deviceConfig");
-        console.log(deviceConfig);
-
         return (
           <Stack.Screen
             key={deviceConfig.name}
