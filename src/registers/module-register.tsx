@@ -7,7 +7,7 @@ import { ProgramHubMainScreen } from "../native-modules/programHub/ProgramHubMai
 export function getModuleScreen(module: Module2) {
   switch (module.moduleName) {
     case "Chat":
-      return <ChatMainScreen {...module} />;
+      return <ChatMainScreen chatConfig={module} />;
     case "ProgramHub":
       return (
         <ProgramHubMainScreen programHubConfig={module}></ProgramHubMainScreen>

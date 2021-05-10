@@ -3,11 +3,7 @@ import { ScrollView } from "react-native";
 
 import AddProgamCard from "../../components/common/AddProgramCard";
 
-import {
-  Device,
-  Program,
-  ProgramConfig,
-} from "../../components/common/common-types";
+import { Program, ProgramConfig } from "../../components/common/common-types";
 import MainDeviceCard from "./components/MainDeviceCard";
 import { getProgramView } from "../../registers/program-register";
 import { ProgramHubConfig } from "./program-hub-types";
@@ -49,5 +45,3 @@ export const ProgramHubMainScreen = ({
     </Fragment>
   );
 };
-
-// <AddProgamCard programs={programs} />

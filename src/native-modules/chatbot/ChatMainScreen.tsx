@@ -10,10 +10,10 @@ import ChatbotHeader from "./components/header/header";
 import { resolveMessageFromType } from "./message-resolver";
 import { defaultChabotAPI } from "./default-chatbot-api";
 import { services } from "./services";
-import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
+import { ChatConfig, ChatMessage } from "./chatbot-types";
 import { getAPI } from "../../registers/api-register";
 
-export const ChatMainScreen = (config: ChatbotConfig) => {
+export const ChatMainScreen = ({ chatConfig }: { chatConfig: ChatConfig }) => {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
     null
   );
@@ -24,18 +24,25 @@ export const ChatMainScreen = (config: ChatbotConfig) => {
 
   const scrollViewRef = useRef(null);
 
-  const api = getAPI(config.customApi, defaultChabotAPI);
+  const api = getAPI(chatConfig.customApi, defaultChabotAPI);
 
   useEffect(() => {
     loadFirstMessages();
   }, []);
 
   async function loadFirstMessages() {
-    const initialMessages = await api.loadFirstMessages(config);
+    console.log("chatConfig");
+    console.log(chatConfig);
+    const initialMessages = await api.loadFirstMessages(
+      chatConfig.moduleConfig
+    );
+
+    console.log("initialMessages");
+    console.log(initialMessages);
     appendCovMessages(initialMessages);
   }
 
-  const appendCovMessages = (messages: ChatbotMessage[]) => {
+  const appendCovMessages = (messages: ChatMessage[]) => {
     setConversationMessages([...conversationMessages, ...messages]);
   };
 

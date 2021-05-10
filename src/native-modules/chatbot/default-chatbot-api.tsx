@@ -1,18 +1,20 @@
 import axios from "axios";
 import { Alert } from "react-native";
-import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
+import { ChatConfig, ChatMessage } from "./chatbot-types";
 
 interface ChatbotApi {
-  loadFirstMessages(config: ChatbotConfig): ChatbotMessage[];
+  loadFirstMessages(config: ChatConfig): ChatMessage[];
   sendMessage(
     messageInput: string,
     location: object,
-    config: ChatbotConfig
-  ): ChatbotMessage[];
+    config: ChatConfig
+  ): ChatMessage[];
 }
 
 export const defaultChabotAPI = {
-  loadFirstMessages: async (config: ChatbotConfig) => {
+  loadFirstMessages: async (config: ChatConfig) => {
+    console.log("config");
+    console.log(config);
     try {
       const { data } = await axios.get(`/chatbot-init`, {
         baseURL: config.connection.url,
@@ -27,7 +29,7 @@ export const defaultChabotAPI = {
   sendMessage: async (
     messageInput: string,
     location: object,
-    config: ChatbotConfig
+    config: ChatConfig
   ) => {
     try {
       const { data } = await axios.get(`${config.connection.url}/chatbot`, {

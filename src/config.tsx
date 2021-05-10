@@ -8,10 +8,12 @@ export default {
           moduleName: "Chat",
           customApi: "corona-bot1",
           iconName: "robot",
-          connection: {
-            url: "https://corona.brain4x.de",
-            init: "/chatbot-init",
-            send: "/chatbot",
+          moduleConfig: {
+            connection: {
+              url: "https://corona.brain4x.de",
+              init: "/chatbot-init",
+              send: "/chatbot",
+            },
           },
         },
       ],
@@ -80,10 +82,12 @@ export default {
           moduleName: "Chat",
           customApi: "corona-bot1",
           iconName: "robot",
-          connection: {
-            url: "https://corona.brain4x.de",
-            init: "/chatbot-init",
-            send: "/chatbot",
+          moduleConfig: {
+            connection: {
+              url: "https://corona.brain4x.de",
+              init: "/chatbot-init",
+              send: "/chatbot",
+            },
           },
         },
       ],

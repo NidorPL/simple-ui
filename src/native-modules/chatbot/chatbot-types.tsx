@@ -1,16 +1,16 @@
-export interface ChatbotConfig {
-  name: string;
-  icon: string;
-  moduleName: string;
-  mapper: string;
-  connection: {
-    url: string;
-    init: string;
-    send: string;
+import { Module2 } from "../../components/common/common-types";
+
+export interface ChatConfig extends Module2 {
+  moduleConfig: {
+    connection: {
+      url: string;
+      init: string;
+      send: string;
+    };
   };
 }
 
-export interface ChatbotMessage {
+export interface ChatMessage {
   type: "simple-message";
   text: string;
   fromChatbot?: boolean;
@@ -18,6 +18,6 @@ export interface ChatbotMessage {
 }
 
 export interface ChatbotMapper {
-  loadFirstMessages: ChatbotMessage[];
-  sendMessage: ChatbotMessage[];
+  loadFirstMessages: ChatMessage[];
+  sendMessage: ChatMessage[];
 }
