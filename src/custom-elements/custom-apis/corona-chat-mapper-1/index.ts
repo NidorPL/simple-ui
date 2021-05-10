@@ -1,6 +1,7 @@
 import axios from "axios";
-import { ChatbotMessage } from "../../../modules/native/chatbot/chatbot-types";
 import { Alert } from "react-native";
+import { ChatMessage } from "../../../native-modules/chatbot/chatbot-types";
+import { ChatConfig } from "./corona-chat-api1-types";
 
 export const CoronaChatMapper1: ChatbotApi = {
   name: "corona-bot1",
@@ -8,16 +9,19 @@ export const CoronaChatMapper1: ChatbotApi = {
   sendMessage: async (
     messageInput: string,
     location: object,
-    config: ChatbotConfig
-  ): Promise<ChatbotMessage[]> => {
+    chatConfig: ChatConfig
+  ): Promise<ChatMessage[]> => {
     try {
-      const { data } = await axios.get(`${config.connection.url}/chatbot`, {
-        params: {
-          request: `${messageInput}`,
-          ...location,
-        },
-        timeout: 5000,
-      });
+      const { data } = await axios.get(
+        `${chatConfig.moduleConfig.connection.url}/chatbot`,
+        {
+          params: {
+            request: `${messageInput}`,
+            ...location,
+          },
+          timeout: 5000,
+        }
+      );
 
       return data;
     } catch (err) {
@@ -34,10 +38,10 @@ export const CoronaChatMapper1: ChatbotApi = {
       ];
     }
   },
-  loadFirstMessages: async (config: ChatbotConfig) => {
+  loadFirstMessages: async (chatConfig: ChatConfig) => {
     try {
       const { data } = await axios.get(`/chatbot-init`, {
-        baseURL: config.connection.url,
+        baseURL: chatConfig.moduleConfig.connection.url,
         timeout: 5000,
         headers: { "Content-Type": "application/json" },
       });
@@ -48,25 +52,13 @@ export const CoronaChatMapper1: ChatbotApi = {
   },
 };
 
-interface ChatbotConfig {
-  name: string;
-  icon: string;
-  moduleName: string;
-  mapper: string;
-  connection: {
-    url: string;
-    init: string;
-    send: string;
-  };
-}
-
 interface ChatbotApi {
   name: string;
   relatedModule: string;
-  loadFirstMessages?(config: ChatbotConfig): ChatbotMessage[];
+  loadFirstMessages?(config: ChatConfig): ChatMessage[];
   sendMessage?(
     messageInput: string,
     location: object,
-    config: ChatbotConfig
-  ): Promise<ChatbotMessage[]>;
+    config: ChatConfig
+  ): Promise<ChatMessage[]>;
 }

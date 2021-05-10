@@ -31,14 +31,7 @@ export const ChatMainScreen = ({ chatConfig }: { chatConfig: ChatConfig }) => {
   }, []);
 
   async function loadFirstMessages() {
-    console.log("chatConfig");
-    console.log(chatConfig);
-    const initialMessages = await api.loadFirstMessages(
-      chatConfig.moduleConfig
-    );
-
-    console.log("initialMessages");
-    console.log(initialMessages);
+    const initialMessages = await api.loadFirstMessages(chatConfig);
     appendCovMessages(initialMessages);
   }
 
@@ -59,7 +52,7 @@ export const ChatMainScreen = ({ chatConfig }: { chatConfig: ChatConfig }) => {
     const chatbotAnswers = await api.sendMessage(
       messageInput,
       location,
-      config
+      chatConfig
     );
 
     if (chatbotAnswers.length > 0 && typeof chatbotAnswers[0] !== "object") {

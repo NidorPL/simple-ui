@@ -6,7 +6,7 @@ import { defaultTableApi } from "./defaultTableApi";
 import { TableConfig } from "./table-types";
 import { getAPI } from "../../registers/api-register";
 
-export default function TableMainScreen({
+export default function DataTableMainScreen({
   tableModuleConfig,
 }: {
   tableModuleConfig: TableConfig;

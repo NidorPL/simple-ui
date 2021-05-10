@@ -14,8 +14,6 @@ export const defaultTableApi = {
       timeout: 5000,
     });
 
-    console.log(data);
-
     return data;
   },
 };

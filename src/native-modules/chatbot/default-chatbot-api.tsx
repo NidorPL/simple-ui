@@ -12,12 +12,10 @@ interface ChatbotApi {
 }
 
 export const defaultChabotAPI = {
-  loadFirstMessages: async (config: ChatConfig) => {
-    console.log("config");
-    console.log(config);
+  loadFirstMessages: async (chatConfig: ChatConfig) => {
     try {
       const { data } = await axios.get(`/chatbot-init`, {
-        baseURL: config.connection.url,
+        baseURL: chatConfig.moduleConfig.connection.url,
         timeout: 5000,
         headers: { "Content-Type": "application/json" },
       });
@@ -29,16 +27,19 @@ export const defaultChabotAPI = {
   sendMessage: async (
     messageInput: string,
     location: object,
-    config: ChatConfig
+    chatConfig: ChatConfig
   ) => {
     try {
-      const { data } = await axios.get(`${config.connection.url}/chatbot`, {
-        params: {
-          request: `${messageInput}`,
-          ...location,
-        },
-        timeout: 5000,
-      });
+      const { data } = await axios.get(
+        `${chatConfig.moduleConfig.connection.url}/chatbot`,
+        {
+          params: {
+            request: `${messageInput}`,
+            ...location,
+          },
+          timeout: 5000,
+        }
+      );
 
       return data.map((answer) => ({ ...answer, fromChatbot: true }));
     } catch (err) {

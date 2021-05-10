@@ -27,7 +27,7 @@ export interface MainConfig {
 
 export interface Module2 {
   moduleName: string;
-  mapper: string;
+  customApi: string;
   iconName: string;
   moduleConfig: object;
 }
