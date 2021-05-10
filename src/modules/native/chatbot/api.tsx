@@ -1,7 +1,7 @@
 import axios from "axios";
-import { Alert, Platform } from "react-native";
+import { Alert } from "react-native";
 import { ChatbotConfig, ChatbotMessage } from "./chatbot-types";
-import { getMapper } from "../../custom-mappers/mapper-register";
+import { getCustomAPI } from "../../custom-apis/custom-api-register";
 
 interface ChatbotApi {
   loadFirstMessages(config: ChatbotConfig): ChatbotMessage[];
@@ -17,7 +17,7 @@ export default {
     let mapper: ChatbotApi = defaultApi;
 
     if (config.mapper !== "default") {
-      const customMapper = getMapper(config.mapper);
+      const customMapper = getCustomAPI(config.mapper);
       if (customMapper.loadFirstMessages) {
         mapper = customMapper;
       }
@@ -33,7 +33,7 @@ export default {
     let mapper: ChatbotApi = defaultApi;
 
     if (config.mapper !== "default") {
-      mapper = getMapper(config.mapper);
+      mapper = getCustomAPI(config.mapper);
     }
 
     return mapper.sendMessage(messageInput, location, config);
@@ -80,7 +80,7 @@ const defaultApi = {
         timeout: 5000,
       });
 
-      return data.map(answer => ({...answer, fromChatbot: true}));
+      return data.map((answer) => ({ ...answer, fromChatbot: true }));
     } catch (err) {
       console.log("Error with request");
       console.log(err.message);
@@ -91,7 +91,7 @@ const defaultApi = {
         type: "simple-message",
         text:
           "Ich kann dir deine Frage gerade nicht beantworten. Bitte versuche es später nocheinmal.",
-        fromChatbot: true
+        fromChatbot: true,
       };
     }
   },
