@@ -28,7 +28,7 @@ export default {
           iconName: "view-list",
           moduleConfig: {
             tableTitle: "Generic Data Table",
-            tableFields: ["Name", "Quantität", "Einheit", "Verfallsdatum"],
+            tableFields: ["Name", "Quantity", "Unit", "BBF"],
             connection: {
               baseUrl: "http://localhost:3000",
               get: "/table1/data",
