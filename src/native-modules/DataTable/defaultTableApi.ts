@@ -30,4 +30,19 @@ export const defaultTableApi = {
 
     return data;
   },
+
+  deleteTableData: async ({
+    connection,
+    elementToDelete,
+  }: {
+    connection: TableConnection;
+    elementToDelete: object;
+  }) => {
+    const { data } = await axios.post(connection.delete, elementToDelete, {
+      baseURL: connection.baseUrl,
+      timeout: 5000,
+    });
+
+    return data;
+  },
 };

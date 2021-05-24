@@ -9,6 +9,7 @@ export const EditModal = ({
   setModalOpen,
   connection,
   api,
+  refetch,
 }: {
   tableRow: object;
   tableFields: string[];
@@ -16,6 +17,7 @@ export const EditModal = ({
   setModalOpen: Dispatch<SetStateAction<boolean>>;
   connection: object;
   api: any;
+  refetch: () => void;
 }) => {
   const [elementToEdit, setElementToEdit] = React.useState(tableRow);
 
@@ -28,6 +30,7 @@ export const EditModal = ({
       connection,
       newData: elementToEdit,
     });
+    refetch();
     setModalOpen(false);
   };
 
@@ -55,7 +58,13 @@ export const EditModal = ({
       ))}
       <EditModalFooter>
         <Button onPress={() => editData(tableRow)}>Edit</Button>
-        <Button>Delete</Button>
+        <Button
+          onPress={() => {
+            setModalOpen(false);
+          }}
+        >
+          Close
+        </Button>
       </EditModalFooter>
     </Modal>
   );

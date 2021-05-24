@@ -21,20 +21,29 @@ export default function DataTableMainScreen({
 
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [tableToEdit, setTableToEdit] = React.useState({});
+  const [refechValue, setRefetch] = React.useState(0);
 
   let api = getAPI(tableModuleConfig.customApi, defaultTableApi);
 
-  const {
+  let {
     data: tableData,
     isLoading: isLoadingTable,
     error: errorLoadingTable,
-  } = useQuery(`table_${tableModuleConfig}`, () =>
-    api.getTableData(connection)
-  );
+  } = useQuery(String(refechValue), () => api.getTableData(connection));
 
   const showModal = (tableRow: object) => {
     setTableToEdit(tableRow);
     setModalOpen(true);
+  };
+
+  const deleteData = async (tableRow: object) => {
+    const response = await api.deleteTableData({
+      connection,
+      elementToDelete: tableRow,
+    });
+
+    tableData = response;
+    setRefetch(refechValue + 1);
   };
 
   return (
@@ -83,7 +92,7 @@ export default function DataTableMainScreen({
                       name={"pencil"}
                       color={"black"}
                       size={20}
-                      onPress={(data) => showModal(tableRow)}
+                      onPress={() => showModal(tableRow)}
                     />
                     <Icon
                       name={"delete"}
@@ -93,6 +102,7 @@ export default function DataTableMainScreen({
                         backgroundColor: "white",
                         padding: 20,
                       }}
+                      onPress={() => deleteData(tableRow)}
                     />
                   </DataTable.Cell>
                 </DataTable.Row>
@@ -106,6 +116,7 @@ export default function DataTableMainScreen({
                       setModalOpen={setModalOpen}
                       connection={connection}
                       api={api}
+                      refetch={() => setRefetch(refechValue + 1)}
                     />
                   </Portal>
                 )}
