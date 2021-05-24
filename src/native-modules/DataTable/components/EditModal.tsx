@@ -1,23 +1,35 @@
-import { Modal, Text, TextInput, Title } from "react-native-paper";
+import { Button, Modal, TextInput, Title } from "react-native-paper";
 import React, { Dispatch, SetStateAction } from "react";
+import styled from "styled-components/native";
 
 export const EditModal = ({
   tableRow,
   tableFields,
   isModalOpen,
   setModalOpen,
+  connection,
+  api,
 }: {
   tableRow: object;
   tableFields: string[];
   isModalOpen: boolean;
   setModalOpen: Dispatch<SetStateAction<boolean>>;
+  connection: object;
+  api: any;
 }) => {
+  const [elementToEdit, setElementToEdit] = React.useState(tableRow);
+
   const hideModal = () => setModalOpen(false);
 
   const containerStyle = { backgroundColor: "white", padding: 20 };
 
-  console.log("tableRow");
-  console.log(tableRow);
+  const editData = async () => {
+    await api.editTableData({
+      connection,
+      newData: elementToEdit,
+    });
+    setModalOpen(false);
+  };
 
   return (
     <Modal
@@ -28,12 +40,31 @@ export const EditModal = ({
       <Title>Edit Data</Title>
       {tableFields.map((tableField) => (
         <TextInput
+          key={tableField}
           label={tableField}
           // @ts-ignore
-          value={tableRow[tableField.toLowerCase()]}
-          key={tableField}
+          value={elementToEdit[tableField.toLowerCase()]}
+          onChangeText={(text) => {
+            setElementToEdit({
+              ...elementToEdit,
+              [tableField.toLowerCase()]: text,
+            });
+            console.log(elementToEdit);
+          }}
         />
       ))}
+      <EditModalFooter>
+        <Button onPress={() => editData(tableRow)}>Edit</Button>
+        <Button>Delete</Button>
+      </EditModalFooter>
     </Modal>
   );
 };
+
+const EditModalFooter = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 50px;
+`;

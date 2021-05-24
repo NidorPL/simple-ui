@@ -67,56 +67,48 @@ export default function DataTableMainScreen({
 
         {!isLoadingTable &&
           !errorLoadingTable &&
-          tableData.map(
-            (
-              tableRow: {
-                name: string;
-                quantity: number;
-                unit: string;
-                bbf: string;
-              },
-              index: number
-            ) => {
-              return (
-                <Fragment key={`table_row_${tableRow.name}`}>
-                  <DataTable.Row key={tableTitle + index}>
-                    <DataTable.Cell>{tableRow.name}</DataTable.Cell>
-                    <DataTable.Cell>{tableRow.quantity}</DataTable.Cell>
-                    <DataTable.Cell>{tableRow.unit}</DataTable.Cell>
-                    <DataTable.Cell>{tableRow.bbf}</DataTable.Cell>
-                    <DataTable.Cell>
-                      <MaterialCommunityIcons
-                        name={"pencil"}
-                        color={"black"}
-                        size={20}
-                        onPress={(data) => showModal(tableRow)}
-                      />
-                      <Icon
-                        name={"delete"}
-                        color={"black"}
-                        size={20}
-                        contentContainerStyle={{
-                          backgroundColor: "white",
-                          padding: 20,
-                        }}
-                      />
-                    </DataTable.Cell>
-                  </DataTable.Row>
+          tableData.map((tableRow: object, index: number) => {
+            return (
+              <Fragment key={`table_row_${tableRow.name}`}>
+                <DataTable.Row key={tableTitle + index}>
+                  <DataTable.Cell>{tableRow.name}</DataTable.Cell>
+                  <DataTable.Cell>{tableRow.quantity}</DataTable.Cell>
+                  <DataTable.Cell>{tableRow.unit}</DataTable.Cell>
+                  <DataTable.Cell>{tableRow.bbf}</DataTable.Cell>
+                  <DataTable.Cell>
+                    <MaterialCommunityIcons
+                      name={"pencil"}
+                      color={"black"}
+                      size={20}
+                      onPress={(data) => showModal(tableRow)}
+                    />
+                    <Icon
+                      name={"delete"}
+                      color={"black"}
+                      size={20}
+                      contentContainerStyle={{
+                        backgroundColor: "white",
+                        padding: 20,
+                      }}
+                    />
+                  </DataTable.Cell>
+                </DataTable.Row>
 
-                  {isModalOpen && (
-                    <Portal>
-                      <EditModal
-                        tableRow={tableToEdit}
-                        tableFields={tableFields}
-                        isModalOpen={isModalOpen}
-                        setModalOpen={setModalOpen}
-                      />
-                    </Portal>
-                  )}
-                </Fragment>
-              );
-            }
-          )}
+                {isModalOpen && (
+                  <Portal>
+                    <EditModal
+                      tableRow={tableToEdit}
+                      tableFields={tableFields}
+                      isModalOpen={isModalOpen}
+                      setModalOpen={setModalOpen}
+                      connection={connection}
+                      api={api}
+                    />
+                  </Portal>
+                )}
+              </Fragment>
+            );
+          })}
       </DataTable>
       <DataTable.Pagination
         page={1}

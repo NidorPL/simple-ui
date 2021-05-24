@@ -16,4 +16,18 @@ export const defaultTableApi = {
 
     return data;
   },
+  editTableData: async ({
+    connection,
+    newData,
+  }: {
+    connection: TableConnection;
+    newData: object;
+  }) => {
+    const { data } = await axios.post(connection.edit, newData, {
+      baseURL: connection.baseUrl,
+      timeout: 5000,
+    });
+
+    return data;
+  },
 };
