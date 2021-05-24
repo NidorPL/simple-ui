@@ -69,12 +69,15 @@ export default function DataTableMainScreen({
           !errorLoadingTable &&
           tableData.map((tableRow: object, index: number) => {
             return (
-              <Fragment key={`table_row_${tableRow.name}`}>
+              <Fragment key={`${tableTitle} row ${index}`}>
                 <DataTable.Row key={tableTitle + index}>
-                  <DataTable.Cell>{tableRow.name}</DataTable.Cell>
-                  <DataTable.Cell>{tableRow.quantity}</DataTable.Cell>
-                  <DataTable.Cell>{tableRow.unit}</DataTable.Cell>
-                  <DataTable.Cell>{tableRow.bbf}</DataTable.Cell>
+                  {tableFields.map((field: string) => {
+                    return (
+                      <DataTable.Cell key={`${tableTitle} cell ${field}`}>
+                        {tableRow[field.toLowerCase()]}
+                      </DataTable.Cell>
+                    );
+                  })}
                   <DataTable.Cell>
                     <MaterialCommunityIcons
                       name={"pencil"}
