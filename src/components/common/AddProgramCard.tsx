@@ -5,22 +5,53 @@ import {
   Paragraph,
   Dialog,
   Portal,
+  TextInput,
 } from "react-native-paper";
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import RNPickerSelect from "react-native-picker-select";
+import { SupportedProgram } from "../../native-modules/programHub/program-hub-types";
+import { StartProgramDialog } from "../../native-modules/programHub/components/StartProgramDialog";
 
-export default function AddProgamCard({ programs }: { programs: any }) {
+export default function AddProgamCard({
+  supportedPrograms,
+}: {
+  supportedPrograms: SupportedProgram[];
+}) {
   const [isSelectProgramModalOpen, setIsSelectProgramModalOpen] = useState(
     false
   );
+  const [programToStart, setProgramToStart] = useState({});
+
+  const [isEditProgramModalOpen, setIsEditProgramModalOpen] = useState(false);
 
   function startProgram() {
     setIsSelectProgramModalOpen(false);
   }
 
+  // lade Daten zum Programm
+  // Kreiere Eingabefelder
+
+  function findSupportedProgram(programName: string) {
+    return (
+      supportedPrograms.find(
+        (supportedProgram) => supportedProgram.programName === programName
+      ) || {}
+    );
+  }
+
+  function editProgram(selectedProgramName: string) {
+    console.log("event");
+    console.log(selectedProgramName);
+    setProgramToStart(findSupportedProgram(selectedProgramName));
+    setIsEditProgramModalOpen(true);
+  }
+
   console.log("got programs");
-  console.log(programs);
+  console.log(supportedPrograms);
+
+  console.log("programToStart");
+  console.log(programToStart);
 
   return (
     <Card>
@@ -44,8 +75,8 @@ export default function AddProgamCard({ programs }: { programs: any }) {
           <Dialog.Title>Start a new program</Dialog.Title>
           <Dialog.Content>
             <RNPickerSelect
-              onValueChange={() => {}}
-              items={programs.map((program) => ({
+              onValueChange={editProgram}
+              items={supportedPrograms.map((program) => ({
                 label: program.programName,
                 value: program.programName,
               }))}
@@ -57,6 +88,12 @@ export default function AddProgamCard({ programs }: { programs: any }) {
           </Dialog.Actions>
         </Dialog>
       </Portal>
+      <StartProgramDialog
+        programToStart={programToStart}
+        isEditProgramModalOpen={isEditProgramModalOpen}
+        setIsEditProgramModalOpen={setIsEditProgramModalOpen}
+        startProgram={startProgram}
+      />
     </Card>
   );
 }

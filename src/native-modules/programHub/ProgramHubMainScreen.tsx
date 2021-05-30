@@ -94,7 +94,7 @@ export const ProgramHubMainScreen = ({
             );
           })}
         {loadedSupportedProgams && supportedPrograms && (
-          <AddProgamCard programs={supportedPrograms} />
+          <AddProgamCard supportedPrograms={supportedPrograms} />
         )}
       </ScrollView>
     </Fragment>
