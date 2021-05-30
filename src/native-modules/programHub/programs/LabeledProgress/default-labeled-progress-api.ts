@@ -15,4 +15,9 @@ export const defaultLabeledProgressApi = {
 
     return data;
   },
+  getSupportedPrograms: async ({ url }: { url: string }) => {
+    const { data } = await axios.get(`${url}/supportedPrograms`);
+
+    return data;
+  },
 };

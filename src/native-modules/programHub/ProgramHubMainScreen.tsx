@@ -55,7 +55,17 @@ export const ProgramHubMainScreen = ({
     api.getRunningPrograms(programHubConfig.moduleConfig.connection)
   );
 
+  const {
+    data: supportedPrograms,
+    isSuccess: loadedSupportedProgams,
+  } = useQuery("phMainScreenSupporting", () =>
+    api.getSupportedPrograms(programHubConfig.moduleConfig.connection)
+  );
+
   const runningPrograms = resolveProgramsViews(runningProgramsData);
+
+  console.log("supportedPrograms");
+  console.log(supportedPrograms);
 
   console.log("Program Hub Data");
   console.log("runningPrograms");
@@ -83,6 +93,9 @@ export const ProgramHubMainScreen = ({
               </Fragment>
             );
           })}
+        {loadedSupportedProgams && supportedPrograms && (
+          <AddProgamCard programs={supportedPrograms} />
+        )}
       </ScrollView>
     </Fragment>
   );
