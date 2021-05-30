@@ -2,24 +2,64 @@ import React, { Fragment } from "react";
 import { ScrollView } from "react-native";
 
 import AddProgamCard from "../../components/common/AddProgramCard";
-
-import { Program, ProgramConfig } from "../../components/common/common-types";
 import MainDeviceCard from "./components/MainDeviceCard";
 import { getProgramView } from "../../registers/program-register";
-import { ProgramHubConfig } from "./program-hub-types";
+import {
+  ProgramWithView,
+  ProgramConfig,
+  ProgramHubConfig,
+  RunningProgramConfig,
+  SupportedProgram,
+} from "./program-hub-types";
+import { useQuery } from "react-query";
+import { getAPI } from "../../registers/api-register";
+import { defaultProgramHubApi } from "./defaultProgramHubApi";
+
+const resolveProgramsViews = (
+  runningProgramsData: RunningProgramConfig[] = []
+) => {
+  return runningProgramsData.map((program) => {
+    return {
+      programData: program,
+      View: getProgramView(program.pModuleName),
+    };
+  });
+};
+
+const findSupportedProgram = (supportedPrograms, runningProgram) => {
+  console.log({
+    supportedPrograms,
+    runningProgram,
+  });
+
+  return supportedPrograms.find((supportedProgram) => {
+    return (
+      supportedProgram.programName === runningProgram.programData.programName
+    );
+  });
+};
 
 export const ProgramHubMainScreen = ({
   programHubConfig,
 }: {
   programHubConfig: ProgramHubConfig;
 }) => {
-  const runningPrograms: Program[] = programHubConfig.moduleConfig.runningPrograms.map(
-    (programConfig: ProgramConfig): Program => ({
-      programInfo: programConfig.programInfo,
-      programConfig: programConfig.programConfig,
-      View: getProgramView(programConfig.programInfo.pModuleName),
-    })
+  // const runningPrograms: Program[] = resolvePrograms(programHubConfig);
+
+  let api = getAPI(programHubConfig.customApi, defaultProgramHubApi);
+
+  const {
+    data: runningProgramsData,
+    isSuccess: loadedProgamsData,
+  } = useQuery("phMainScreenRunning", () =>
+    api.getRunningPrograms(programHubConfig.moduleConfig.connection)
   );
+
+  const runningPrograms = resolveProgramsViews(runningProgramsData);
+
+  console.log("Program Hub Data");
+  console.log("runningPrograms");
+  console.log(runningPrograms);
 
   return (
     <Fragment>
@@ -33,14 +73,16 @@ export const ProgramHubMainScreen = ({
         }}
       >
         <MainDeviceCard />
-        {runningPrograms.map((runningProgram, index) => {
-          return (
-            <Fragment key={runningProgram.programConfig.name}>
-              {runningProgram.View(runningProgram.programConfig)}
-            </Fragment>
-          );
-        })}
-        <AddProgamCard programs={runningPrograms} />
+        {loadedProgamsData &&
+          runningPrograms.map((runningProgram, index) => {
+            return (
+              <Fragment key={index}>
+                {runningProgram.View({
+                  runningProgram: runningProgram.programData,
+                })}
+              </Fragment>
+            );
+          })}
       </ScrollView>
     </Fragment>
   );

@@ -1,6 +1,6 @@
-import { Module2 } from "../../components/common/common-types";
+import { Module } from "../../components/common/common-types";
 
-export interface ChatConfig extends Module2 {
+export interface ChatConfig extends Module {
   moduleConfig: {
     connection: {
       url: string;
@@ -15,9 +15,4 @@ export interface ChatMessage {
   text: string;
   fromChatbot?: boolean;
   linkedRequest?: string;
-}
-
-export interface ChatbotMapper {
-  loadFirstMessages: ChatMessage[];
-  sendMessage: ChatMessage[];
 }

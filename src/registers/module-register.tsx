@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Module2 } from "../components/common/common-types";
+import { Module } from "../components/common/common-types";
 import { ChatMainScreen } from "../native-modules/chatbot/ChatMainScreen";
-import DataTableMainScreen from "../native-modules/DataTable/DataTableMainScreen";
 import { ProgramHubMainScreen } from "../native-modules/programHub/ProgramHubMainScreen";
+import { DataTableMainScreen } from "../native-modules/dataTable/DataTableMainScreen";
 
-export function getModuleScreen(module: Module2) {
+export function getModuleScreen(module: Module) {
   switch (module.moduleName) {
     case "Chat":
       return <ChatMainScreen chatConfig={module} />;

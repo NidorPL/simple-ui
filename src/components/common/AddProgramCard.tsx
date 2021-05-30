@@ -16,7 +16,7 @@ export default function AddProgamCard({ programs }: { programs: Program[] }) {
     false
   );
 
-  function addProgram() {
+  function startProgram() {
     setIsSelectProgramModalOpen(false);
   }
 
@@ -51,7 +51,7 @@ export default function AddProgamCard({ programs }: { programs: Program[] }) {
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={addProgram}>Add Program</Button>
+            <Button onPress={startProgram}>Start Program</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

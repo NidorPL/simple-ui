@@ -1,6 +1,6 @@
-import { Module2 } from "../../components/common/common-types";
+import { Module } from "../../components/common/common-types";
 
-export interface TableConfig extends Module2 {
+export interface TableConfig extends Module {
   moduleConfig: {
     tableTitle: string;
     tableFields: string[];

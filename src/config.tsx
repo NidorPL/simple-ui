@@ -42,40 +42,11 @@ export default {
           customApi: "default",
           iconName: "desktop-mac-dashboard",
           moduleConfig: {
-            runningPrograms: [
-              {
-                programInfo: {
-                  pModuleName: "LabeledProgress",
-                },
-                programConfig: {
-                  name: "Bake",
-                  title: "Backen...",
-                  iconName: "chef-hat",
-                  connection: {
-                    statusUrl: "http://localhost:3000/oven1/bake1/status",
-                    startUrl: "...",
-                    stopUrl: "...",
-                  },
-                  customApi: "default",
-                },
-              },
-              {
-                programInfo: {
-                  pModuleName: "LabeledProgress",
-                },
-                programConfig: {
-                  name: "Vacuum1",
-                  title: "Cleaning living room...",
-                  iconName: "robot-vacuum",
-                  connection: {
-                    statusUrl: "http://localhost:3000/vacuum1/status",
-                    startUrl: "...",
-                    stopUrl: "...",
-                  },
-                  customApi: "default",
-                },
-              },
-            ],
+            connection: {
+              baseUrl: "http://localhost:3000/oven1",
+              supportedPrograms: "/supportedPrograms",
+              runningPrograms: "/runningPrograms",
+            },
           },
         },
         {

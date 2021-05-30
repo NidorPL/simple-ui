@@ -1,7 +1,7 @@
-import { Program } from "../components/common/common-types";
 import { LabeledProgressProgram } from "../native-modules/programHub/programs/LabeledProgress/LabeledProgressProgramm";
+import { ProgramWithView } from "../native-modules/programHub/program-hub-types";
 
-const programs: Program[] = [LabeledProgressProgram];
+const programs: ProgramWithView[] = [LabeledProgressProgram];
 
 export const getProgramView = (pModuleName: string): JSX.Element => {
   return programs.find((program) => program.info.programModule === pModuleName)
