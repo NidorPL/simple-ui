@@ -23,6 +23,20 @@ export default {
       icon: "stove",
       modules: [
         {
+          moduleName: "ProgramHub",
+          customApi: "default",
+          iconName: "desktop-mac-dashboard",
+          moduleConfig: {
+            connection: {
+              baseUrl: "http://localhost:3000/oven1",
+              supportedPrograms: "/supportedPrograms",
+              runningPrograms: "/runningPrograms",
+              startProgram: "/startProgram",
+              stopProgram: "/stopProgram",
+            },
+          },
+        },
+        {
           moduleName: "DataTable",
           customApi: "default",
           iconName: "view-list",
@@ -34,18 +48,6 @@ export default {
               get: "/table1/data",
               edit: "/table1/edit",
               delete: "/table1/delete",
-            },
-          },
-        },
-        {
-          moduleName: "ProgramHub",
-          customApi: "default",
-          iconName: "desktop-mac-dashboard",
-          moduleConfig: {
-            connection: {
-              baseUrl: "http://localhost:3000/oven1",
-              supportedPrograms: "/supportedPrograms",
-              runningPrograms: "/runningPrograms",
             },
           },
         },

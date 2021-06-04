@@ -20,4 +20,16 @@ export const defaultLabeledProgressApi = {
 
     return data;
   },
+
+  startProgram: async ({
+    url,
+    programToStart,
+  }: {
+    url: string;
+    programToStart: object;
+  }) => {
+    const { data } = await axios.post(`${url}/startProgram`, programToStart);
+
+    return data;
+  },
 };

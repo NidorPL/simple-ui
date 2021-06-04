@@ -10,13 +10,10 @@ export const StartProgramDialog = ({
   programToStart: object;
   isEditProgramModalOpen: boolean;
   setIsEditProgramModalOpen: any;
-  startProgram: () => void;
+  startProgram: (programConfig: object) => void;
 }) => {
-  console.log("programToStart");
-  console.log(programToStart);
+  const [inputs, setInputs] = useState({});
 
-  console.log("isEditProgramModalOpen");
-  console.log(isEditProgramModalOpen);
   return (
     <Portal>
       <Dialog
@@ -25,14 +22,34 @@ export const StartProgramDialog = ({
           setIsEditProgramModalOpen(false);
         }}
       >
-        <Dialog.Title>Start a new program</Dialog.Title>
+        <Dialog.Title>Start {programToStart.programName}</Dialog.Title>
         <Dialog.Content>
           {programToStart.inputs?.map((input: string) => {
-            return <TextInput label={input} value={""} key={input} />;
+            return (
+              <TextInput
+                label={input}
+                value={inputs[input]}
+                key={input}
+                onChangeText={(change) => {
+                  console.log("change");
+                  console.log(change);
+                  setInputs({ ...inputs, [input]: change });
+                }}
+              />
+            );
           })}
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={startProgram}>Start Program</Button>
+          <Button
+            onPress={() =>
+              startProgram({
+                ...inputs,
+                programName: programToStart.programName,
+              })
+            }
+          >
+            Start Program
+          </Button>
         </Dialog.Actions>
       </Dialog>
     </Portal>

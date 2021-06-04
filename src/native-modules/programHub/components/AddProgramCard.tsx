@@ -10,13 +10,15 @@ import {
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import RNPickerSelect from "react-native-picker-select";
-import { SupportedProgram } from "../../native-modules/programHub/program-hub-types";
-import { StartProgramDialog } from "../../native-modules/programHub/components/StartProgramDialog";
+import { SupportedProgram } from "../program-hub-types";
+import { StartProgramDialog } from "./StartProgramDialog";
 
 export default function AddProgamCard({
   supportedPrograms,
+  startProgram,
 }: {
   supportedPrograms: SupportedProgram[];
+  startProgram: (programConfig: object) => void;
 }) {
   const [isSelectProgramModalOpen, setIsSelectProgramModalOpen] = useState(
     false
@@ -24,13 +26,6 @@ export default function AddProgamCard({
   const [programToStart, setProgramToStart] = useState({});
 
   const [isEditProgramModalOpen, setIsEditProgramModalOpen] = useState(false);
-
-  function startProgram() {
-    setIsSelectProgramModalOpen(false);
-  }
-
-  // lade Daten zum Programm
-  // Kreiere Eingabefelder
 
   function findSupportedProgram(programName: string) {
     return (
@@ -83,9 +78,6 @@ export default function AddProgamCard({
               placeholder={{ label: "Choose program.." }}
             />
           </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={startProgram}>Start Program</Button>
-          </Dialog.Actions>
         </Dialog>
       </Portal>
       <StartProgramDialog

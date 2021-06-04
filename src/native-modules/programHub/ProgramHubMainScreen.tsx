@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { ScrollView } from "react-native";
 
-import AddProgamCard from "../../components/common/AddProgramCard";
+import AddProgamCard from "./components/AddProgramCard";
 import MainDeviceCard from "./components/MainDeviceCard";
 import { getProgramView } from "../../registers/program-register";
 import {
@@ -26,18 +26,18 @@ const resolveProgramsViews = (
   });
 };
 
-const findSupportedProgram = (supportedPrograms, runningProgram) => {
-  console.log({
-    supportedPrograms,
-    runningProgram,
-  });
-
-  return supportedPrograms.find((supportedProgram) => {
-    return (
-      supportedProgram.programName === runningProgram.programData.programName
-    );
-  });
-};
+// const findSupportedProgram = (supportedPrograms, runningProgram) => {
+//   console.log({
+//     supportedPrograms,
+//     runningProgram,
+//   });
+//
+//   return supportedPrograms.find((supportedProgram) => {
+//     return (
+//       supportedProgram.programName === runningProgram.programData.programName
+//     );
+//   });
+// };
 
 export const ProgramHubMainScreen = ({
   programHubConfig,
@@ -46,12 +46,14 @@ export const ProgramHubMainScreen = ({
 }) => {
   // const runningPrograms: Program[] = resolvePrograms(programHubConfig);
 
+  const [refechValue, setRefetch] = React.useState(0);
+
   let api = getAPI(programHubConfig.customApi, defaultProgramHubApi);
 
   const {
     data: runningProgramsData,
     isSuccess: loadedProgamsData,
-  } = useQuery("phMainScreenRunning", () =>
+  } = useQuery("phMainScreenRunning" + refechValue, () =>
     api.getRunningPrograms(programHubConfig.moduleConfig.connection)
   );
 
@@ -63,6 +65,18 @@ export const ProgramHubMainScreen = ({
   );
 
   const runningPrograms = resolveProgramsViews(runningProgramsData);
+
+  const startProgram = async (programConfig: object) => {
+    console.log("programConfig");
+    console.log(programConfig);
+    await api.startProgram(
+      programHubConfig.moduleConfig.connection,
+      programConfig
+    );
+    // close Dialog
+    // refetch programs
+    setRefetch(refechValue + 1);
+  };
 
   console.log("supportedPrograms");
   console.log(supportedPrograms);
@@ -94,7 +108,10 @@ export const ProgramHubMainScreen = ({
             );
           })}
         {loadedSupportedProgams && supportedPrograms && (
-          <AddProgamCard supportedPrograms={supportedPrograms} />
+          <AddProgamCard
+            supportedPrograms={supportedPrograms}
+            startProgram={startProgram}
+          />
         )}
       </ScrollView>
     </Fragment>

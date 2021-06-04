@@ -5,6 +5,7 @@ interface ProgramHubConnection {
   baseUrl: string;
   supportedPrograms: string;
   runningPrograms: string;
+  startProgram: string;
 }
 
 export const defaultProgramHubApi = {
@@ -17,6 +18,16 @@ export const defaultProgramHubApi = {
   },
   getRunningPrograms: async (connection: ProgramHubConnection) => {
     const { data } = await axios.get(connection.runningPrograms, {
+      baseURL: connection.baseUrl,
+    });
+
+    return data;
+  },
+  startProgram: async (
+    connection: ProgramHubConnection,
+    programConfig: object
+  ) => {
+    const { data } = await axios.post(connection.startProgram, programConfig, {
       baseURL: connection.baseUrl,
     });
 
