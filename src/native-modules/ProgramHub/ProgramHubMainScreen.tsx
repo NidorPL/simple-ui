@@ -12,8 +12,8 @@ import {
   SupportedProgram,
 } from "./program-hub-types";
 import { useQuery } from "react-query";
-import { getAPI } from "../../registers/api-register";
 import { defaultProgramHubApi } from "./defaultProgramHubApi";
+import { getAPI } from "../../register";
 
 const resolveProgramsViews = (
   runningProgramsData: RunningProgramConfig[] = []

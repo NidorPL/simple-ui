@@ -5,7 +5,7 @@ export interface Module {
   moduleConfig: object;
 }
 
-export interface InstalledModule {
+export interface ModuleIndex {
   moduleName: string;
   getView: (config: Module) => any;
 }

@@ -4,9 +4,9 @@ import styled from "styled-components/native";
 import { useQuery } from "react-query";
 import { defaultTableApi } from "./defaultTableApi";
 import { Module, TableConfig } from "./data-table-types";
-import { getAPI } from "../../registers/api-register";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { EditModal } from "./components/EditModal";
+import { getAPI } from "../../register";
 
 export function DataTableMainScreen({
   tableModuleConfig,

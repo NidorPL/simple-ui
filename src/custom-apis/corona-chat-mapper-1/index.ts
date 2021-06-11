@@ -3,7 +3,7 @@ import { Alert } from "react-native";
 import { ChatMessage } from "../../native-modules/Chatbot/chatbot-types";
 import { ChatConfig } from "./corona-chat-api1-types";
 
-export const CoronaChatMapper1: ChatbotApi = {
+export const CoronaChatApi2: ChatbotApi = {
   name: "corona-bot1",
   relatedModule: "Chatbot",
   sendMessage: async (
