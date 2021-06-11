@@ -1,21 +1,26 @@
 import * as React from "react";
-import { Module } from "../components/common/common-types";
-import { ChatMainScreen } from "../native-modules/chatbot/ChatMainScreen";
-import { ProgramHubMainScreen } from "../native-modules/programHub/ProgramHubMainScreen";
-import { DataTableMainScreen } from "../native-modules/dataTable/DataTableMainScreen";
+import { InstalledModule, Module } from "../components/common/common-types";
+import { ChatbotModule } from "../native-modules/Chatbot";
+import { ProgramHubModule } from "../native-modules/ProgramHub";
+import { DataTableModule } from "../native-modules/DataTable";
 
-export function getModuleScreen(module: Module) {
-  switch (module.moduleName) {
-    case "Chat":
-      return <ChatMainScreen chatConfig={module} />;
-    case "ProgramHub":
-      return (
-        <ProgramHubMainScreen programHubConfig={module}></ProgramHubMainScreen>
-      );
-    case "DataTable":
-      return <DataTableMainScreen tableModuleConfig={module} />;
+// Add custom modules here
+const customModules: InstalledModule[] = [];
 
-    default:
-      throw new Error("Couldnt resolve component name: " + module.moduleName);
+const nativeModules: InstalledModule[] = [
+  ChatbotModule,
+  ProgramHubModule,
+  DataTableModule,
+];
+
+export function getModuleView(module: Module) {
+  const installedModule = [...nativeModules, ...customModules].find(
+    (instModule) => instModule.moduleName === module.moduleName
+  );
+
+  if (!installedModule) {
+    throw new Error("Couldnt resolve moduleName " + module.moduleName);
   }
+
+  return installedModule.getView(module);
 }

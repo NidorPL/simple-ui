@@ -1,4 +1,9 @@
-import { Module } from "../../components/common/common-types";
+export interface Module {
+  moduleName: string;
+  customApi: string;
+  iconName: string;
+  moduleConfig: object;
+}
 
 export interface TableConfig extends Module {
   moduleConfig: {

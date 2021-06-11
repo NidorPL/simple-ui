@@ -4,3 +4,8 @@ export interface Module {
   iconName: string;
   moduleConfig: object;
 }
+
+export interface InstalledModule {
+  moduleName: string;
+  getView: (config: Module) => any;
+}

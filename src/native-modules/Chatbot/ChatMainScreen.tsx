@@ -12,8 +12,13 @@ import { defaultChabotAPI } from "./default-chatbot-api";
 import { services } from "./services";
 import { ChatConfig, ChatMessage } from "./chatbot-types";
 import { getAPI } from "../../registers/api-register";
+import { Module } from "../../components/common/common-types";
 
-export const ChatMainScreen = ({ chatConfig }: { chatConfig: ChatConfig }) => {
+export const ChatMainScreen = ({
+  chatConfig,
+}: {
+  chatConfig: Module | ChatConfig;
+}) => {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
     null
   );

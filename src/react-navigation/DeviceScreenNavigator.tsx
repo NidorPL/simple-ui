@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Module } from "../components/common/common-types";
-import { getModuleScreen } from "../registers/module-register";
+import { getModuleView } from "../registers/module-register";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 
@@ -26,7 +26,7 @@ export default function DeviceScreenNavigator({
           <Tab.Screen
             key={module.moduleName}
             name={module.moduleName}
-            children={() => getModuleScreen(module)}
+            children={() => getModuleView(module)}
             options={{
               tabBarLabel: () => <Text>{module.moduleName}</Text>,
               tabBarIcon: ({ color, size }) => (

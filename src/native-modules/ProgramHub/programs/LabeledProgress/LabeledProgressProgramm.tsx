@@ -19,6 +19,7 @@ export const LabeledProgressProgram: ProgramWithView = {
         label={runningProgram.value}
         iconName={runningProgram.iconName}
         progress={runningProgram.progress}
+        onPress={() => {}}
       />
     );
   },
