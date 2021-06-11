@@ -1,17 +1,9 @@
 import React, { Fragment } from "react";
 import { ScrollView } from "react-native";
-
+import { useQuery } from "react-query";
 import AddProgamCard from "./components/AddProgramCard";
 import MainDeviceCard from "./components/MainDeviceCard";
-
-import {
-  ProgramIndex,
-  ProgramConfig,
-  ProgramHubConfig,
-  RunningProgramConfig,
-  SupportedProgram,
-} from "./program-hub-types";
-import { useQuery } from "react-query";
+import { ProgramHubConfig, RunningProgramConfig } from "./program-hub-types";
 import { defaultProgramHubApi } from "./defaultProgramHubApi";
 import { getAPI, getProgramView } from "../../register";
 
@@ -26,26 +18,11 @@ const resolveProgramsViews = (
   });
 };
 
-// const findSupportedProgram = (supportedPrograms, runningProgram) => {
-//   console.log({
-//     supportedPrograms,
-//     runningProgram,
-//   });
-//
-//   return supportedPrograms.find((supportedProgram) => {
-//     return (
-//       supportedProgram.programName === runningProgram.programData.programName
-//     );
-//   });
-// };
-
 export const ProgramHubMainScreen = ({
   programHubConfig,
 }: {
   programHubConfig: ProgramHubConfig;
 }) => {
-  // const runningPrograms: Program[] = resolvePrograms(programHubConfig);
-
   const [refechValue, setRefetch] = React.useState(0);
 
   let api = getAPI(programHubConfig.customApi, defaultProgramHubApi);
@@ -73,8 +50,6 @@ export const ProgramHubMainScreen = ({
       programHubConfig.moduleConfig.connection,
       programConfig
     );
-    // close Dialog
-    // refetch programs
     setRefetch(refechValue + 1);
   };
 

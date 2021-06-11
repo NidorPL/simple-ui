@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Module, ModuleIndex } from "./components/common/common-types";
 import { ChatbotModule } from "./native-modules/Chatbot";
 import { ProgramHubModule } from "./native-modules/ProgramHub";
@@ -52,7 +51,7 @@ function getAPI(apiName: string, defaultAPI: any) {
 const getProgramView = (pModuleName: string): JSX.Element => {
   // @ts-ignore
   const installedProgram = [...nativePrograms, ...customPrograms].find(
-    (program) => program.info.programModule === pModuleName
+    (program) => program.programName === pModuleName
   ).View;
 
   if (!installedProgram) {

@@ -5,10 +5,7 @@ import { LabeledProgressCard } from "../../../../components/common/LabeledProgre
 import { ProgramIndex, RunningProgramConfig } from "../../program-hub-types";
 
 export const LabeledProgressProgram: ProgramIndex = {
-  info: {
-    programModule: "LabeledProgress",
-  },
-
+  programName: "LabeledProgress",
   View: ({ runningProgram }: { runningProgram: RunningProgramConfig }) => {
     return (
       <LabeledProgressCard

@@ -31,9 +31,7 @@ export interface ProgramConfig {
 }
 
 export interface ProgramIndex extends ProgramConfig {
-  info: {
-    programModule: string;
-  };
+  programName: string;
   View: any;
 }
 
