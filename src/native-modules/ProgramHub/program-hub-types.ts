@@ -30,7 +30,7 @@ export interface ProgramConfig {
   };
 }
 
-export interface ProgramWithView extends ProgramConfig {
+export interface ProgramIndex extends ProgramConfig {
   info: {
     programModule: string;
   };

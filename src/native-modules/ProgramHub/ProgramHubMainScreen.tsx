@@ -3,9 +3,9 @@ import { ScrollView } from "react-native";
 
 import AddProgamCard from "./components/AddProgramCard";
 import MainDeviceCard from "./components/MainDeviceCard";
-import { getProgramView } from "../../registers/program-register";
+
 import {
-  ProgramWithView,
+  ProgramIndex,
   ProgramConfig,
   ProgramHubConfig,
   RunningProgramConfig,
@@ -13,7 +13,7 @@ import {
 } from "./program-hub-types";
 import { useQuery } from "react-query";
 import { defaultProgramHubApi } from "./defaultProgramHubApi";
-import { getAPI } from "../../register";
+import { getAPI, getProgramView } from "../../register";
 
 const resolveProgramsViews = (
   runningProgramsData: RunningProgramConfig[] = []

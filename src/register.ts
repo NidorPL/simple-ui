@@ -3,14 +3,21 @@ import { Module, ModuleIndex } from "./components/common/common-types";
 import { ChatbotModule } from "./native-modules/Chatbot";
 import { ProgramHubModule } from "./native-modules/ProgramHub";
 import { DataTableModule } from "./native-modules/DataTable";
-import { customApis, customModules } from "./custom-elements-register";
-import { CoronaChatApi2 } from "./custom-apis/corona-chat-mapper-1";
+import {
+  customApis,
+  customModules,
+  customPrograms,
+} from "./custom-elements-register";
+import { ProgramIndex } from "./native-modules/ProgramHub/program-hub-types";
+import { LabeledProgressProgram } from "./native-modules/ProgramHub/programs/LabeledProgress/LabeledProgressProgramm";
 
 const nativeModules: ModuleIndex[] = [
   ChatbotModule,
   ProgramHubModule,
   DataTableModule,
 ];
+
+const nativePrograms: ProgramIndex[] = [LabeledProgressProgram];
 
 function getModuleView(module: Module) {
   const installedModule = [...nativeModules, ...customModules].find(
@@ -28,7 +35,7 @@ function getCustomAPI(name: string) {
   const installedApi = customApis.find((api) => api.name === name);
 
   if (!installedApi) {
-    throw new Error("Couldnt resolve mapper name " + name);
+    throw new Error("Couldnt resolve api name " + name);
   }
 
   return installedApi;
@@ -42,4 +49,17 @@ function getAPI(apiName: string, defaultAPI: any) {
   }
 }
 
-export { getModuleView, getAPI };
+const getProgramView = (pModuleName: string): JSX.Element => {
+  // @ts-ignore
+  const installedProgram = [...nativePrograms, ...customPrograms].find(
+    (program) => program.info.programModule === pModuleName
+  ).View;
+
+  if (!installedProgram) {
+    throw new Error("Couldnt resolve program name " + name);
+  }
+
+  return installedProgram;
+};
+
+export { getModuleView, getAPI, getProgramView };
