@@ -36,17 +36,9 @@ export default function AddProgamCard({
   }
 
   function editProgram(selectedProgramName: string) {
-    console.log("event");
-    console.log(selectedProgramName);
     setProgramToStart(findSupportedProgram(selectedProgramName));
     setIsEditProgramModalOpen(true);
   }
-
-  console.log("got programs");
-  console.log(supportedPrograms);
-
-  console.log("programToStart");
-  console.log(programToStart);
 
   return (
     <Card>

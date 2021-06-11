@@ -1,11 +1,15 @@
 import React, { Fragment } from "react";
-import { ScrollView } from "react-native";
+import { Pressable, ScrollView, TouchableOpacity } from "react-native";
 import { useQuery } from "react-query";
 import AddProgamCard from "./components/AddProgramCard";
 import MainDeviceCard from "./components/MainDeviceCard";
 import { ProgramHubConfig, RunningProgramConfig } from "./program-hub-types";
 import { defaultProgramHubApi } from "./defaultProgramHubApi";
 import { getAPI, getProgramView } from "../../register";
+import { TouchableRipple } from "react-native-paper";
+import { ProgramDialog } from "./components/ProgramDialog";
+import { View } from "react-native";
+import { LabeledProgressProgram } from "./programs/LabeledProgress/LabeledProgressProgramm";
 
 const resolveProgramsViews = (
   runningProgramsData: RunningProgramConfig[] = []
@@ -53,15 +57,19 @@ export const ProgramHubMainScreen = ({
     setRefetch(refechValue + 1);
   };
 
-  console.log("supportedPrograms");
-  console.log(supportedPrograms);
+  const openProgramDialog = () => {
+    setIsProgramDialogOpen(true);
+  };
 
-  console.log("Program Hub Data");
-  console.log("runningPrograms");
-  console.log(runningPrograms);
+  // console.log("supportedPrograms");
+  // console.log(supportedPrograms);
+  //
+  // console.log("Program Hub Data");
+  // console.log("runningPrograms");
+  // console.log(runningPrograms);
 
   return (
-    <Fragment>
+    <View>
       <ScrollView
         contentContainerStyle={{
           display: "grid" as "none",
@@ -74,14 +82,22 @@ export const ProgramHubMainScreen = ({
         <MainDeviceCard />
         {loadedProgamsData &&
           runningPrograms.map((runningProgram, index) => {
+            const programContext = React.createContext({
+              flag: "flag",
+            });
+
             return (
-              <Fragment key={index}>
-                {runningProgram.View({
-                  runningProgram: runningProgram.programData,
-                })}
-              </Fragment>
+              <View key={index}>
+                {
+                  // @ts-ignore
+                  runningProgram.View({
+                    runningProgram: runningProgram.programData,
+                  })
+                }
+              </View>
             );
           })}
+
         {loadedSupportedProgams && supportedPrograms && (
           <AddProgamCard
             supportedPrograms={supportedPrograms}
@@ -89,6 +105,6 @@ export const ProgramHubMainScreen = ({
           />
         )}
       </ScrollView>
-    </Fragment>
+    </View>
   );
 };

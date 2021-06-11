@@ -7,14 +7,6 @@ import { ProgramIndex, RunningProgramConfig } from "../../program-hub-types";
 export const LabeledProgressProgram: ProgramIndex = {
   programName: "LabeledProgress",
   View: ({ runningProgram }: { runningProgram: RunningProgramConfig }) => {
-    return (
-      <LabeledProgressCard
-        title={runningProgram.title}
-        label={runningProgram.value}
-        iconName={runningProgram.iconName}
-        progress={runningProgram.progress}
-        onPress={() => {}}
-      />
-    );
+    return <LabeledProgressCard runningProgram={runningProgram} />;
   },
 };

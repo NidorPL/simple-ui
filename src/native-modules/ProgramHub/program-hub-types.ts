@@ -21,6 +21,7 @@ export interface ProgramHubConfig extends Module {
 export interface ProgramConfig {
   name: string;
   title: string;
+  value: string;
   iconName: string;
   customApi: string;
   connection: {
