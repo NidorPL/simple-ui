@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Alert } from "react-native";
-import { ChatMessage } from "../../../native-modules/chatbot/chatbot-types";
+import { ChatMessage } from "../../native-modules/Chatbot/chatbot-types";
 import { ChatConfig } from "./corona-chat-api1-types";
 
 export const CoronaChatMapper1: ChatbotApi = {

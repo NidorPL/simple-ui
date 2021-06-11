@@ -1,12 +1,16 @@
-import { CoronaChatMapper1 } from "../custom-elements/custom-apis/corona-chat-mapper-1";
+import { CoronaChatMapper1 } from "../custom-apis/corona-chat-mapper-1";
 
-export function getCustomAPI(name: string) {
-  switch (name) {
-    case "corona-bot1":
-      return CoronaChatMapper1;
-    default:
-      throw new Error("Couldnt resolve mapper name " + name);
+// Add custom api´s here
+const customApis = [CoronaChatMapper1];
+
+function getCustomAPI(name: string) {
+  const installedApi = customApis.find((api) => api.name === name);
+
+  if (!installedApi) {
+    throw new Error("Couldnt resolve mapper name " + name);
   }
+
+  return installedApi;
 }
 
 export function getAPI(apiName: string, defaultAPI: any) {
