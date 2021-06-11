@@ -33,4 +33,8 @@ export const defaultProgramHubApi = {
 
     return data;
   },
+  stopProgram: async (
+    connection: ProgramHubConnection,
+    programName: string
+  ) => {},
 };

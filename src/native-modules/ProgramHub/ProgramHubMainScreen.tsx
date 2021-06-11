@@ -47,6 +47,9 @@ export const ProgramHubMainScreen = ({
 
   const runningPrograms = resolveProgramsViews(runningProgramsData);
 
+  console.log("programHubConfig");
+  console.log(programHubConfig);
+
   const startProgram = async (programConfig: object) => {
     console.log("programConfig");
     console.log(programConfig);
@@ -92,6 +95,8 @@ export const ProgramHubMainScreen = ({
                   // @ts-ignore
                   runningProgram.View({
                     runningProgram: runningProgram.programData,
+                    connection: programHubConfig.moduleConfig.connection,
+                    refetchPrograms: () => setRefetch(refechValue + 1),
                   })
                 }
               </View>

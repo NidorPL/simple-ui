@@ -43,7 +43,7 @@ export function DataTableMainScreen({
     });
 
     tableData = response;
-    setRefetch(refechValue + 1);
+    setRefetch(refechValue + 1)
   };
 
   return (

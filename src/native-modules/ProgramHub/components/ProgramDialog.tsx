@@ -1,22 +1,43 @@
 import React, { useState } from "react";
 import { Button, Dialog, Portal, TextInput } from "react-native-paper";
 import { ProgramConfig } from "../program-hub-types";
+import { getAPI } from "../../../register";
+import { defaultProgramHubApi } from "../defaultProgramHubApi";
+import { defaultLabeledProgressApi } from "../programs/LabeledProgress/default-labeled-progress-api";
 
 export const ProgramDialog = ({
   runningProgram,
   isModalOpen,
   closeModal,
   startProgram,
+  connection,
+  refetchPrograms,
 }: {
   runningProgram: ProgramConfig;
   isModalOpen: boolean;
   closeModal: any;
-  startProgram: (programConfig: object) => void;
+  updateProgram: (programConfig: object) => void;
+  connection: object;
 }) => {
   const [value, setValue] = useState(runningProgram.value);
 
   console.log("runningProgram");
   console.log(runningProgram);
+
+  console.log("connection");
+  console.log(connection);
+
+  const api = getAPI(runningProgram.customApi, defaultLabeledProgressApi);
+
+  const stopProgram = async () => {
+    console.log("stoppingg");
+    await api.stopProgram({
+      programName: runningProgram.programName,
+      connection,
+    });
+    closeModal();
+    refetchPrograms();
+  };
 
   return (
     <Portal>
@@ -40,7 +61,7 @@ export const ProgramDialog = ({
           />
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={() => {}}>Programm Stoppen</Button>
+          <Button onPress={stopProgram}>Programm Stoppen</Button>
           <Button onPress={() => {}}>Aktualiseren</Button>
         </Dialog.Actions>
       </Dialog>

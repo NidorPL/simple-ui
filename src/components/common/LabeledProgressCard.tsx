@@ -13,8 +13,11 @@ import { RunningProgramConfig } from "../../native-modules/ProgramHub/program-hu
 
 export const LabeledProgressCard = ({
   runningProgram,
+  connection,
+  refetchPrograms,
 }: {
   runningProgram: RunningProgramConfig;
+  connection: object;
 }) => {
   const { title, value, valueSuffix, iconName, progress } = runningProgram;
 
@@ -36,7 +39,9 @@ export const LabeledProgressCard = ({
           closeModal={() => {
             setIsDialogOpen(false);
           }}
-          startProgram={() => {}}
+          updateProgram={() => {}}
+          connection={connection}
+          refetchPrograms={refetchPrograms}
         />
       )}
     </Card>

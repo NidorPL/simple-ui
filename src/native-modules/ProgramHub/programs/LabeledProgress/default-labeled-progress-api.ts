@@ -32,4 +32,27 @@ export const defaultLabeledProgressApi = {
 
     return data;
   },
+
+  stopProgram: async ({
+    programName,
+    connection,
+  }: {
+    programName: string;
+    connection: { baseUrl: string; stopProgram: string };
+  }) => {
+    const { data } = await axios.post(
+      `${connection.baseUrl}${connection.stopProgram}`,
+      {
+        programName,
+      }
+    );
+
+    return data;
+  },
 };
+
+// baseUrl: "http://localhost:3000/oven1"
+// runningPrograms: "/runningPrograms"
+// startProgram: "/startProgram"
+// stopProgram: "/stopProgram"
+// supportedPrograms: "/supportedPrograms"
