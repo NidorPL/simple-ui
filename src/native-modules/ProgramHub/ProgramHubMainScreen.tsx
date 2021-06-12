@@ -3,16 +3,22 @@ import { ScrollView } from "react-native";
 import { useQuery } from "react-query";
 import AddProgamCard from "./components/AddProgramCard";
 import MainDeviceCard from "./components/MainDeviceCard";
-import { ProgramHubConfig, RunningProgram } from "./program-hub-types";
+import {
+  ProgramHubConfig,
+  ProgramWithView,
+  RunningProgram,
+} from "./program-hub-types";
 import { defaultProgramHubApi } from "./default-program-hub-api";
 import { getAPI, getProgramView } from "../../register";
 import { View } from "react-native";
 
-const resolveProgramViews = (runningProgramsData: RunningProgram[] = []) => {
-  return runningProgramsData.map((program) => {
+const resolveProgramViews = (
+  runningProgramsData: RunningProgram[] = []
+): ProgramWithView[] => {
+  return runningProgramsData.map((runningProgram) => {
     return {
-      programData: program,
-      View: getProgramView(program.pModuleName),
+      runningProgram,
+      View: getProgramView(runningProgram.pModuleName),
     };
   });
 };
@@ -40,7 +46,7 @@ export const ProgramHubMainScreen = ({
     api.getSupportedPrograms(programHubConfig.moduleConfig.connection)
   );
 
-  const runningPrograms = resolveProgramViews(runningProgramsData);
+  const runningProgramsWithViews = resolveProgramViews(runningProgramsData);
 
   const startProgram = async (programConfig: object) => {
     await api.startProgram(
@@ -63,13 +69,13 @@ export const ProgramHubMainScreen = ({
       >
         <MainDeviceCard />
         {loadedProgamsData &&
-          runningPrograms.map((runningProgram, index) => {
+          runningProgramsWithViews.map((runningProgram, index) => {
             return (
               <View key={index}>
                 {
                   // @ts-ignore
                   runningProgram.View({
-                    runningProgram: runningProgram.programData,
+                    runningProgram: runningProgram.runningProgram,
                     connection: programHubConfig.moduleConfig.connection,
                     refetchPrograms: () => setRefetch(refechValue + 1),
                   })
@@ -80,6 +86,7 @@ export const ProgramHubMainScreen = ({
 
         {loadedSupportedProgams && supportedPrograms && (
           <AddProgamCard
+            runningPrograms={runningProgramsWithViews}
             supportedPrograms={supportedPrograms}
             startProgram={startProgram}
           />

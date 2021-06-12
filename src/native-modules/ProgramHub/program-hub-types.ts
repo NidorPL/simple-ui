@@ -23,6 +23,11 @@ export interface ProgramIndex {
   View: any;
 }
 
+export interface ProgramWithView {
+  runningProgram: RunningProgram;
+  View: any;
+}
+
 export interface RunningProgram {
   programName: string;
   connectionUrl: string;

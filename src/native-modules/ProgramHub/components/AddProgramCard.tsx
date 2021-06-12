@@ -6,17 +6,26 @@ import {
   Dialog,
   Portal,
   TextInput,
+  Title,
+  Subheading,
 } from "react-native-paper";
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import RNPickerSelect from "react-native-picker-select";
-import { SupportedProgram } from "../program-hub-types";
+import {
+  ProgramIndex,
+  ProgramWithView,
+  RunningProgram,
+  SupportedProgram,
+} from "../program-hub-types";
 import { StartProgramDialog } from "./StartProgramDialog";
 
 export default function AddProgamCard({
+  runningPrograms,
   supportedPrograms,
   startProgram,
 }: {
+  runningPrograms: ProgramWithView[];
   supportedPrograms: SupportedProgram[];
   startProgram: (programConfig: object) => void;
 }) {
@@ -45,6 +54,13 @@ export default function AddProgamCard({
     setIsEditProgramModalOpen(true);
   }
 
+  const runningProgramNames = runningPrograms.map(
+    (p) => p.runningProgram.programName
+  );
+  const runnablePrograms = supportedPrograms.filter((sP) => {
+    return !runningProgramNames.includes(sP.programName);
+  });
+
   return (
     <Card>
       <Card.Title title="Programm starten" />
@@ -66,14 +82,19 @@ export default function AddProgamCard({
         >
           <Dialog.Title>Start a new program</Dialog.Title>
           <Dialog.Content>
-            <RNPickerSelect
-              onValueChange={editProgram}
-              items={supportedPrograms.map((program) => ({
-                label: program.programName,
-                value: program.programName,
-              }))}
-              placeholder={{ label: "Choose program.." }}
-            />
+            {runnablePrograms.length === 0 && (
+              <Subheading>No programs to start</Subheading>
+            )}
+            {runnablePrograms.length > 0 && (
+              <RNPickerSelect
+                onValueChange={editProgram}
+                items={runnablePrograms.map((program) => ({
+                  label: program.programName,
+                  value: program.programName,
+                }))}
+                placeholder={{ label: "Choose program.." }}
+              />
+            )}
           </Dialog.Content>
         </Dialog>
       </Portal>
