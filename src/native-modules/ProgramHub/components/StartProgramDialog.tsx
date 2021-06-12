@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Button, Dialog, Portal, TextInput } from "react-native-paper";
+import { SupportedProgram } from "../program-hub-types";
 
 export const StartProgramDialog = ({
   programToStart,
   isEditProgramModalOpen,
   setIsEditProgramModalOpen,
   startProgram,
+  closeModals,
 }: {
-  programToStart: object;
+  programToStart: SupportedProgram;
   isEditProgramModalOpen: boolean;
   setIsEditProgramModalOpen: any;
   startProgram: (programConfig: object) => void;
+  closeModals: () => void;
 }) => {
   const [inputs, setInputs] = useState({});
 
@@ -31,8 +34,6 @@ export const StartProgramDialog = ({
                 value={inputs[input]}
                 key={input}
                 onChangeText={(change) => {
-                  console.log("change");
-                  console.log(change);
                   setInputs({ ...inputs, [input]: change });
                 }}
               />
@@ -41,12 +42,13 @@ export const StartProgramDialog = ({
         </Dialog.Content>
         <Dialog.Actions>
           <Button
-            onPress={() =>
+            onPress={() => {
+              closeModals();
               startProgram({
                 ...inputs,
                 programName: programToStart.programName,
-              })
-            }
+              });
+            }}
           >
             Start Program
           </Button>

@@ -1,15 +1,12 @@
-import React, { Fragment } from "react";
-import { Pressable, ScrollView, TouchableOpacity } from "react-native";
+import React from "react";
+import { ScrollView } from "react-native";
 import { useQuery } from "react-query";
 import AddProgamCard from "./components/AddProgramCard";
 import MainDeviceCard from "./components/MainDeviceCard";
 import { ProgramHubConfig, RunningProgramConfig } from "./program-hub-types";
 import { defaultProgramHubApi } from "./defaultProgramHubApi";
 import { getAPI, getProgramView } from "../../register";
-import { TouchableRipple } from "react-native-paper";
-import { ProgramDialog } from "./components/ProgramDialog";
 import { View } from "react-native";
-import { LabeledProgressProgram } from "./programs/LabeledProgress/LabeledProgressProgramm";
 
 const resolveProgramsViews = (
   runningProgramsData: RunningProgramConfig[] = []
@@ -47,29 +44,13 @@ export const ProgramHubMainScreen = ({
 
   const runningPrograms = resolveProgramsViews(runningProgramsData);
 
-  console.log("programHubConfig");
-  console.log(programHubConfig);
-
   const startProgram = async (programConfig: object) => {
-    console.log("programConfig");
-    console.log(programConfig);
     await api.startProgram(
       programHubConfig.moduleConfig.connection,
       programConfig
     );
     setRefetch(refechValue + 1);
   };
-
-  const openProgramDialog = () => {
-    setIsProgramDialogOpen(true);
-  };
-
-  // console.log("supportedPrograms");
-  // console.log(supportedPrograms);
-  //
-  // console.log("Program Hub Data");
-  // console.log("runningPrograms");
-  // console.log(runningPrograms);
 
   return (
     <View>

@@ -27,6 +27,11 @@ export default function AddProgamCard({
 
   const [isEditProgramModalOpen, setIsEditProgramModalOpen] = useState(false);
 
+  const closeModals = () => {
+    setIsSelectProgramModalOpen(false);
+    setIsEditProgramModalOpen(false);
+  };
+
   function findSupportedProgram(programName: string) {
     return (
       supportedPrograms.find(
@@ -77,6 +82,7 @@ export default function AddProgamCard({
         isEditProgramModalOpen={isEditProgramModalOpen}
         setIsEditProgramModalOpen={setIsEditProgramModalOpen}
         startProgram={startProgram}
+        closeModals={closeModals}
       />
     </Card>
   );
