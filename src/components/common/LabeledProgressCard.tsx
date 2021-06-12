@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Card,
-  Paragraph,
-  ProgressBar,
-  TouchableRipple,
-} from "react-native-paper";
+import { Card, ProgressBar } from "react-native-paper";
 import { LabelIconRow } from "./LabelIconRow";
 import styled from "styled-components/native";
-import { Pressable } from "react-native";
 import { ProgramDialog } from "../../native-modules/ProgramHub/components/ProgramDialog";
 import { RunningProgramConfig } from "../../native-modules/ProgramHub/program-hub-types";
 
@@ -19,13 +13,19 @@ export const LabeledProgressCard = ({
   runningProgram: RunningProgramConfig;
   connection: object;
 }) => {
-  const { title, value, valueSuffix, iconName, progress } = runningProgram;
+  const {
+    programName,
+    value,
+    valueSuffix,
+    iconName,
+    progress,
+  } = runningProgram;
 
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   return (
     <Card onPress={() => setIsDialogOpen(true)}>
-      <Card.Title title={title} />
+      <Card.Title title={programName} />
       <Card.Content>
         <ProgramStartContainer>
           <LabelIconRow label={value + " " + valueSuffix} iconName={iconName} />
