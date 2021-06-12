@@ -18,33 +18,15 @@ export interface ProgramHubConfig extends Module {
   };
 }
 
-export interface ProgramConfig {
-  name: string;
-  programName: string;
-  title: string;
-  value: string;
-  iconName: string;
-  customApi: string;
-  connection: {
-    statusUrl: string;
-    startUrl: string;
-    stopUrl: string;
-  };
-}
-
-export interface ProgramIndex extends ProgramConfig {
+export interface ProgramIndex {
   programName: string;
   View: any;
 }
 
-/*
-  New Types
- */
-
-export interface RunningProgramConfig {
+export interface RunningProgram {
   programName: string;
-  pModuleName: string;
   connectionUrl: string;
+  pModuleName: string;
   customApi: string;
   name: string;
   title: string;
@@ -55,8 +37,8 @@ export interface RunningProgramConfig {
 
 export interface SupportedProgram {
   programName: string;
-  title: string;
+  pModuleName: string;
+  valueSuffix: string;
   iconName: string;
   inputs: string[];
-  connectionUrl: string;
 }

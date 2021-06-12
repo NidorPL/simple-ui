@@ -3,14 +3,14 @@ import { Card, ProgressBar } from "react-native-paper";
 import { LabelIconRow } from "./LabelIconRow";
 import styled from "styled-components/native";
 import { ProgramDialog } from "../../native-modules/ProgramHub/components/ProgramDialog";
-import { RunningProgramConfig } from "../../native-modules/ProgramHub/program-hub-types";
+import { RunningProgram } from "../../native-modules/ProgramHub/program-hub-types";
 
 export const LabeledProgressCard = ({
   runningProgram,
   connection,
   refetchPrograms,
 }: {
-  runningProgram: RunningProgramConfig;
+  runningProgram: RunningProgram;
   connection: object;
 }) => {
   const {

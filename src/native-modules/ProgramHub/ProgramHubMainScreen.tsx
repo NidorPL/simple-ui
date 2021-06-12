@@ -3,14 +3,12 @@ import { ScrollView } from "react-native";
 import { useQuery } from "react-query";
 import AddProgamCard from "./components/AddProgramCard";
 import MainDeviceCard from "./components/MainDeviceCard";
-import { ProgramHubConfig, RunningProgramConfig } from "./program-hub-types";
-import { defaultProgramHubApi } from "./defaultProgramHubApi";
+import { ProgramHubConfig, RunningProgram } from "./program-hub-types";
+import { defaultProgramHubApi } from "./default-program-hub-api";
 import { getAPI, getProgramView } from "../../register";
 import { View } from "react-native";
 
-const resolveProgramsViews = (
-  runningProgramsData: RunningProgramConfig[] = []
-) => {
+const resolveProgramViews = (runningProgramsData: RunningProgram[] = []) => {
   return runningProgramsData.map((program) => {
     return {
       programData: program,
@@ -42,7 +40,7 @@ export const ProgramHubMainScreen = ({
     api.getSupportedPrograms(programHubConfig.moduleConfig.connection)
   );
 
-  const runningPrograms = resolveProgramsViews(runningProgramsData);
+  const runningPrograms = resolveProgramViews(runningProgramsData);
 
   const startProgram = async (programConfig: object) => {
     await api.startProgram(
@@ -66,10 +64,6 @@ export const ProgramHubMainScreen = ({
         <MainDeviceCard />
         {loadedProgamsData &&
           runningPrograms.map((runningProgram, index) => {
-            const programContext = React.createContext({
-              flag: "flag",
-            });
-
             return (
               <View key={index}>
                 {

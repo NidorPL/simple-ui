@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Dialog, Portal, TextInput } from "react-native-paper";
-import { ProgramConfig } from "../program-hub-types";
+import { RunningProgram } from "../program-hub-types";
 import { getAPI } from "../../../register";
 import { defaultLabeledProgressApi } from "../programs/LabeledProgress/default-labeled-progress-api";
 
@@ -11,7 +11,7 @@ export const ProgramDialog = ({
   connection,
   refetchPrograms,
 }: {
-  runningProgram: ProgramConfig;
+  runningProgram: RunningProgram;
   isModalOpen: boolean;
   closeModal: any;
   updateProgram: (programConfig: object) => void;
