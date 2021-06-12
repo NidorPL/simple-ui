@@ -33,6 +33,7 @@ export default {
               runningPrograms: "/runningPrograms",
               startProgram: "/startProgram",
               stopProgram: "/stopProgram",
+              updateProgram: "/updateProgram",
             },
           },
         },

@@ -33,6 +33,26 @@ export const defaultLabeledProgressApi = {
     return data;
   },
 
+  updateProgram: async ({
+    connection,
+    programName,
+    newValue,
+  }: {
+    connection: { baseUrl: string; updateProgram: string };
+    programName: string;
+    newValue: string;
+  }) => {
+    const { data } = await axios.post(
+      `${connection.baseUrl}${connection.updateProgram}`,
+      {
+        programName,
+        newValue,
+      }
+    );
+
+    return data;
+  },
+
   stopProgram: async ({
     programName,
     connection,

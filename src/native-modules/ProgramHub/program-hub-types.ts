@@ -20,6 +20,7 @@ export interface ProgramHubConfig extends Module {
 
 export interface ProgramConfig {
   name: string;
+  programName: string;
   title: string;
   value: string;
   iconName: string;
