@@ -9,3 +9,8 @@ export interface ModuleIndex {
   moduleName: string;
   getView: (moduleConfig: any, customApi?: object) => any;
 }
+
+export interface ImageIndex {
+  imageName: string;
+  imageSource: any;
+}

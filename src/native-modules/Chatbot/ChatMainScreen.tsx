@@ -6,11 +6,14 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import styled from "styled-components/native";
-import { Header } from "./components/header/header";
+import { ChatbotHeader } from "./components/header/ChatbotHeader";
 import { resolveMessageFromType } from "./message-resolver";
 import { services } from "./services";
 import { ChatbotApi, ChatConfig, ChatMessage } from "./chatbot-types";
 import { defaultChabotAPI } from "./default-chatbot-api";
+import { getImageSource } from "../../register";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Headline } from "react-native-paper";
 
 export const ChatMainScreen = ({
   chatConfig,
@@ -50,6 +53,11 @@ export const ChatMainScreen = ({
     setMessageInput("");
   };
 
+  const resetDefaultScreen = async () => {
+    const initialMessages = await api.loadFirstMessages(chatConfig);
+    setConversationMessages(initialMessages);
+  };
+
   const sendMessage = async () => {
     const location = await services.getLocation(
       locationPermissionGranted,
@@ -77,9 +85,28 @@ export const ChatMainScreen = ({
     resetMessageInput();
   };
 
+  function getLogoImage() {
+    if (chatConfig.moduleConfig.headerType === "customImage") {
+      const imageSource = getImageSource(
+        chatConfig.moduleConfig.customHeaderImage
+      );
+      return <LogoImage source={imageSource} />;
+    } else {
+      return (
+        <Fragment>
+          <Logo name={chatConfig.moduleConfig.headerOptions.icon} size={40} />
+          <LogoText>{chatConfig.moduleConfig.headerOptions.title}</LogoText>
+        </Fragment>
+      );
+    }
+  }
+
   return (
     <Fragment>
-      <Header></Header>
+      <ChatbotHeader
+        resetDefaultScreen={resetDefaultScreen}
+        logo={getLogoImage()}
+      />
       <KeyboardAvoid>
         <MessageContainer>
           <StyledScrollView
@@ -156,4 +183,22 @@ const SendButton = styled.Image`
   height: 34px;
   width: 34px;
   align-self: center;
+`;
+
+const LogoImage = styled.Image`
+  margin-left: 8px;
+  width: 250px;
+  height: 60px;
+`;
+
+const Logo = styled(MaterialCommunityIcons)`
+  margin-left: 8px;
+`;
+
+const LogoText = styled(Headline)`
+  margin-left: 8px;
+  margin-top: 0px;
+  width: 200px;
+  height: 20px;
+  border-radius: 15px;
 `;

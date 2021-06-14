@@ -4,6 +4,7 @@ import { ProgramHubModule } from "./native-modules/ProgramHub";
 
 import {
   customApis,
+  customImages,
   customModules,
   customPrograms,
 } from "./custom-elements-register";
@@ -55,6 +56,15 @@ const getProgramView = (pModuleName: string): JSX.Element => {
   }
 
   return installedProgram;
+};
+
+export const getImageSource = (imageName: string) => {
+  const image = customImages.find((image) => image.imageName === imageName);
+
+  if (!image) {
+    throw new Error("Couldnt resolve image " + imageName);
+  }
+  return image.imageSource;
 };
 
 export { getModuleView, getAPI, getProgramView };

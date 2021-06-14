@@ -7,6 +7,12 @@ export interface Module {
 
 export interface ChatConfig extends Module {
   moduleConfig: {
+    headerType: "customImage" | "default";
+    customHeaderImage: string;
+    headerOptions: {
+      icon: string;
+      title: string;
+    };
     connection: {
       url: string;
       init: string;

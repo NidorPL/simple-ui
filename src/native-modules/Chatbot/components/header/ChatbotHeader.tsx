@@ -1,15 +1,20 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components/native";
 import { Platform } from "react-native";
 
-export function Header({ resetDefaultScreen }) {
+export function ChatbotHeader({
+  resetDefaultScreen,
+  logo,
+}: {
+  resetDefaultScreen: () => void;
+  logo: any;
+}) {
   const isWeb = Platform.OS === "web";
 
   return (
     <HeaderWrapper isWeb={isWeb}>
       <LeftWrapper isWeb={isWeb}>
-        <Logo source={require("../../images/Logo_only.png")} />
-        <LogoText source={require("../../images/Logo_Text_only.png")} />
+        <Fragment>{logo}</Fragment>
       </LeftWrapper>
 
       <RightWrapperContainer
@@ -54,21 +59,6 @@ const RightWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   margin-bottom: ${(props) => (props.isWeb ? "30px" : "-5px")};
-`;
-
-const Logo = styled.Image`
-  margin-left: 8px;
-
-  width: 50px;
-  height: 60px;
-`;
-
-const LogoText = styled.Image`
-  margin-left: -3px;
-  margin-top: 10px;
-  width: 200px;
-  height: 20px;
-  border-radius: 15px;
 `;
 
 const RestartImage = styled.Image`
