@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Appbar } from "react-native-paper";
-import DeviceScreenNavigator from "../react-navigation/DeviceScreenNavigator";
+import { BottomModuleNavigation } from "../navigation";
 import config from "../config";
 
 export default function HomeNavigator(props: any) {
@@ -17,7 +17,7 @@ export default function HomeNavigator(props: any) {
         <Appbar.Content title="Smart UI" subtitle="DAI Lab Project" />
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
       </Appbar.Header>
-      <DeviceScreenNavigator modules={config.connectedDevices[1].modules} />
+      <BottomModuleNavigation modules={config.connectedDevices[1].modules} />
     </React.Fragment>
   );
 }

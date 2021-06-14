@@ -14,7 +14,7 @@ const nativeModules: ModuleIndex[] = [ChatbotModule, ProgramHubModule];
 
 const nativePrograms: ProgramIndex[] = [LabeledProgressProgram];
 
-function getModuleView(module: Module) {
+function getModuleView(module: Module, customApi?: object) {
   const installedModule = [...nativeModules, ...customModules].find(
     (instModule) => instModule.moduleName === module.moduleName
   );
@@ -23,7 +23,7 @@ function getModuleView(module: Module) {
     throw new Error("Couldnt resolve moduleName " + module.moduleName);
   }
 
-  return installedModule.getView(module);
+  return installedModule.getView(module, customApi);
 }
 
 function getCustomAPI(name: string) {

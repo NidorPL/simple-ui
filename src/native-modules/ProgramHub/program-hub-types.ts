@@ -10,11 +10,7 @@ export interface ProgramHubConfig extends Module {
   customApi: string;
   iconName: string;
   moduleConfig: {
-    connection: {
-      baseUrl: string;
-      supportedPrograms: string;
-      runningPrograms: string;
-    };
+    connection: ProgramHubConnection;
   };
 }
 
@@ -46,4 +42,22 @@ export interface SupportedProgram {
   valueSuffix: string;
   iconName: string;
   inputs: string[];
+}
+
+export interface ProgramHubConnection {
+  baseUrl: string;
+  supportedPrograms: string;
+  runningPrograms: string;
+  startProgram: string;
+}
+
+export interface ProgramHubApi {
+  getRunningPrograms: (connection: ProgramHubConnection) => RunningProgram[];
+  getSupportedPrograms: (
+    connection: ProgramHubConnection
+  ) => SupportedProgram[];
+  startProgram: (
+    connection: ProgramHubConnection,
+    programConfig: object
+  ) => void;
 }

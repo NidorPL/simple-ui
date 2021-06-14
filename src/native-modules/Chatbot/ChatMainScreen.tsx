@@ -6,30 +6,32 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import styled from "styled-components/native";
-import ChatbotHeader from "./components/header/header";
+import { Header } from "./components/header/header";
 import { resolveMessageFromType } from "./message-resolver";
-import { defaultChabotAPI } from "./default-chatbot-api";
 import { services } from "./services";
-import { ChatConfig, ChatMessage } from "./chatbot-types";
-import { Module } from "../../components/common/common-types";
-import { getAPI } from "../../register";
+import { ChatbotApi, ChatConfig, ChatMessage } from "./chatbot-types";
+import { defaultChabotAPI } from "./default-chatbot-api";
 
 export const ChatMainScreen = ({
   chatConfig,
+  customApi,
 }: {
-  chatConfig: Module | ChatConfig;
+  chatConfig: ChatConfig;
+  customApi?: ChatbotApi;
 }) => {
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
     null
   );
   const [messageInput, setMessageInput] = useState("");
-  const [conversationMessages, setConversationMessages] = useState([]);
+  const [conversationMessages, setConversationMessages] = useState<
+    ChatMessage[]
+  >([]);
 
   const isWeb = Platform.OS === "web";
 
   const scrollViewRef = useRef(null);
 
-  const api = getAPI(chatConfig.customApi, defaultChabotAPI);
+  let api = customApi || defaultChabotAPI;
 
   useEffect(() => {
     loadFirstMessages();
@@ -77,8 +79,8 @@ export const ChatMainScreen = ({
 
   return (
     <Fragment>
-      <ChatbotHeader></ChatbotHeader>
-      <KeyboardAvoid behavior={Platform.OS === "ios" ? "padding" : null}>
+      <Header></Header>
+      <KeyboardAvoid>
         <MessageContainer>
           <StyledScrollView
             ref={scrollViewRef}
@@ -96,6 +98,7 @@ export const ChatMainScreen = ({
               onChangeText={(text) => setMessageInput(text)}
               value={messageInput}
               onSubmitEditing={sendMessage}
+              // @ts-ignore
               style={isWeb && { outline: "none" }}
             />
             <SendButtonWrapper onPress={sendMessage}>

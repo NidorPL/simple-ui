@@ -21,3 +21,12 @@ export interface ChatMessage {
   fromChatbot?: boolean;
   linkedRequest?: string;
 }
+
+export interface ChatbotApi {
+  loadFirstMessages: (config: ChatConfig) => ChatMessage[];
+  sendMessage: (
+    messageInput: string,
+    location: object,
+    chatConfig: ChatConfig
+  ) => ChatMessage[];
+}

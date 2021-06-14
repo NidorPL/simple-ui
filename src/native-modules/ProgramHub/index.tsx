@@ -1,10 +1,13 @@
 import React from "react";
 import { ProgramHubMainScreen } from "./ProgramHubMainScreen";
-import { Module } from "./program-hub-types";
+import { ProgramHubApi, ProgramHubConfig } from "./program-hub-types";
 
 export const ProgramHubModule = {
   moduleName: "ProgramHub",
-  getView: (moduleConfig: Module) => (
-    <ProgramHubMainScreen programHubConfig={moduleConfig} />
+  getView: (moduleConfig: ProgramHubConfig, customApi?: ProgramHubApi) => (
+    <ProgramHubMainScreen
+      programHubConfig={moduleConfig}
+      customApi={customApi}
+    />
   ),
 };

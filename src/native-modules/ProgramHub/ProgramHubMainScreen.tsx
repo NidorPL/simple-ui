@@ -4,12 +4,13 @@ import { useQuery } from "react-query";
 import AddProgamCard from "./components/AddProgramCard";
 import MainDeviceCard from "./components/MainDeviceCard";
 import {
+  ProgramHubApi,
   ProgramHubConfig,
   ProgramWithView,
   RunningProgram,
 } from "./program-hub-types";
 import { defaultProgramHubApi } from "./default-program-hub-api";
-import { getAPI, getProgramView } from "../../register";
+import { getProgramView } from "../../register";
 import { View } from "react-native";
 
 const resolveProgramViews = (
@@ -25,12 +26,14 @@ const resolveProgramViews = (
 
 export const ProgramHubMainScreen = ({
   programHubConfig,
+  customApi,
 }: {
   programHubConfig: ProgramHubConfig;
+  customApi?: ProgramHubApi;
 }) => {
   const [refechValue, setRefetch] = React.useState(0);
 
-  let api = getAPI(programHubConfig.customApi, defaultProgramHubApi);
+  const api = customApi || defaultProgramHubApi;
 
   const {
     data: runningProgramsData,
@@ -61,6 +64,7 @@ export const ProgramHubMainScreen = ({
       <ScrollView
         contentContainerStyle={{
           display: "grid" as "none",
+          // @ts-ignore
           gridTemplateColumns: "1fr 1fr",
           gridRowGap: "15px",
           gridColumnGap: "15px",
@@ -72,14 +76,11 @@ export const ProgramHubMainScreen = ({
           runningProgramsWithViews.map((runningProgram, index) => {
             return (
               <View key={index}>
-                {
-                  // @ts-ignore
-                  runningProgram.View({
-                    runningProgram: runningProgram.runningProgram,
-                    connection: programHubConfig.moduleConfig.connection,
-                    refetchPrograms: () => setRefetch(refechValue + 1),
-                  })
-                }
+                {runningProgram.View({
+                  runningProgram: runningProgram.runningProgram,
+                  connection: programHubConfig.moduleConfig.connection,
+                  refetchPrograms: () => setRefetch(refechValue + 1),
+                })}
               </View>
             );
           })}

@@ -1,10 +1,13 @@
 import React from "react";
 import { DataTableMainScreen } from "./DataTableMainScreen";
-import { Module } from "./data-table-types";
+import { DataTableApi, TableConfig } from "./data-table-types";
 
 export const DataTableModule = {
   moduleName: "DataTable",
-  getView: (moduleConfig: Module) => (
-    <DataTableMainScreen tableModuleConfig={moduleConfig} />
+  getView: (moduleConfig: TableConfig, customApi?: DataTableApi) => (
+    <DataTableMainScreen
+      tableModuleConfig={moduleConfig}
+      customApi={customApi}
+    />
   ),
 };

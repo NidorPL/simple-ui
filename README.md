@@ -52,3 +52,81 @@ relatedModule: Name of the module the mapper can be used with
 ...Functions to override the modules default functionality.  
 
 ```
+
+
+
+### Creating own npm module
+
+You will need to have the package.json and tsconfig.json files set up. Then you can build and and publish the module.
+Example files:
+
+package.json
+```
+{
+  "name": "simple_ui_data-table",
+  "version": "1.1.0",
+  "description": "",
+  "author": "nidorpl",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc --project ./tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NidorPL/simple_ui-data-table.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NidorPL/simple_ui-data-table/issues"
+  },
+  "homepage": "https://github.com/NidorPL/simple_ui-data-table#readme",
+  "dev-dependencies": {
+    "axios": "^0.21.1",
+    "react-native-vector-icons": "^8.1.0",
+    "react-query": "^3.13.12",
+    "styled-components": "^5.2.3",
+    "typescript": "^4.3.2",
+    "@expo/vector-icons": "^12.0.0",
+    "@material-ui/icons": "^4.11.2"
+    "@types/styled-components": "^5.1.9",
+    "@types/styled-components-react-native": "^5.1.1",
+    "ramda": "^0.27.1",
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "16.13.1",
+    "react-native": "react-native",
+  },
+  "dependencies": {
+    "simple_ui_data-table-extracted": "^1.0.1"
+  }
+}
+
+```
+
+tsconfig.json
+```
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "declaration": true,
+    "outDir": "./lib",
+    "strict": true,
+    "jsx": "react-native",
+    "skipLibCheck": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*"
+  ]
+}
+
+```

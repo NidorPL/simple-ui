@@ -1,11 +1,5 @@
 import axios from "axios";
-
-interface TableConnection {
-  baseUrl: string;
-  get: string;
-  edit: string;
-  delete: string;
-}
+import { TableConnection } from "./data-table-types";
 
 export const defaultTableApi = {
   getTableData: async (connection: TableConnection) => {

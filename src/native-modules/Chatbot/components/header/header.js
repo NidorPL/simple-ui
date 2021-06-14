@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { Platform } from "react-native";
 
-export default function Header({ resetDefaultScreen }) {
+export function Header({ resetDefaultScreen }) {
   const isWeb = Platform.OS === "web";
 
   return (

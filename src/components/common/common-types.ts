@@ -7,5 +7,5 @@ export interface Module {
 
 export interface ModuleIndex {
   moduleName: string;
-  getView: (config: Module) => any;
+  getView: (moduleConfig: any, customApi?: object) => any;
 }

@@ -57,7 +57,7 @@ export const EditModal = ({
         />
       ))}
       <EditModalFooter>
-        <Button onPress={() => editData(tableRow)}>Edit</Button>
+        <Button onPress={() => editData()}>Edit</Button>
         <Button
           onPress={() => {
             setModalOpen(false);

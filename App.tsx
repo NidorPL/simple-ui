@@ -10,7 +10,7 @@ import { Updates } from "expo";
 
 import useCachedResources from "./src/hooks/useCachedResources";
 import useColorScheme from "./src/hooks/useColorScheme";
-import Navigation from "./src/react-navigation/MainNavigation";
+import Navigation from "./src/navigation";
 import { PreferencesContext } from "./src/context/preferencesContext";
 
 import { QueryClient, QueryClientProvider } from "react-query";

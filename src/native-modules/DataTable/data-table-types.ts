@@ -2,7 +2,14 @@ export interface Module {
   moduleName: string;
   customApi: string;
   iconName: string;
-  moduleConfig: object;
+  moduleConfig: any;
+}
+
+export interface TableConnection {
+  baseUrl: string;
+  get: string;
+  edit: string;
+  delete: string;
 }
 
 export interface TableConfig extends Module {
@@ -16,4 +23,16 @@ export interface TableConfig extends Module {
       delete: string;
     };
   };
+}
+
+export interface DataTableApi {
+  getTableData: (connection: TableConnection) => object[];
+  editTableData: (connection: TableConnection, newData: object) => void;
+  deleteTableData: ({
+    connection,
+    elementToDelete,
+  }: {
+    connection: TableConnection;
+    elementToDelete: object;
+  }) => object[];
 }

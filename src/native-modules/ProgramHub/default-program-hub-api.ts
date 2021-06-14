@@ -1,12 +1,5 @@
-import { ProgramHubConfig } from "./program-hub-types";
+import { ProgramHubConfig, ProgramHubConnection } from "./program-hub-types";
 import axios from "axios";
-
-interface ProgramHubConnection {
-  baseUrl: string;
-  supportedPrograms: string;
-  runningPrograms: string;
-  startProgram: string;
-}
 
 export const defaultProgramHubApi = {
   getSupportedPrograms: async (connection: ProgramHubConnection) => {
@@ -33,8 +26,4 @@ export const defaultProgramHubApi = {
 
     return data;
   },
-  stopProgram: async (
-    connection: ProgramHubConnection,
-    programName: string
-  ) => {},
 };

@@ -41,7 +41,7 @@ export const defaultChabotAPI = {
         }
       );
 
-      return data.map((answer) => ({ ...answer, fromChatbot: true }));
+      return data.map((answer: object) => ({ ...answer, fromChatbot: true }));
     } catch (err) {
       console.log("Error with request");
       console.log(err.message);
