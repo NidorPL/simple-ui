@@ -3,10 +3,9 @@ import { DataTable, Title, Portal } from "react-native-paper";
 import styled from "styled-components/native";
 import { useQuery } from "react-query";
 import { defaultTableApi } from "./defaultTableApi";
-import { Module, TableConfig } from "./data-table-types";
+import { TableConfig } from "./data-table-types";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { EditModal } from "./components/EditModal";
-import { getAPI } from "../../register";
 
 export function DataTableMainScreen({
   tableModuleConfig,
@@ -23,7 +22,7 @@ export function DataTableMainScreen({
   const [tableToEdit, setTableToEdit] = React.useState({});
   const [refechValue, setRefetch] = React.useState(0);
 
-  let api = getAPI(tableModuleConfig.customApi, defaultTableApi);
+  let api = defaultTableApi;
 
   let {
     data: tableData,
@@ -43,7 +42,7 @@ export function DataTableMainScreen({
     });
 
     tableData = response;
-    setRefetch(refechValue + 1)
+    setRefetch(refechValue + 1);
   };
 
   return (

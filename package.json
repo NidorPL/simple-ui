@@ -47,10 +47,12 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
     "react-query": "^3.13.12",
+    "simple_ui_data-table": "^1.1.0",
     "styled-components": "^5.2.3"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@expo/webpack-config": "^0.12.77",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "jest-expo": "~40.0.0",

@@ -1,7 +1,7 @@
 import { Module, ModuleIndex } from "./components/common/common-types";
 import { ChatbotModule } from "./native-modules/Chatbot";
 import { ProgramHubModule } from "./native-modules/ProgramHub";
-import { DataTableModule } from "./native-modules/DataTable";
+
 import {
   customApis,
   customModules,
@@ -10,11 +10,7 @@ import {
 import { ProgramIndex } from "./native-modules/ProgramHub/program-hub-types";
 import { LabeledProgressProgram } from "./native-modules/ProgramHub/programs/LabeledProgress/LabeledProgressProgramm";
 
-const nativeModules: ModuleIndex[] = [
-  ChatbotModule,
-  ProgramHubModule,
-  DataTableModule,
-];
+const nativeModules: ModuleIndex[] = [ChatbotModule, ProgramHubModule];
 
 const nativePrograms: ProgramIndex[] = [LabeledProgressProgram];
 
