@@ -1,15 +1,6 @@
 import axios from "axios";
 import { Alert } from "react-native";
-import { ChatConfig, ChatMessage } from "./chatbot-types";
-
-interface ChatbotApi {
-  loadFirstMessages(config: ChatConfig): ChatMessage[];
-  sendMessage(
-    messageInput: string,
-    location: object,
-    config: ChatConfig
-  ): ChatMessage[];
-}
+import { ChatConfig } from "./chatbot-types";
 
 export const defaultChabotAPI = {
   loadFirstMessages: async (chatConfig: ChatConfig) => {
