@@ -47,17 +47,20 @@ export const defaultChabotAPI = {
       };
     }
   },
-  // sendLinkedRequest: async (link, params) => {
-  //   try {
-  //     const { data } = await axios.get(`${config.connection.url}/${link}`, {
-  //       timeout: 3500,
-  //       params: {
-  //         ...params,
-  //       },
-  //     });
-  //     return data;
-  //   } catch (err) {
-  //     Alert.alert(`send link "${link}" "failed, ${err.message}`);
-  //   }
-  // },
+  sendLinkedRequest: async (link, params, chatConfig) => {
+    try {
+      const { data } = await axios.get(
+        `${chatConfig.moduleConfig.connection.url}/${link}`,
+        {
+          timeout: 3500,
+          params: {
+            ...params,
+          },
+        }
+      );
+      return data;
+    } catch (err) {
+      Alert.alert(`send link "${link}" "failed, ${err.message}`);
+    }
+  },
 };

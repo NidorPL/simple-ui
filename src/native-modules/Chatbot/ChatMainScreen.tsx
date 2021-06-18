@@ -14,6 +14,7 @@ import { defaultChabotAPI } from "./default-chatbot-api";
 import { getImageSource } from "../../register";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Headline } from "react-native-paper";
+import { allMessageTypes } from "./screen-messages-templates/all-message-types";
 
 export const ChatMainScreen = ({
   chatConfig,
@@ -115,6 +116,9 @@ export const ChatMainScreen = ({
               scrollViewRef.current.scrollToEnd({ animated: true });
             }}
           >
+            {allMessageTypes.map((message, index) =>
+              resolveMessageFromType(message, appendCovMessages, index)
+            )}
             {conversationMessages.map((message, index) =>
               resolveMessageFromType(message, appendCovMessages, index)
             )}
