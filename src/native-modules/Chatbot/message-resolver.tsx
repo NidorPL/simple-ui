@@ -11,12 +11,12 @@ import LabelDataMessage from "./components/messages/label-data-message";
 import SpoilerMessage from "./components/messages/spoiler-message";
 import styled from "styled-components/native";
 import SingleCheckboxMessage from "./components/messages/single-checkbox-message";
-import { ChatbotApi, ChatConfig } from "./chatbot-types";
+import { ChatbotApi, ChatConfig, ChatMessage } from "./chatbot-types";
 
 export function resolveMessageFromType(
-  message,
-  appendCovMessages,
-  messageListIndex,
+  message: ChatMessage,
+  appendCovMessages: (messages: ChatMessage[]) => void,
+  messageListIndex: number,
   api: ChatbotApi,
   chatConfig: ChatConfig
 ) {
