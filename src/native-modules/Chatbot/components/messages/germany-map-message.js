@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import GermanyMapSvg from "../../SVGs/germanyMapSvg";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function GermanyMapMessage({ message = {} }) {
+export default function GermanyMapMessage({}) {
+  const { message } = useContext(ChatMessageContext);
+
   const { selectedState, stateColor } = message;
 
   return (

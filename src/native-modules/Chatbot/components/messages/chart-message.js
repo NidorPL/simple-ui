@@ -1,9 +1,12 @@
 import { LineChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function ChartMessage({ message }) {
+export default function ChartMessage() {
+  const { message } = useContext(ChatMessageContext);
+
   const { fromChatbot, headline, headlineInfo, chartData, showSmall } = message;
   const { labels, data } = chartData;
 

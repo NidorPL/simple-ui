@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function ImageMessageOverflowing({ message }) {
-  const { headline, img, imgSide, text } = message;
+export default function ImageMessageOverflowing() {
+  const { message } = useContext(ChatMessageContext);
+
+  const { img, imgSide, text } = message;
 
   return (
     <ImageMessageWrapper fromChatbot>

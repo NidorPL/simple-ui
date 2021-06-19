@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import { Switch } from "react-native";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function MultiCheckboxMessage({ message, sendLinkedRequest }) {
+export default function MultiCheckboxMessage() {
+  const { message, sendLinkedRequest } = useContext(ChatMessageContext);
+
   const { options } = message;
   const [selectedOptions, setSelectedOptions] = useState({});
 
   const sendSelectedOptions = async () => {
-    let flattedOptions=""
-    for(const option in selectedOptions) {
-      if(!!option) {
-        flattedOptions+= flattedOptions === "" ? option : `,${option}`
+    let flattedOptions = "";
+    for (const option in selectedOptions) {
+      if (!!option) {
+        flattedOptions += flattedOptions === "" ? option : `,${option}`;
       }
     }
 
-    await sendLinkedRequest({selectedOptions: flattedOptions});
+    await sendLinkedRequest({ selectedOptions: flattedOptions });
   };
 
   return (

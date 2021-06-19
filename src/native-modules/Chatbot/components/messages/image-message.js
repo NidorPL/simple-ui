@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function ImageMessage({ message, sendLinkedRequest }) {
+export default function ImageMessage({}) {
+  const { message, sendLinkedRequest } = useContext(ChatMessageContext);
+
   const { headline, img, imgSide, text } = message;
 
   return (
-    <MessageWrapper onPress={() => sendLinkedRequest()} underlayColor="lightgrey">
+    <MessageWrapper
+      onPress={() => sendLinkedRequest()}
+      underlayColor="lightgrey"
+    >
       <ImageMessageWrapper onPress={() => sendLinkedRequest()}>
         {imgSide === "left" && <Image source={{ uri: img }} />}
         <TextContainer>

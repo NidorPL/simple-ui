@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import { Switch } from "react-native";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function SingleCheckboxMessage({ message, sendLinkedRequest }) {
+export default function SingleCheckboxMessage() {
+  const { message, sendLinkedRequest } = useContext(ChatMessageContext);
+
   const { options, linkedRequest } = message;
   const [selectedOption, setSelectedOption] = useState("");
 

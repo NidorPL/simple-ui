@@ -11,39 +11,37 @@ import LabelDataMessage from "./components/messages/label-data-message";
 import SpoilerMessage from "./components/messages/spoiler-message";
 import styled from "styled-components/native";
 import SingleCheckboxMessage from "./components/messages/single-checkbox-message";
-import { ChatbotApi, ChatConfig, ChatMessage } from "./chatbot-types";
+import { ChatMessage } from "./chatbot-types";
 
 export function resolveMessageFromType(
   message: ChatMessage,
   appendCovMessages: (messages: ChatMessage[]) => void,
-  messageListIndex: number,
-  api: ChatbotApi,
-  chatConfig: ChatConfig
+  messageListIndex: number
 ) {
-  const { type, linkedRequest } = message;
+  const { type } = message;
 
   const resolveMessage = (type) => {
     switch (type) {
       case "simple-message":
-        return <SimpleMessage message={message} />;
+        return <SimpleMessage />;
       case "chart-message":
-        return <ChartMessage message={message} />;
+        return <ChartMessage />;
       case "label-data-message":
-        return <LabelDataMessage message={message} />;
+        return <LabelDataMessage />;
       case "image-message":
-        return <ImageMessage message={message} />;
+        return <ImageMessage />;
       case "image-message-overflowing":
-        return <ImageMessageOverflowing message={message} />;
+        return <ImageMessageOverflowing />;
       case "germany-map-message":
-        return <GermanyMapMessage message={message} />;
+        return <GermanyMapMessage />;
       case "info-message":
-        return <InfoMessage message={message} />;
+        return <InfoMessage />;
       case "single-checkbox-message":
-        return <SingleCheckboxMessage message={message} />;
+        return <SingleCheckboxMessage />;
       case "multi-checkbox-message":
-        return <MultiCheckboxMessage message={message} />;
+        return <MultiCheckboxMessage />;
       case "spoiler-message":
-        return <SpoilerMessage message={message} />;
+        return <SpoilerMessage />;
     }
   };
 

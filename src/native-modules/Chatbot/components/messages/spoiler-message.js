@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import plusIcon from "../../images/plus-icon.png";
 import minusIcon from "../../images/minus-icon.png";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function SpoilerMessage({ message }) {
+export default function SpoilerMessage() {
+  const { message } = useContext(ChatMessageContext);
+
   const { headline, text } = message;
 
   const [isTextOpen, setIsTextOpen] = useState(false);

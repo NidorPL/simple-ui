@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function InfoMessage({ message }) {
+export default function InfoMessage() {
+  const { message } = useContext(ChatMessageContext);
+
   const { text } = message;
 
   return (
