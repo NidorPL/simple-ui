@@ -35,7 +35,7 @@ export default {
           moduleConfig: {
             connection: {
               baseUrl: "http://localhost:3000/oven1",
-              supportedPrograms: "/supportedPrograms",
+              supportedPrograms: "/programsInfo",
               runningPrograms: "/runningPrograms",
               startProgram: "/startProgram",
               stopProgram: "/stopProgram",

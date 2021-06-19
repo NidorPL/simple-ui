@@ -44,7 +44,7 @@ export const ProgramHubMainScreen = ({
   );
 
   const {
-    data: supportedPrograms,
+    data: programsInfo,
     isSuccess: loadedSupportedProgams,
   } = useQuery("phMainScreenSupporting", () =>
     api.getSupportedPrograms(programHubConfig.moduleConfig.connection)
@@ -91,10 +91,10 @@ export const ProgramHubMainScreen = ({
             );
           })}
 
-        {loadedSupportedProgams && supportedPrograms && (
+        {loadedSupportedProgams && programsInfo.supportedPrograms && (
           <AddProgamCard
             runningPrograms={runningProgramsWithViews}
-            supportedPrograms={supportedPrograms}
+            supportedPrograms={programsInfo.supportedPrograms}
             startProgram={startProgram}
           />
         )}
