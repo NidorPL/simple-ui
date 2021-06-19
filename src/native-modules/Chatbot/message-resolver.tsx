@@ -22,101 +22,28 @@ export function resolveMessageFromType(
 ) {
   const { type, linkedRequest } = message;
 
-  const sendLinkedRequest = async (params) => {
-    if (linkedRequest) {
-      console.log("linkedRequest");
-      console.log(linkedRequest);
-
-      if (typeof params === "string") {
-        const newMessages = await api.sendLinkedRequest(params, {}, chatConfig);
-        if (newMessages) {
-          appendCovMessages(newMessages);
-        }
-      } else {
-        const newMessages = await api.sendLinkedRequest(
-          linkedRequest,
-          params,
-          chatConfig
-        );
-        if (newMessages) {
-          appendCovMessages(newMessages);
-        }
-      }
-    }
-  };
-
   const resolveMessage = (type) => {
     switch (type) {
       case "simple-message":
-        return (
-          <SimpleMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <SimpleMessage message={message} />;
       case "chart-message":
-        return (
-          <ChartMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <ChartMessage message={message} />;
       case "label-data-message":
-        return (
-          <LabelDataMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <LabelDataMessage message={message} />;
       case "image-message":
-        return (
-          <ImageMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <ImageMessage message={message} />;
       case "image-message-overflowing":
-        return (
-          <ImageMessageOverflowing
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <ImageMessageOverflowing message={message} />;
       case "germany-map-message":
-        return (
-          <GermanyMapMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <GermanyMapMessage message={message} />;
       case "info-message":
-        return (
-          <InfoMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <InfoMessage message={message} />;
       case "single-checkbox-message":
-        return (
-          <SingleCheckboxMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <SingleCheckboxMessage message={message} />;
       case "multi-checkbox-message":
-        return (
-          <MultiCheckboxMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <MultiCheckboxMessage message={message} />;
       case "spoiler-message":
-        return (
-          <SpoilerMessage
-            message={message}
-            sendLinkedRequest={sendLinkedRequest}
-          />
-        );
+        return <SpoilerMessage message={message} />;
     }
   };
 

@@ -25,7 +25,7 @@ export interface ChatMessage {
   type: string;
   text: string;
   fromChatbot?: boolean;
-  linkedRequest?: string;
+  linkedRequest?: string | string[];
 }
 
 export interface ChatbotApi {

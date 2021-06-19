@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
+import { ChatMessageContext } from "../../context/chat-message-context";
 
-export default function SimpleMessage({ message }) {
-  const { fromChatbot, text } = message;
+export default function SimpleMessage({}) {
+  const { message } = useContext(ChatMessageContext);
 
   return (
-    <Message fromChatbot={fromChatbot}>
-      <MessageText fromChatbot={fromChatbot}>{text}</MessageText>
+    <Message fromChatbot={message.fromChatbot}>
+      <MessageText fromChatbot={message.fromChatbot}>
+        {message.text}
+      </MessageText>
     </Message>
   );
 }

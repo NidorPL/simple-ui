@@ -21,6 +21,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Headline } from "react-native-paper";
 import { allMessageTypes } from "./screen-messages-templates/all-message-types";
 import { ChatConfigContext } from "./context/chat-config-context";
+import { ChatMessageContext } from "./context/chat-message-context";
 
 export const ChatMainScreen = ({}: {}) => {
   const { chatConfig, api } = useContext(ChatConfigContext);
@@ -117,15 +118,46 @@ export const ChatMainScreen = ({}: {}) => {
               scrollViewRef.current.scrollToEnd({ animated: true });
             }}
           >
-            {allMessageTypes.map((message, index) =>
-              resolveMessageFromType(
-                message,
-                appendCovMessages,
-                index,
-                api,
-                chatConfig
-              )
-            )}
+            {allMessageTypes.map((message, index) => {
+              const sendLinkedRequest = async (params: string | object) => {
+                if (message.linkedRequest) {
+                  if (typeof params === "string") {
+                    const newMessages = await api.sendLinkedRequest(
+                      params,
+                      {},
+                      chatConfig
+                    );
+                    if (newMessages) {
+                      appendCovMessages(newMessages);
+                    }
+                  } else {
+                    const newMessages = await api.sendLinkedRequest(
+                      message.linkedRequest,
+                      params,
+                      chatConfig
+                    );
+                    if (newMessages) {
+                      appendCovMessages(newMessages);
+                    }
+                  }
+                }
+              };
+
+              return (
+                <ChatMessageContext.Provider
+                  value={{ message, sendLinkedRequest }}
+                  key={index}
+                >
+                  {resolveMessageFromType(
+                    message,
+                    appendCovMessages,
+                    index,
+                    api,
+                    chatConfig
+                  )}
+                </ChatMessageContext.Provider>
+              );
+            })}
             {conversationMessages.map((message, index) =>
               resolveMessageFromType(
                 message,
