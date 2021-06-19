@@ -1,18 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, ProgressBar } from "react-native-paper";
 import { LabelIconRow } from "./LabelIconRow";
 import styled from "styled-components/native";
 import { ProgramDialog } from "../../native-modules/ProgramHub/components/ProgramDialog";
-import { RunningProgram } from "../../native-modules/ProgramHub/program-hub-types";
+import { ProgramHubProgramContext } from "../../native-modules/ProgramHub/context/program-hub-program-context";
 
-export const LabeledProgressCard = ({
-  runningProgram,
-  connection,
-  refetchPrograms,
-}: {
-  runningProgram: RunningProgram;
-  connection: object;
-}) => {
+export const LabeledProgressCard = () => {
+  const { runningProgram } = useContext(ProgramHubProgramContext);
   const {
     programName,
     value,
@@ -32,18 +26,13 @@ export const LabeledProgressCard = ({
         </ProgramStartContainer>
         <ProgressBar progress={progress} />
       </Card.Content>
-      {isDialogOpen && (
-        <ProgramDialog
-          runningProgram={runningProgram}
-          isModalOpen={isDialogOpen}
-          closeModal={() => {
-            setIsDialogOpen(false);
-          }}
-          updateProgram={() => {}}
-          connection={connection}
-          refetchPrograms={refetchPrograms}
-        />
-      )}
+
+      <ProgramDialog
+        isDialogOpen={isDialogOpen}
+        closeDialog={() => {
+          setIsDialogOpen(false);
+        }}
+      />
     </Card>
   );
 };

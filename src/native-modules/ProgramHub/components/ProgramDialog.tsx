@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Dialog, Portal, TextInput } from "react-native-paper";
 import { RunningProgram } from "../program-hub-types";
 import { getAPI } from "../../../register";
 import { defaultLabeledProgressApi } from "../programs/LabeledProgress/default-labeled-progress-api";
+import { ProgramHubProgramContext } from "../context/program-hub-program-context";
 
 export const ProgramDialog = ({
-  runningProgram,
-  isModalOpen,
-  closeModal,
-  connection,
-  refetchPrograms,
+  isDialogOpen,
+  closeDialog,
 }: {
-  runningProgram: RunningProgram;
-  isModalOpen: boolean;
-  closeModal: any;
-  updateProgram: (programConfig: object) => void;
-  connection: object;
-  refetchPrograms: any;
+  isDialogOpen: boolean;
+  closeDialog: any;
 }) => {
+  const { runningProgram, refetchPrograms, programConfig } = useContext(
+    ProgramHubProgramContext
+  );
+
   const [value, setValue] = useState(runningProgram.value);
 
   const api = getAPI(runningProgram.customApi, defaultLabeledProgressApi);
@@ -25,28 +23,28 @@ export const ProgramDialog = ({
   const stopProgram = async () => {
     await api.stopProgram({
       programName: runningProgram.programName,
-      connection,
+      connection: programConfig.connection,
     });
-    closeModal();
+    closeDialog();
     refetchPrograms();
   };
 
   const updateProgram = async () => {
     await api.updateProgram({
-      connection,
       programName: runningProgram.programName,
       newValue: value,
+      connection: programConfig.connection,
     });
-    closeModal();
+    closeDialog();
     refetchPrograms();
   };
 
   return (
     <Portal>
       <Dialog
-        visible={isModalOpen}
+        visible={isDialogOpen}
         onDismiss={() => {
-          closeModal();
+          closeDialog();
         }}
       >
         <Dialog.Title>Laufendes Programm {runningProgram.title}</Dialog.Title>

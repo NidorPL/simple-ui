@@ -20,7 +20,7 @@ export function resolveMessageFromType(
 ) {
   const { type } = message;
 
-  const resolveMessage = (type) => {
+  const resolveMessage = (type: string) => {
     switch (type) {
       case "simple-message":
         return <SimpleMessage />;

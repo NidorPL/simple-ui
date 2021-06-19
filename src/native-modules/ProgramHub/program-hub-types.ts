@@ -5,13 +5,15 @@ export interface Module {
   moduleConfig: object;
 }
 
+export interface ProgramConfig {
+  connection: ProgramHubConnection;
+}
+
 export interface ProgramHubConfig extends Module {
   moduleName: string;
   customApi: string;
   iconName: string;
-  moduleConfig: {
-    connection: ProgramHubConnection;
-  };
+  moduleConfig: ProgramConfig;
 }
 
 export interface ProgramIndex {
@@ -34,6 +36,7 @@ export interface RunningProgram {
   iconName: string;
   progress: number;
   value: string;
+  valueSuffix: string;
 }
 
 export interface SupportedProgram {

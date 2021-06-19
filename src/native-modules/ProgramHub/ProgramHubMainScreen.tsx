@@ -12,6 +12,7 @@ import {
 import { defaultProgramHubApi } from "./default-program-hub-api";
 import { getProgramView } from "../../register";
 import { View } from "react-native";
+import { ProgramHubProgramContext } from "./context/program-hub-program-context";
 
 const resolveProgramViews = (
   runningProgramsData: RunningProgram[] = []
@@ -73,15 +74,20 @@ export const ProgramHubMainScreen = ({
       >
         <MainDeviceCard />
         {loadedProgamsData &&
-          runningProgramsWithViews.map((runningProgram, index) => {
+          runningProgramsWithViews.map((programWithView, index) => {
             return (
-              <View key={index}>
-                {runningProgram.View({
-                  runningProgram: runningProgram.runningProgram,
-                  connection: programHubConfig.moduleConfig.connection,
-                  refetchPrograms: () => setRefetch(refechValue + 1),
-                })}
-              </View>
+              <ProgramHubProgramContext.Provider
+                key={index}
+                value={{
+                  programConfig: programHubConfig.moduleConfig,
+                  runningProgram: programWithView.runningProgram,
+                  refetchPrograms: () => {
+                    setRefetch(refechValue + 1);
+                  },
+                }}
+              >
+                <View>{programWithView.View()}</View>
+              </ProgramHubProgramContext.Provider>
             );
           })}
 
