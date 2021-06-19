@@ -29,10 +29,15 @@ export interface ChatMessage {
 }
 
 export interface ChatbotApi {
-  loadFirstMessages: (config: ChatConfig) => ChatMessage[];
+  loadFirstMessages: (config: ChatConfig) => Promise<ChatMessage[]>;
   sendMessage: (
     messageInput: string,
     location: object,
     chatConfig: ChatConfig
-  ) => ChatMessage[];
+  ) => Promise<ChatMessage[]>;
+  sendLinkedRequest: (
+    link: string,
+    params: object,
+    chatConfig: ChatConfig
+  ) => Promise<ChatMessage[]>;
 }

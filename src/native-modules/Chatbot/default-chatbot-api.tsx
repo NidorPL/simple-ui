@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Alert } from "react-native";
-import { ChatConfig } from "./chatbot-types";
+import { ChatbotApi, ChatConfig } from "./chatbot-types";
 
-export const defaultChabotAPI = {
+export const defaultChabotAPI: ChatbotApi = {
   loadFirstMessages: async (chatConfig: ChatConfig) => {
     try {
       const { data } = await axios.get(`/chatbot-init`, {
@@ -47,15 +47,17 @@ export const defaultChabotAPI = {
       };
     }
   },
-  sendLinkedRequest: async (link, params, chatConfig) => {
+  async sendLinkedRequest(
+    link: string,
+    params: object,
+    chatConfig: ChatConfig
+  ) {
     try {
       const { data } = await axios.get(
         `${chatConfig.moduleConfig.connection.url}/${link}`,
         {
           timeout: 3500,
-          params: {
-            ...params,
-          },
+          params,
         }
       );
       return data;

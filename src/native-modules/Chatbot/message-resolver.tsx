@@ -10,27 +10,33 @@ import MultiCheckboxMessage from "./components/messages/multi-checkbox-message";
 import LabelDataMessage from "./components/messages/label-data-message";
 import SpoilerMessage from "./components/messages/spoiler-message";
 import styled from "styled-components/native";
-import { defaultChabotAPI } from "./default-chatbot-api";
 import SingleCheckboxMessage from "./components/messages/single-checkbox-message";
+import { ChatbotApi, ChatConfig } from "./chatbot-types";
 
 export function resolveMessageFromType(
   message,
   appendCovMessages,
-  messageListIndex
+  messageListIndex,
+  api: ChatbotApi,
+  chatConfig: ChatConfig
 ) {
   const { type, linkedRequest } = message;
 
   const sendLinkedRequest = async (params) => {
     if (linkedRequest) {
+      console.log("linkedRequest");
+      console.log(linkedRequest);
+
       if (typeof params === "string") {
-        const newMessages = await defaultChabotAPI.sendLinkedRequest(params);
+        const newMessages = await api.sendLinkedRequest(params, {}, chatConfig);
         if (newMessages) {
           appendCovMessages(newMessages);
         }
       } else {
-        const newMessages = await defaultChabotAPI.sendLinkedRequest(
+        const newMessages = await api.sendLinkedRequest(
           linkedRequest,
-          params
+          params,
+          chatConfig
         );
         if (newMessages) {
           appendCovMessages(newMessages);

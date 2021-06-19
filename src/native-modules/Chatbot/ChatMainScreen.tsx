@@ -1,4 +1,10 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, {
+  Fragment,
+  useState,
+  useRef,
+  useEffect,
+  useContext,
+} from "react";
 import {
   ScrollView,
   Platform,
@@ -9,20 +15,16 @@ import styled from "styled-components/native";
 import { ChatbotHeader } from "./components/header/ChatbotHeader";
 import { resolveMessageFromType } from "./message-resolver";
 import { services } from "./services";
-import { ChatbotApi, ChatConfig, ChatMessage } from "./chatbot-types";
-import { defaultChabotAPI } from "./default-chatbot-api";
+import { ChatMessage } from "./chatbot-types";
 import { getImageSource } from "../../register";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Headline } from "react-native-paper";
 import { allMessageTypes } from "./screen-messages-templates/all-message-types";
+import { ChatConfigContext } from "./context/chat-config-context";
 
-export const ChatMainScreen = ({
-  chatConfig,
-  customApi,
-}: {
-  chatConfig: ChatConfig;
-  customApi?: ChatbotApi;
-}) => {
+export const ChatMainScreen = ({}: {}) => {
+  const { chatConfig, api } = useContext(ChatConfigContext);
+
   const [locationPermissionGranted, setLocationPermissionGranted] = useState(
     null
   );
@@ -34,8 +36,6 @@ export const ChatMainScreen = ({
   const isWeb = Platform.OS === "web";
 
   const scrollViewRef = useRef(null);
-
-  let api = customApi || defaultChabotAPI;
 
   useEffect(() => {
     loadFirstMessages();
@@ -113,14 +113,27 @@ export const ChatMainScreen = ({
           <StyledScrollView
             ref={scrollViewRef}
             onContentSizeChange={() => {
+              // @ts-ignore
               scrollViewRef.current.scrollToEnd({ animated: true });
             }}
           >
             {allMessageTypes.map((message, index) =>
-              resolveMessageFromType(message, appendCovMessages, index)
+              resolveMessageFromType(
+                message,
+                appendCovMessages,
+                index,
+                api,
+                chatConfig
+              )
             )}
             {conversationMessages.map((message, index) =>
-              resolveMessageFromType(message, appendCovMessages, index)
+              resolveMessageFromType(
+                message,
+                appendCovMessages,
+                index,
+                api,
+                chatConfig
+              )
             )}
           </StyledScrollView>
           <ChatInputWrapper>

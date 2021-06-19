@@ -6,7 +6,7 @@ export default {
       modules: [
         {
           moduleName: "Chat",
-          customApi: "corona-bot1",
+          customApi: "default",
           iconName: "robot",
           moduleConfig: {
             connection: {
@@ -24,7 +24,7 @@ export default {
       modules: [
         {
           moduleName: "Chat",
-          customApi: "corona-bot1",
+          customApi: "default",
           iconName: "robot",
           moduleConfig: {
             headerType: "customImage", // default or customImage

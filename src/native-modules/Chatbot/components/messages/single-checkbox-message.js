@@ -19,6 +19,8 @@ export default function SingleCheckboxMessage({ message, sendLinkedRequest }) {
       }
     }
 
+    console.log("pressed");
+    console.log(link);
     await sendLinkedRequest(link);
   };
 

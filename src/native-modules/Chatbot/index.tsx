@@ -1,11 +1,21 @@
 import React from "react";
 import { ChatMainScreen } from "./ChatMainScreen";
-import { ChatConfig } from "./chatbot-types";
+import { ChatbotApi, ChatConfig } from "./chatbot-types";
+import { defaultChabotAPI } from "./default-chatbot-api";
+import { ChatConfigContext } from "./context/chat-config-context";
 
 export const ChatbotModule = {
   moduleName: "Chat",
-  // Wrap view with provider
-  getView: (moduleConfig: ChatConfig, customApi?: object) => (
-    <ChatMainScreen chatConfig={moduleConfig} customApi={customApi} />
-  ),
+  getView: (moduleConfig: ChatConfig, customApi?: ChatbotApi) => {
+    return (
+      <ChatConfigContext.Provider
+        value={{
+          chatConfig: moduleConfig,
+          api: customApi || defaultChabotAPI,
+        }}
+      >
+        <ChatMainScreen />
+      </ChatConfigContext.Provider>
+    );
+  },
 };
