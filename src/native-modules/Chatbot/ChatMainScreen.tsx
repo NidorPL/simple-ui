@@ -107,7 +107,7 @@ export const ChatMainScreen = ({}: {}) => {
     <Fragment>
       <ChatbotHeader
         resetDefaultScreen={resetDefaultScreen}
-        logo={getLogoImage()}
+        logo={getLogoImage}
       />
       <KeyboardAvoid>
         <MessageContainer>

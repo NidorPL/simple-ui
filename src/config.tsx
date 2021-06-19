@@ -9,6 +9,12 @@ export default {
           customApi: "default",
           iconName: "robot",
           moduleConfig: {
+            headerType: "customImage", // default or customImage
+            customHeaderImage: "DAI_Corona_Header",
+            headerOptions: {
+              icon: "robot",
+              title: "Corona Bot",
+            },
             connection: {
               url: "https://corona.brain4x.de",
               init: "/chatbot-init",
@@ -22,6 +28,21 @@ export default {
       name: "Intelligent Oven",
       icon: "stove",
       modules: [
+        {
+          moduleName: "ProgramHub",
+          customApi: "default",
+          iconName: "desktop-mac-dashboard",
+          moduleConfig: {
+            connection: {
+              baseUrl: "http://localhost:3000/oven1",
+              supportedPrograms: "/supportedPrograms",
+              runningPrograms: "/runningPrograms",
+              startProgram: "/startProgram",
+              stopProgram: "/stopProgram",
+              updateProgram: "/updateProgram",
+            },
+          },
+        },
         {
           moduleName: "Chat",
           customApi: "default",
@@ -37,21 +58,6 @@ export default {
               url: "https://corona.brain4x.de",
               init: "/chatbot-init",
               send: "/chatbot",
-            },
-          },
-        },
-        {
-          moduleName: "ProgramHub",
-          customApi: "default",
-          iconName: "desktop-mac-dashboard",
-          moduleConfig: {
-            connection: {
-              baseUrl: "http://localhost:3000/oven1",
-              supportedPrograms: "/supportedPrograms",
-              runningPrograms: "/runningPrograms",
-              startProgram: "/startProgram",
-              stopProgram: "/stopProgram",
-              updateProgram: "/updateProgram",
             },
           },
         },

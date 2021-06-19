@@ -14,7 +14,7 @@ export function ChatbotHeader({
   return (
     <HeaderWrapper isWeb={isWeb}>
       <LeftWrapper isWeb={isWeb}>
-        <Fragment>{logo}</Fragment>
+        <Fragment>{logo()}</Fragment>
       </LeftWrapper>
 
       <RightWrapperContainer
