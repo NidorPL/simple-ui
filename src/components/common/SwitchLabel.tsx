@@ -3,26 +3,17 @@ import { View, Text } from "react-native";
 import { Switch } from "react-native-paper";
 import React from "react";
 
-export default function SwitchLabel() {
-  const [isChecked, setChecked] = React.useState(false);
-
+export default function SwitchLabel({ isOn }: { isOn: boolean }) {
   const toggleSwitch = (isSelected: boolean) => {
     if (!isSelected) {
       console.log("shutting down all programs...");
     }
-
-    setChecked(isSelected);
   };
 
   return (
     <SwitchContainer>
-      <ChoiceText>{isChecked ? "On" : "Off"}</ChoiceText>
-      <Switch
-        value={isChecked}
-        onValueChange={toggleSwitch}
-        ios_backgroundColor="#0E81C4"
-        trackColor={{ false: "#767577", true: "#99C6E2" }}
-      />
+      <ChoiceText>{isOn ? "On" : "Off"}</ChoiceText>
+      <Switch value={isOn} onValueChange={toggleSwitch} />
     </SwitchContainer>
   );
 }

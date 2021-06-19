@@ -3,21 +3,32 @@ import { Card, Paragraph } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SwitchLabel from "../../../components/common/SwitchLabel";
 
-export default function MainDeviceCard() {
+export default function MainDeviceCard({
+  programInfo = {
+    deviceName: "",
+    iconName: "",
+    deviceDescription: "",
+  },
+  isOn = false,
+}: {
+  programInfo: {
+    deviceName: string;
+    iconName: string;
+    deviceDescription: string;
+  };
+  isOn: boolean;
+}) {
+  const { deviceName, iconName, deviceDescription } = ({} = programInfo);
   return (
-    <Card>
+    <Card elevation={6}>
       <Card.Title
-        title="Intelligenter Ofen"
-        left={() => <MaterialCommunityIcons name="stove" size={40} />}
+        title={deviceName}
+        left={() => <MaterialCommunityIcons name={iconName} size={40} />}
       />
       <Card.Content>
-        <Paragraph>
-          Der intelligente Ofen vereinfacht in praktischer Weise Ihren Alltag.
-          Starten Sie vom Wohnzimmmer aus ihren gewünschten Backvorgang oder
-          sezten Sie direkt feste Regeln !
-        </Paragraph>
+        <Paragraph>{deviceDescription}</Paragraph>
       </Card.Content>
-      <SwitchLabel />
+      <SwitchLabel isOn={isOn} />
     </Card>
   );
 }

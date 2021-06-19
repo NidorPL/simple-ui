@@ -72,7 +72,10 @@ export const ProgramHubMainScreen = ({
           padding: 8,
         }}
       >
-        <MainDeviceCard />
+        <MainDeviceCard
+          programInfo={programsInfo?.info}
+          isOn={runningProgramsData?.length > 0}
+        />
         {loadedProgamsData &&
           runningProgramsWithViews.map((programWithView, index) => {
             return (

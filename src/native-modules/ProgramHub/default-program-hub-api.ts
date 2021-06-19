@@ -1,4 +1,4 @@
-import { ProgramHubConfig, ProgramHubConnection } from "./program-hub-types";
+import { ProgramHubConnection } from "./program-hub-types";
 import axios from "axios";
 
 export const defaultProgramHubApi = {
