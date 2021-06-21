@@ -42,6 +42,10 @@ export function DrawerContent(props: Props) {
   const paperTheme = useTheme();
   const { theme, toggleTheme } = React.useContext(PreferencesContext);
 
+  const switchToHome = () => {
+    props?.navigation?.navigate("Root");
+  };
+
   const switchToDevice = (device) => {
     props.navigation && props.navigation.navigate(device.name);
   };
@@ -70,7 +74,9 @@ export function DrawerContent(props: Props) {
             />
           </TouchableOpacity>
           <Title style={styles.title}>Smart UI</Title>
-          <Caption style={styles.caption}>Generically create your app</Caption>
+          <Caption style={styles.caption}>
+            Connect with intelligent assistants
+          </Caption>
         </View>
 
         <Drawer.Section style={styles.drawerSection}>
@@ -78,26 +84,8 @@ export function DrawerContent(props: Props) {
             icon={({ color, size }) => (
               <MaterialCommunityIcons name="home" color={color} size={size} />
             )}
-            label="Device Dashboard"
-            onPress={() => {}}
-          />
-          <Drawer.Item
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons
-                name="power-plug"
-                color={color}
-                size={size}
-              />
-            )}
-            label="Add Device"
-            onPress={() => {}}
-          />
-          <Drawer.Item
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons name="tune" color={color} size={size} />
-            )}
-            label="Preferences"
-            onPress={() => {}}
+            label="Home Screen"
+            onPress={switchToHome}
           />
         </Drawer.Section>
 

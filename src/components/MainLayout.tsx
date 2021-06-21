@@ -12,7 +12,10 @@ export default function MainLayout(props: any) {
     <React.Fragment>
       <Appbar.Header>
         <Appbar.Action icon="menu" onPress={openDrawer} />
-        <Appbar.Content title="Smart UI" subtitle="DAI Lab Project" />
+        <Appbar.Content
+          title="Smart UI"
+          subtitle="Connect with intelligent assistants"
+        />
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
       </Appbar.Header>
       {props.children && props.children}
