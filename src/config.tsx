@@ -133,5 +133,74 @@ export default {
         },
       ],
     },
+
+    /*
+
+
+        Chat Assistants
+
+
+       */
+    {
+      name: "Chat Assistants",
+      icon: "account-group-outline",
+      modules: [
+        {
+          moduleName: "Chat",
+          customName: "Arzt Chatbot",
+          customApi: "default",
+          iconName: "doctor",
+          moduleConfig: {
+            headerType: "default", // default or customImage
+            customHeaderImage: false,
+            headerOptions: {
+              icon: "doctor",
+              title: "Arzt Chatbot",
+            },
+            connection: {
+              url: "http://localhost:3000/doctor-bot1",
+              init: "/init",
+            },
+          },
+        },
+        {
+          moduleName: "Chat",
+          customName: "Corona Chatbot",
+          customApi: "default",
+          iconName: "robot",
+          moduleConfig: {
+            headerType: "customImage", // default or customImage
+            customHeaderImage: "DAI_Corona_Header",
+            headerOptions: {
+              icon: "robot",
+              title: "Corona Bot",
+            },
+            connection: {
+              url: "https://corona.brain4x.de",
+              init: "/chatbot-init",
+              send: "/chatbot",
+            },
+          },
+        },
+        {
+          moduleName: "Chat",
+          customName: "News Chatbot",
+          customApi: "default",
+          iconName: "newspaper-variant",
+          moduleConfig: {
+            headerType: "default", // default or customImage
+            customHeaderImage: false,
+            headerOptions: {
+              icon: "newspaper-variant",
+              title: "News Chatbot",
+            },
+            connection: {
+              url: "http://localhost:3000/news-bot1",
+              init: "/init",
+            },
+          },
+        },
+      ],
+    },
   ],
 };
