@@ -24,6 +24,13 @@ export default {
         },
       ],
     },
+
+    /*
+
+          Oven
+
+       */
+
     {
       name: "Intelligent Oven",
       icon: "stove",
@@ -73,6 +80,54 @@ export default {
               get: "/table1/data",
               edit: "/table1/edit",
               delete: "/table1/delete",
+            },
+          },
+        },
+      ],
+    },
+
+    /*
+
+
+      Coffee machine
+
+
+    */
+
+    {
+      name: "Coffee machine",
+      icon: "coffee-maker",
+      modules: [
+        {
+          moduleName: "ProgramHub",
+          customApi: "default",
+          iconName: "desktop-mac-dashboard",
+          moduleConfig: {
+            connection: {
+              baseUrl: "http://localhost:3000/coffee1",
+              supportedPrograms: "/programsInfo",
+              runningPrograms: "/runningPrograms",
+              startProgram: "/startProgram",
+              stopProgram: "/stopProgram",
+              updateProgram: "/updateProgram",
+            },
+          },
+        },
+        {
+          moduleName: "Chat",
+          customApi: "default",
+          iconName: "robot",
+          moduleConfig: {
+            headerType: "default", // default or customImage
+            customHeaderImage: false,
+            headerOptions: {
+              icon: "robot",
+              title: "Coffee Talk",
+            },
+            connection: {
+              url: "https://corona.brain4x.de",
+              init: "/chatbot-init",
+              send: "/chatbot",
             },
           },
         },

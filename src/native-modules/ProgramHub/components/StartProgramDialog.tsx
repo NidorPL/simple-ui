@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Dialog, Portal, TextInput } from "react-native-paper";
+import { Button, Dialog, Portal, TextInput, Text } from "react-native-paper";
 import { SupportedProgram } from "../program-hub-types";
 
 export const StartProgramDialog = ({
@@ -27,6 +27,9 @@ export const StartProgramDialog = ({
       >
         <Dialog.Title>Start {programToStart.programName}</Dialog.Title>
         <Dialog.Content>
+          {programToStart?.inputs?.length === 0 && (
+            <Text>Programm kann gestartet werden</Text>
+          )}
           {programToStart.inputs?.map((input: string) => {
             return (
               <TextInput
