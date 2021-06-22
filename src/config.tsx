@@ -5,10 +5,12 @@ export default {
       icon: "robot",
       modules: [
         {
+          // 1. Geräte-Konfiguration
           moduleName: "Chat",
           customApi: "default",
           iconName: "robot",
 
+          // 2. Modul-Konfiguration
           moduleConfig: {
             headerType: "customImage", // default or customImage
             customHeaderImage: "DAI_Corona_Header",
@@ -17,6 +19,7 @@ export default {
               title: "Corona Bot",
             },
 
+            // Beinhaltet Verbindung
             connection: {
               url: "https://corona.brain4x.de",
               init: "/chatbot-init",
@@ -56,6 +59,7 @@ export default {
             },
           },
         },
+
         {
           moduleName: "Chat",
           customName: "Corona Chatbot",
@@ -75,6 +79,7 @@ export default {
             },
           },
         },
+
         {
           moduleName: "Chat",
           customName: "News Chatbot",
@@ -126,16 +131,15 @@ export default {
           customApi: "default",
           iconName: "robot",
           moduleConfig: {
-            headerType: "customImage", // default or customImage
-            customHeaderImage: "DAI_Corona_Header",
+            headerType: "default", // default or customImage
+            customHeaderImage: false,
             headerOptions: {
               icon: "robot",
-              title: "Corona Bot",
+              title: "Ofen - Chat",
             },
             connection: {
-              url: "https://corona.brain4x.de",
-              init: "/chatbot-init",
-              send: "/chatbot",
+              url: "http://localhost:3000/oven-bot1",
+              init: "/init",
             },
           },
         },
