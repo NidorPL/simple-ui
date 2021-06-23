@@ -38,10 +38,12 @@ export function BottomModuleNavigation({ modules }: { modules: Module[] }) {
         return (
           <Tab.Screen
             key={module.moduleName}
-            name={module.moduleName}
+            name={module.customName || module.moduleName}
             children={() => getModuleView(module, customApi)}
             options={{
-              tabBarLabel: () => <Text>{module.moduleName}</Text>,
+              tabBarLabel: () => (
+                <Text>{module.customName || module.moduleName}</Text>
+              ),
               tabBarIcon: ({ color, size }) => (
                 <MaterialCommunityIcons
                   name={module.iconName}

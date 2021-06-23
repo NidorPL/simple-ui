@@ -21,7 +21,7 @@ Basic example:
 },
 ```
 
-Every module has its own configuration. Please see the individual modules page for details.
+Every module has its own configuration. Please see the individual modules README for details.
 
 
 ### Adding a new device
@@ -29,30 +29,14 @@ Every module has its own configuration. Please see the individual modules page f
 - Extend the ```config.ts``` file with the new device  
 
 
-### Adding a new module
+### Adding a custom module
 
-- Add the module to the 'modules/custom-modules' folder
-- Register the module in the module-register
-
-Later the application will resolve the name from the modules automatically, which will make the module-registration obsolete
+- Import a module and add it to the customModules list in ``custom-elements-register.ts`` file
 
 
-### Adding a new mapper
+### Adding a custom api
 
-- Add the mapper to the 'modules/custom-mappers' folder
-- Register the mapper in 'modules/mapper-register'
-
-Later in development the registration will become obsolete
-
-A mapper must be inside a folder and contain an index.ts file, which exports the following properties:
-```
-name: Unique name of the mapper
-relatedModule: Name of the module the mapper can be used with
-
-...Functions to override the modules default functionality.  
-
-```
-
+- Import a api and add it to the customAPIs list in ``custom-elements-register.ts`` file
 
 
 ### Creating own npm module

@@ -5,11 +5,14 @@ import { ChatbotApi, ChatConfig } from "./chatbot-types";
 export const defaultChabotAPI: ChatbotApi = {
   loadFirstMessages: async (chatConfig: ChatConfig) => {
     try {
-      const { data } = await axios.get(`/chatbot-init`, {
-        baseURL: chatConfig.moduleConfig.connection.url,
-        timeout: 5000,
-        headers: { "Content-Type": "application/json" },
-      });
+      const { data } = await axios.get(
+        `${chatConfig.moduleConfig.connection.init}`,
+        {
+          baseURL: chatConfig.moduleConfig.connection.url,
+          timeout: 5000,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       return data;
     } catch (err) {
       Alert.alert(err.message);

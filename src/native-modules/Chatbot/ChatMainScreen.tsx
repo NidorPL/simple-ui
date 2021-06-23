@@ -22,6 +22,7 @@ import { Headline } from "react-native-paper";
 import { allMessageTypes } from "./screen-messages-templates/all-message-types";
 import { ChatConfigContext } from "./context/chat-config-context";
 import { ChatMessageContext } from "./context/chat-message-context";
+import { showcaseMessages } from "./screen-messages-templates/showcase-messages";
 
 export const ChatMainScreen = ({}: {}) => {
   const { chatConfig, api } = useContext(ChatConfigContext);
@@ -103,6 +104,9 @@ export const ChatMainScreen = ({}: {}) => {
     }
   }
 
+  console.log("conversationMessages");
+  console.log(conversationMessages);
+
   return (
     <Fragment>
       <ChatbotHeader
@@ -118,7 +122,10 @@ export const ChatMainScreen = ({}: {}) => {
               scrollViewRef.current.scrollToEnd({ animated: true });
             }}
           >
-            {allMessageTypes.map((message, index) => {
+            {[
+              // ...showcaseMessages,
+              ...conversationMessages,
+            ].map((message, index) => {
               const sendLinkedRequest = async (params: string | object) => {
                 if (message.linkedRequest) {
                   if (typeof params === "string") {
@@ -158,15 +165,6 @@ export const ChatMainScreen = ({}: {}) => {
                 </ChatMessageContext.Provider>
               );
             })}
-            {conversationMessages.map((message, index) =>
-              resolveMessageFromType(
-                message,
-                appendCovMessages,
-                index,
-                api,
-                chatConfig
-              )
-            )}
           </StyledScrollView>
           <ChatInputWrapper>
             <ChatInput

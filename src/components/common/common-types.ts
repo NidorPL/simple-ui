@@ -1,5 +1,6 @@
 export interface Module {
   moduleName: string;
+  customName: string;
   customApi: string;
   iconName: string;
   moduleConfig: object;

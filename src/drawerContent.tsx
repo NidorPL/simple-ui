@@ -89,7 +89,10 @@ export function DrawerContent(props: Props) {
           />
         </Drawer.Section>
 
-        <Drawer.Section title="Connected Devices" style={styles.drawerSection}>
+        <Drawer.Section
+          title="Connected assistants"
+          style={styles.drawerSection}
+        >
           {config.connectedDevices.map((device, i) => {
             return (
               <Drawer.Item

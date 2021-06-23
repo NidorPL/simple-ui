@@ -33,7 +33,7 @@ export function ChatbotHeader({
 const HeaderWrapper = styled.View`
   background-color: #ffffff;
   width: 100%;
-  height: ${(props) => (props.isWeb ? "80px" : "110px")}
+  height: ${(props) => (props.isWeb ? "80px" : "80px")}
 
   display: flex;
   flex-direction: row;
@@ -45,7 +45,7 @@ const LeftWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: ${(props) => (props.isWeb ? "0px" : "40px")};
+  margin-top: ${(props) => (props.isWeb ? "0px" : "0px")};
 `;
 
 const RightWrapperContainer = styled.TouchableHighlight`
