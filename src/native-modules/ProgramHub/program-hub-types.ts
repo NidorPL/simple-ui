@@ -20,6 +20,8 @@ export interface ProgramHubConnection {
   supportedPrograms: string;
   runningPrograms: string;
   startProgram: string;
+  stopProgram: string;
+  updateProgram: string;
 }
 
 export interface ProgramConfig {
@@ -27,12 +29,7 @@ export interface ProgramConfig {
 }
 
 export interface ProgramHubConfig extends Module {
-  moduleConfig: {
-    baseUrl: string;
-    supportedPrograms: string;
-    runningPrograms: string;
-    startProgram: string;
-  };
+  moduleConfig: ProgramConfig;
 }
 
 export interface RunningProgram {
@@ -64,5 +61,13 @@ export interface ProgramHubApi {
   startProgram: (
     connection: ProgramHubConnection,
     programConfig: object
-  ) => void;
+  ) => Promise<RunningProgram>;
+  updateProgram: (
+    connection: ProgramHubConnection,
+    programConfig: object
+  ) => Promise<RunningProgram>;
+  stopProgram: (
+    connection: ProgramHubConnection,
+    programConfig: object
+  ) => Promise<RunningProgram>;
 }

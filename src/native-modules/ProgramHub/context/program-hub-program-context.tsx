@@ -6,7 +6,17 @@ export const ProgramHubProgramContext = React.createContext<{
   runningProgram: RunningProgram;
   refetchPrograms: () => void;
 }>({
-  programConfig: { connection: {} },
+  programConfig: {
+    connection: {
+      baseUrl: "",
+      startProgram: "",
+      updateProgram: "",
+      stopProgram: "",
+      runningPrograms: "",
+      supportedPrograms: "",
+    },
+  },
+  // @ts-ignore
   runningProgram: {},
   refetchPrograms: () => {},
 });
