@@ -1,11 +1,11 @@
-export interface Module {
+export interface ModuleConfig {
   moduleName: string;
   customApi: string;
   iconName: string;
   moduleConfig: object;
 }
 
-export interface ChatConfig extends Module {
+export interface ChatConfig extends ModuleConfig {
   moduleConfig: {
     headerType: "customImage" | "default";
     customHeaderImage: string;

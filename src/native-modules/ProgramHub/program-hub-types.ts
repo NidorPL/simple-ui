@@ -5,17 +5,6 @@ export interface Module {
   moduleConfig: object;
 }
 
-export interface ProgramConfig {
-  connection: ProgramHubConnection;
-}
-
-export interface ProgramHubConfig extends Module {
-  moduleName: string;
-  customApi: string;
-  iconName: string;
-  moduleConfig: ProgramConfig;
-}
-
 export interface ProgramIndex {
   programName: string;
   View: any;
@@ -24,6 +13,26 @@ export interface ProgramIndex {
 export interface ProgramWithView {
   runningProgram: RunningProgram;
   View: any;
+}
+
+export interface ProgramHubConnection {
+  baseUrl: string;
+  supportedPrograms: string;
+  runningPrograms: string;
+  startProgram: string;
+}
+
+export interface ProgramConfig {
+  connection: ProgramHubConnection;
+}
+
+export interface ProgramHubConfig extends Module {
+  moduleConfig: {
+    baseUrl: string;
+    supportedPrograms: string;
+    runningPrograms: string;
+    startProgram: string;
+  };
 }
 
 export interface RunningProgram {
@@ -45,13 +54,6 @@ export interface SupportedProgram {
   valueSuffix: string;
   iconName: string;
   inputs: string[];
-}
-
-export interface ProgramHubConnection {
-  baseUrl: string;
-  supportedPrograms: string;
-  runningPrograms: string;
-  startProgram: string;
 }
 
 export interface ProgramHubApi {

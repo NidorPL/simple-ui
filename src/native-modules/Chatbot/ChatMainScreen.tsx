@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 import { ChatbotHeader } from "./components/header/ChatbotHeader";
-import { resolveMessageFromType } from "./message-resolver";
+import { resolveMessageFromType } from "./message-register";
 import { services } from "./services";
 import { ChatMessage } from "./chatbot-types";
 import { getImageSource } from "../../register";
@@ -122,49 +122,48 @@ export const ChatMainScreen = ({}: {}) => {
               scrollViewRef.current.scrollToEnd({ animated: true });
             }}
           >
-            {[
-              // ...showcaseMessages,
-              ...conversationMessages,
-            ].map((message, index) => {
-              const sendLinkedRequest = async (params: string | object) => {
-                if (message.linkedRequest) {
-                  if (typeof params === "string") {
-                    const newMessages = await api.sendLinkedRequest(
-                      params,
-                      {},
-                      chatConfig
-                    );
-                    if (newMessages) {
-                      appendCovMessages(newMessages);
-                    }
-                  } else {
-                    const newMessages = await api.sendLinkedRequest(
-                      message.linkedRequest,
-                      params,
-                      chatConfig
-                    );
-                    if (newMessages) {
-                      appendCovMessages(newMessages);
+            {[...showcaseMessages, ...conversationMessages].map(
+              (message, index) => {
+                const sendLinkedRequest = async (params: string | object) => {
+                  if (message.linkedRequest) {
+                    if (typeof params === "string") {
+                      const newMessages = await api.sendLinkedRequest(
+                        params,
+                        {},
+                        chatConfig
+                      );
+                      if (newMessages) {
+                        appendCovMessages(newMessages);
+                      }
+                    } else {
+                      const newMessages = await api.sendLinkedRequest(
+                        message.linkedRequest,
+                        params,
+                        chatConfig
+                      );
+                      if (newMessages) {
+                        appendCovMessages(newMessages);
+                      }
                     }
                   }
-                }
-              };
+                };
 
-              return (
-                <ChatMessageContext.Provider
-                  value={{ message, sendLinkedRequest }}
-                  key={index}
-                >
-                  {resolveMessageFromType(
-                    message,
-                    appendCovMessages,
-                    index,
-                    api,
-                    chatConfig
-                  )}
-                </ChatMessageContext.Provider>
-              );
-            })}
+                return (
+                  <ChatMessageContext.Provider
+                    value={{ message, sendLinkedRequest }}
+                    key={index}
+                  >
+                    {resolveMessageFromType(
+                      message,
+                      appendCovMessages,
+                      index,
+                      api,
+                      chatConfig
+                    )}
+                  </ChatMessageContext.Provider>
+                );
+              }
+            )}
           </StyledScrollView>
           <ChatInputWrapper>
             <ChatInput
