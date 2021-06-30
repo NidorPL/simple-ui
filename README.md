@@ -3,7 +3,7 @@
 
 ### Basic configuration
 
-You can use the config.tsx file to configure your first device
+You can use the config.ts file to configure your first device
 
 Basic example:
 

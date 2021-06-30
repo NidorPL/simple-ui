@@ -32,11 +32,101 @@ export default {
 
     /*
 
+          Oven
 
-   Chat Assistants
+       */
+
+    {
+      name: "Intelligent Oven",
+      icon: "stove",
+      modules: [
+        {
+          moduleName: "ProgramHub",
+          customApi: "default",
+          iconName: "desktop-mac-dashboard",
+          moduleConfig: {
+            connection: {
+              baseUrl: "http://localhost:3000/oven1",
+              supportedPrograms: "/programsInfo",
+              runningPrograms: "/runningPrograms",
+              startProgram: "/startProgram",
+              stopProgram: "/stopProgram",
+              updateProgram: "/updateProgram",
+            },
+          },
+        },
+        {
+          moduleName: "DataTable",
+          customApi: "default",
+          iconName: "view-list",
+          moduleConfig: {
+            tableTitle: "Zutatenliste",
+            tableFields: ["Name", "Menge", "Einheit", "Haltbarkeit"],
+            connection: {
+              baseUrl: "http://localhost:3000",
+              get: "/table1/data",
+              edit: "/table1/edit",
+              delete: "/table1/delete",
+            },
+          },
+        },
+      ],
+    },
+
+    /*
 
 
-  */
+      Coffee machine
+
+
+    */
+
+    {
+      name: "Coffee machine",
+      icon: "coffee-maker",
+      modules: [
+        {
+          moduleName: "ProgramHub",
+          customApi: "default",
+          iconName: "desktop-mac-dashboard",
+          moduleConfig: {
+            connection: {
+              baseUrl: "http://localhost:3000/coffee1",
+              supportedPrograms: "/programsInfo",
+              runningPrograms: "/runningPrograms",
+              startProgram: "/startProgram",
+              stopProgram: "/stopProgram",
+              updateProgram: "/updateProgram",
+            },
+          },
+        },
+        {
+          moduleName: "Chat",
+          customApi: "default",
+          iconName: "robot",
+          moduleConfig: {
+            headerType: "default", // default or customImage
+            customHeaderImage: false,
+            headerOptions: {
+              icon: "robot",
+              title: "Coffee Talk",
+            },
+            connection: {
+              url: "https://corona.brain4x.de",
+              init: "/chatbot-init",
+              send: "/chatbot",
+            },
+          },
+        },
+      ],
+    },
+    /*
+
+
+Chat Assistants
+
+
+*/
     {
       name: "Chat Assistants",
       icon: "account-group-outline",
@@ -100,113 +190,6 @@ export default {
         },
       ],
     },
-
-    /*
-
-          Oven
-
-       */
-
-    {
-      name: "Intelligent Oven",
-      icon: "stove",
-      modules: [
-        {
-          moduleName: "ProgramHub",
-          customApi: "default",
-          iconName: "desktop-mac-dashboard",
-          moduleConfig: {
-            connection: {
-              baseUrl: "http://localhost:3000/oven1",
-              supportedPrograms: "/programsInfo",
-              runningPrograms: "/runningPrograms",
-              startProgram: "/startProgram",
-              stopProgram: "/stopProgram",
-              updateProgram: "/updateProgram",
-            },
-          },
-        },
-        {
-          moduleName: "Chat",
-          customApi: "default",
-          iconName: "robot",
-          moduleConfig: {
-            headerType: "default", // default or customImage
-            customHeaderImage: false,
-            headerOptions: {
-              icon: "robot",
-              title: "Ofen - Chat",
-            },
-            connection: {
-              url: "http://localhost:3000/oven-bot1",
-              init: "/init",
-            },
-          },
-        },
-        {
-          moduleName: "DataTable",
-          customApi: "default",
-          iconName: "view-list",
-          moduleConfig: {
-            tableTitle: "Generic Data Table",
-            tableFields: ["Name", "Quantity", "Unit", "BBF"],
-            connection: {
-              baseUrl: "http://localhost:3000",
-              get: "/table1/data",
-              edit: "/table1/edit",
-              delete: "/table1/delete",
-            },
-          },
-        },
-      ],
-    },
-
-    /*
-
-
-      Coffee machine
-
-
-    */
-
-    {
-      name: "Coffee machine",
-      icon: "coffee-maker",
-      modules: [
-        {
-          moduleName: "ProgramHub",
-          customApi: "default",
-          iconName: "desktop-mac-dashboard",
-          moduleConfig: {
-            connection: {
-              baseUrl: "http://localhost:3000/coffee1",
-              supportedPrograms: "/programsInfo",
-              runningPrograms: "/runningPrograms",
-              startProgram: "/startProgram",
-              stopProgram: "/stopProgram",
-              updateProgram: "/updateProgram",
-            },
-          },
-        },
-        {
-          moduleName: "Chat",
-          customApi: "default",
-          iconName: "robot",
-          moduleConfig: {
-            headerType: "default", // default or customImage
-            customHeaderImage: false,
-            headerOptions: {
-              icon: "robot",
-              title: "Coffee Talk",
-            },
-            connection: {
-              url: "https://corona.brain4x.de",
-              init: "/chatbot-init",
-              send: "/chatbot",
-            },
-          },
-        },
-      ],
-    },
   ],
+
 };
