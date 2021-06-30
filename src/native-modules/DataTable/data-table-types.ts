@@ -27,7 +27,7 @@ export interface TableConfig extends Module {
 
 export interface DataTableApi {
   getTableData: (connection: TableConnection) => object[];
-  editTableData: (connection: TableConnection, newData: object) => void;
+  editTableData: (connection: TableConnection, newData: object) => object[];
   deleteTableData: ({
     connection,
     elementToDelete,
