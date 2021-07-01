@@ -32,17 +32,13 @@ export interface ProgramHubConfig extends Module {
   moduleConfig: ProgramConfig;
 }
 
-export interface RunningProgram {
-  programName: string;
+export interface RunningProgram extends SupportedProgram {
   connectionUrl: string;
-  pModuleName: string;
   customApi: string;
   name: string;
   title: string;
-  iconName: string;
   progress: number;
   value: string;
-  valueSuffix: string;
 }
 
 export interface SupportedProgram {

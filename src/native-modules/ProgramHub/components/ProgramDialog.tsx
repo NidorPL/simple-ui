@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Button, Dialog, Portal, TextInput } from "react-native-paper";
-import { RunningProgram } from "../program-hub-types";
 import { getAPI } from "../../../register";
 import { defaultLabeledProgressApi } from "../programs/LabeledProgress/default-labeled-progress-api";
 import { ProgramHubProgramContext } from "../context/program-hub-program-context";

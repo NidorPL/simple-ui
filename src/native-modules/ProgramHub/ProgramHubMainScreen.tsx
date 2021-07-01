@@ -62,16 +62,7 @@ export const ProgramHubMainScreen = ({
 
   return (
     <View>
-      <ScrollView
-        contentContainerStyle={{
-          display: "grid" as "none",
-          // @ts-ignore
-          gridTemplateColumns: "1fr 1fr",
-          gridRowGap: "15px",
-          gridColumnGap: "15px",
-          padding: 8,
-        }}
-      >
+      <ScrollView>
         <MainDeviceCard
           programInfo={programsInfo?.info}
           isOn={runningProgramsData?.length > 0}
