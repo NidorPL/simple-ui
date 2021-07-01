@@ -13,7 +13,7 @@ import { defaultProgramHubApi } from "./default-program-hub-api";
 import { getProgramView } from "../../register";
 import { View } from "react-native";
 import { ProgramHubProgramContext } from "./context/program-hub-program-context";
-import { DataTable, Title } from "react-native-paper";
+import { Title } from "react-native-paper";
 import styled from "styled-components/native";
 
 const resolveProgramViews = (

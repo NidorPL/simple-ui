@@ -46,7 +46,7 @@ export default {
           iconName: "desktop-mac-dashboard",
           moduleConfig: {
             connection: {
-              baseUrl: "http://192.168.0.135:3000/oven1",
+              baseUrl: "https://simple-ui-mock-server.herokuapp.com/oven1",
               supportedPrograms: "/programsInfo",
               runningPrograms: "/runningPrograms",
               startProgram: "/startProgram",
@@ -63,7 +63,7 @@ export default {
             tableTitle: "Zutatenliste",
             tableFields: ["Name", "Menge", "Einheit", "Haltbarkeit"],
             connection: {
-              baseUrl: "http://192.168.0.135:3000",
+              baseUrl: "https://simple-ui-mock-server.herokuapp.com",
               get: "/table1/data",
               edit: "/table1/edit",
               delete: "/table1/delete",
@@ -91,7 +91,7 @@ export default {
           iconName: "desktop-mac-dashboard",
           moduleConfig: {
             connection: {
-              baseUrl: "http://192.168.0.135:3000/coffee1",
+              baseUrl: "https://simple-ui-mock-server.herokuapp.com/coffee1",
               supportedPrograms: "/programsInfo",
               runningPrograms: "/runningPrograms",
               startProgram: "/startProgram",
@@ -144,7 +144,7 @@ Chat Assistants
               title: "Arzt Chatbot",
             },
             connection: {
-              url: "http://192.168.0.135:3000/doctor-bot1",
+              url: "https://simple-ui-mock-server.herokuapp.com/doctor-bot1",
               init: "/init",
             },
           },
@@ -183,7 +183,7 @@ Chat Assistants
               title: "News Chatbot",
             },
             connection: {
-              url: "http://192.168.0.135:3000/news-bot1",
+              url: "https://simple-ui-mock-server.herokuapp.com/news-bot1",
               init: "/init",
             },
           },
