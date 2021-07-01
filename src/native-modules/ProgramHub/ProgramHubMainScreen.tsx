@@ -13,6 +13,8 @@ import { defaultProgramHubApi } from "./default-program-hub-api";
 import { getProgramView } from "../../register";
 import { View } from "react-native";
 import { ProgramHubProgramContext } from "./context/program-hub-program-context";
+import { DataTable, Title } from "react-native-paper";
+import styled from "styled-components/native";
 
 const resolveProgramViews = (
   runningProgramsData: RunningProgram[] = []
@@ -39,8 +41,10 @@ export const ProgramHubMainScreen = ({
   const {
     data: runningProgramsData,
     isSuccess: loadedProgamsData,
-  } = useQuery("phMainScreenRunning" + refechValue, () =>
-    api.getRunningPrograms(programHubConfig.moduleConfig.connection)
+  } = useQuery(
+    "phMainScreenRunning" + refechValue,
+    () => api.getRunningPrograms(programHubConfig.moduleConfig.connection),
+    { refetchInterval: 3000 }
   );
 
   const {
@@ -59,6 +63,14 @@ export const ProgramHubMainScreen = ({
     );
     setRefetch(refechValue + 1);
   };
+
+  if (!loadedProgamsData) {
+    return (
+      <CenterWrapper>
+        <Title>Network error</Title>
+      </CenterWrapper>
+    );
+  }
 
   return (
     <View>
@@ -96,3 +108,10 @@ export const ProgramHubMainScreen = ({
     </View>
   );
 };
+
+const CenterWrapper = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
