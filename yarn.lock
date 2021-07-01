@@ -11225,18 +11225,10 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-simple_ui_data-table-extracted@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/simple_ui_data-table-extracted/-/simple_ui_data-table-extracted-1.0.1.tgz#252325d2340d74f52cc1d76d8a7772988d7c709f"
-  integrity sha512-KIvgzlZvQsPcickIAUmsdj0R6t+y2PKHT1p6Xqd5C/4N4HOtGcGFq6uPhXhWvtL6oCuLbWf3VppnHUjjw08NFg==
-
-simple_ui_data-table@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/simple_ui_data-table/-/simple_ui_data-table-1.2.1.tgz#4cdd112da316d747684f7cbe3830fb0aefef08fe"
-  integrity sha512-NFtbVKXTPd2OYj/nxvjgJ6Cg9NmYgrQr4G/jDfk2mdppsQTLTsGDh2U8MxvXAaQ3K0v4+92aSqWXn85itAuzjg==
-  dependencies:
-    simple_ui_data-table "^1.2.0"
-    simple_ui_data-table-extracted "^1.0.1"
+simple_ui_data-table@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/simple_ui_data-table/-/simple_ui_data-table-1.2.2.tgz#d0d43a5ced253ec6f56936e896be489e95660473"
+  integrity sha512-AVvjvXiaQU6BF8KRmfMyHQmlI25y0Df/Ay7Cdpeh7YqeLuGaQGClXg6mf/fdoRPvdyNTiVs5OFkwgEjnuUjHHg==
 
 sisteransi@^1.0.5:
   version "1.0.5"

@@ -19,3 +19,12 @@ web-build/
 # Project specific
 
 src/modules/custom-moduless
+packageDeployer/src
+packageDeployer/lib
+packageDeployer/node_modules
+
+
+
+# Exclude DataTable module for test purposes
+
+src/native-modules/DataTable

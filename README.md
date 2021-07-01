@@ -1,4 +1,6 @@
-# generic-smart-assistant
+# Simple UI
+
+#### Generically connect assistant systems - Cross Plattorm
 
 
 ### Basic configuration
@@ -32,19 +34,20 @@ Every module has its own configuration. Please see the individual modules README
 ### Adding a custom module
 
 - Import a module and add it to the customModules list in ``custom-elements-register.ts`` file
+  
 
+  Every module needs a index.tsx file in is root folder. It has to export the module object with two parameters ```moduleName``` and ``getView``. The latter gets the moduleConfig and optionally a custom api as inputs.
 
 ### Adding a custom api
 
 - Import a api and add it to the customAPIs list in ``custom-elements-register.ts`` file
 
 
-### Creating own npm module
+Every API needs to export at least a ```name``` and ``relatedModule`` field. The latter should specifies with which module the API can be used with.  
 
-- Navigate to packageDeployer directory
-- Configure the package name and version as desired.
-  
+### Adding a custom image
 
-Then run:
-`yarn build`
-`yarn publish`
+- Add an image to the custom-images folder, import and add it to the customImages list in the ``custom-elements-register.ts`` file
+
+
+Every image needs to export a ``imageName`` and a ``imageSource`` parameter, which points to the image.

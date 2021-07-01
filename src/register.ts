@@ -11,6 +11,7 @@ import {
 import { ProgramIndex } from "./native-modules/ProgramHub/program-hub-types";
 import { LabeledProgressProgram } from "./native-modules/ProgramHub/programs/LabeledProgress/LabeledProgressProgramm";
 
+// @ts-ignore
 const nativeModules: ModuleIndex[] = [ChatbotModule, ProgramHubModule];
 
 const nativePrograms: ProgramIndex[] = [LabeledProgressProgram];
