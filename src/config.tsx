@@ -31,10 +31,8 @@ export default {
     },
 
     /*
-
           Oven
-
-       */
+    */
 
     {
       name: "Intelligent Oven",
@@ -67,124 +65,6 @@ export default {
               get: "/table1/data",
               edit: "/table1/edit",
               delete: "/table1/delete",
-            },
-          },
-        },
-      ],
-    },
-
-    /*
-
-
-      Coffee machine
-
-
-    */
-
-    {
-      name: "Coffee machine",
-      icon: "coffee-maker",
-      modules: [
-        {
-          moduleName: "ProgramHub",
-          customApi: "default",
-          iconName: "desktop-mac-dashboard",
-          moduleConfig: {
-            connection: {
-              baseUrl: "https://simple-ui-mock-server.herokuapp.com/coffee1",
-              supportedPrograms: "/programsInfo",
-              runningPrograms: "/runningPrograms",
-              startProgram: "/startProgram",
-              stopProgram: "/stopProgram",
-              updateProgram: "/updateProgram",
-            },
-          },
-        },
-        {
-          moduleName: "Chat",
-          customApi: "default",
-          iconName: "robot",
-          moduleConfig: {
-            headerType: "default", // default or customImage
-            customHeaderImage: false,
-            headerOptions: {
-              icon: "robot",
-              title: "Coffee Talk",
-            },
-            connection: {
-              url: "https://corona.brain4x.de",
-              init: "/chatbot-init",
-              send: "/chatbot",
-            },
-          },
-        },
-      ],
-    },
-    /*
-
-
-Chat Assistants
-
-
-*/
-    {
-      name: "Chat Assistants",
-      icon: "account-group-outline",
-      modules: [
-        {
-          moduleName: "Chat",
-          customName: "Arzt Chatbot",
-          customApi: "default",
-          iconName: "doctor",
-          moduleConfig: {
-            headerType: "default", // default or customImage
-            customHeaderImage: false,
-            headerOptions: {
-              icon: "doctor",
-              title: "Arzt Chatbot",
-            },
-            connection: {
-              url: "https://simple-ui-mock-server.herokuapp.com/doctor-bot1",
-              init: "/init",
-            },
-          },
-        },
-
-        {
-          moduleName: "Chat",
-          customName: "Corona Chatbot",
-          customApi: "default",
-          iconName: "robot",
-          moduleConfig: {
-            headerType: "customImage", // default or customImage
-            customHeaderImage: "DAI_Corona_Header",
-            headerOptions: {
-              icon: "robot",
-              title: "Corona Bot",
-            },
-            connection: {
-              url: "https://corona.brain4x.de",
-              init: "/chatbot-init",
-              send: "/chatbot",
-            },
-          },
-        },
-
-        {
-          moduleName: "Chat",
-          customName: "News Chatbot",
-          customApi: "default",
-          iconName: "newspaper-variant",
-          moduleConfig: {
-            headerType: "default", // default or customImage
-            customHeaderImage: false,
-            headerOptions: {
-              icon: "newspaper-variant",
-              title: "News Chatbot",
-            },
-            connection: {
-              url: "https://simple-ui-mock-server.herokuapp.com/news-bot1",
-              init: "/init",
             },
           },
         },

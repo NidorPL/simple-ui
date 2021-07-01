@@ -18,24 +18,6 @@ const data = [
 
 export const showcaseMessages = [
   {
-    type: "chart-message",
-    headline: "Infizierte Deutschland",
-    headlineInfo: "107.663",
-    chartData: { labels, data },
-    fromChatbot: true,
-    showSmall: false,
-    linkedRequest: "chart-test",
-  },
-  {
-    type: "chart-message",
-    headline: "Infizierte Deutschland",
-    headlineInfo: "107.663",
-    chartData: { labels, data },
-    fromChatbot: true,
-    showSmall: true,
-    linkedRequest: "image-test",
-  },
-  {
     type: "single-checkbox-message",
     options: [
       "TrockenerHusten",
@@ -53,16 +35,13 @@ export const showcaseMessages = [
     ],
   },
   {
-    type: "label-data-message",
-    label: "Verdopplungszeit Deutschland",
-    data: "15 Tage",
-    linkedRequest: "label-test",
-  },
-  {
-    type: "spoiler-message",
-    headline: "Infos zu Regulierungen",
-    text:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+    type: "chart-message",
+    headline: "Infizierte Deutschland",
+    headlineInfo: "107.663",
+    chartData: { labels, data },
+    fromChatbot: true,
+    showSmall: true,
+    linkedRequest: "image-test",
   },
   // {
   //   type: "germany-map-message",

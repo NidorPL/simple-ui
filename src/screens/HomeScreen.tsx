@@ -20,7 +20,9 @@ export default function HomeScreen(props: any) {
         />
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
       </Appbar.Header>
-      <BottomModuleNavigation modules={config.connectedDevices[1].modules} />
+      <BottomModuleNavigation
+        modules={config.connectedDevices[0]?.modules ?? []}
+      />
     </React.Fragment>
   );
 }
