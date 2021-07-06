@@ -46,10 +46,7 @@ export function resolveMessageFromType(
   };
 
   return (
-    <MessageWrapper
-      underlayColor="lightgrey"
-      key={"message" + messageListIndex}
-    >
+    <MessageWrapper key={"message" + messageListIndex}>
       <View>{resolveMessage(type)}</View>
     </MessageWrapper>
   );

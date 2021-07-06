@@ -153,13 +153,7 @@ export const ChatMainScreen = ({}: {}) => {
                     value={{ message, sendLinkedRequest }}
                     key={index}
                   >
-                    {resolveMessageFromType(
-                      message,
-                      appendCovMessages,
-                      index,
-                      api,
-                      chatConfig
-                    )}
+                    {resolveMessageFromType(message, appendCovMessages, index)}
                   </ChatMessageContext.Provider>
                 );
               }

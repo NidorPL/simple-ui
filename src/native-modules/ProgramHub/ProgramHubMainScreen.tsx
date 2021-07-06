@@ -40,6 +40,7 @@ export const ProgramHubMainScreen = ({
 
   const {
     data: runningProgramsData,
+    isLoading: isLoadingProgramsData,
     isSuccess: loadedProgamsData,
   } = useQuery(
     "phMainScreenRunning" + refechValue,
@@ -63,6 +64,14 @@ export const ProgramHubMainScreen = ({
     );
     setRefetch(refechValue + 1);
   };
+
+  if (isLoadingProgramsData) {
+    return (
+      <CenterWrapper>
+        <Title>Loading</Title>
+      </CenterWrapper>
+    );
+  }
 
   if (!loadedProgamsData) {
     return (

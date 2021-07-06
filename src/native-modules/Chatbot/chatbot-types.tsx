@@ -36,7 +36,7 @@ export interface ChatbotApi {
     chatConfig: ChatConfig
   ) => Promise<ChatMessage[]>;
   sendLinkedRequest: (
-    link: string,
+    link: string | string[],
     params: object,
     chatConfig: ChatConfig
   ) => Promise<ChatMessage[]>;
