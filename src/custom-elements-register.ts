@@ -1,5 +1,4 @@
 import { ImageIndex, ModuleIndex } from "./components/common/common-types";
-import { CoronaChatApi2 } from "./custom-apis/corona-chat-mapper-1";
 import { ProgramIndex } from "./native-modules/ProgramHub/program-hub-types";
 import { DataTableModule } from "simple_ui_data-table";
 import { CoronaImage } from "./custom-images/corona-image";
@@ -10,7 +9,7 @@ import { CoronaImage } from "./custom-images/corona-image";
 
 const customModules: ModuleIndex[] = [DataTableModule];
 
-const customApis = [CoronaChatApi2];
+const customApis: any[] = [];
 
 const customPrograms: ProgramIndex[] = [];
 
