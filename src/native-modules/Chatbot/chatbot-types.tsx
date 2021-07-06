@@ -23,7 +23,7 @@ export interface ChatConfig extends ModuleConfig {
 
 export interface ChatMessage {
   type: string;
-  text: string;
+  text?: string;
   fromChatbot?: boolean;
   linkedRequest?: string | string[];
 }

@@ -122,42 +122,43 @@ export const ChatMainScreen = ({}: {}) => {
               scrollViewRef.current.scrollToEnd({ animated: true });
             }}
           >
-            {[...showcaseMessages, ...conversationMessages].map(
-              (message, index) => {
-                const sendLinkedRequest = async (params: string | object) => {
-                  if (message.linkedRequest) {
-                    if (typeof params === "string") {
-                      const newMessages = await api.sendLinkedRequest(
-                        params,
-                        {},
-                        chatConfig
-                      );
-                      if (newMessages) {
-                        appendCovMessages(newMessages);
-                      }
-                    } else {
-                      const newMessages = await api.sendLinkedRequest(
-                        message.linkedRequest,
-                        params,
-                        chatConfig
-                      );
-                      if (newMessages) {
-                        appendCovMessages(newMessages);
-                      }
+            {[
+              //  ...showcaseMessages,
+              ...conversationMessages,
+            ].map((message, index) => {
+              const sendLinkedRequest = async (params: string | object) => {
+                if (message.linkedRequest) {
+                  if (typeof params === "string") {
+                    const newMessages = await api.sendLinkedRequest(
+                      params,
+                      {},
+                      chatConfig
+                    );
+                    if (newMessages) {
+                      appendCovMessages(newMessages);
+                    }
+                  } else {
+                    const newMessages = await api.sendLinkedRequest(
+                      message.linkedRequest,
+                      params,
+                      chatConfig
+                    );
+                    if (newMessages) {
+                      appendCovMessages(newMessages);
                     }
                   }
-                };
+                }
+              };
 
-                return (
-                  <ChatMessageContext.Provider
-                    value={{ message, sendLinkedRequest }}
-                    key={index}
-                  >
-                    {resolveMessageFromType(message, appendCovMessages, index)}
-                  </ChatMessageContext.Provider>
-                );
-              }
-            )}
+              return (
+                <ChatMessageContext.Provider
+                  value={{ message, sendLinkedRequest }}
+                  key={index}
+                >
+                  {resolveMessageFromType(message, appendCovMessages, index)}
+                </ChatMessageContext.Provider>
+              );
+            })}
           </StyledScrollView>
           <ChatInputWrapper>
             <ChatInput
