@@ -25,39 +25,32 @@ const Stack = createStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
-export function BottomModuleNavigation({ modules }: { modules: Module[] }) {
-  const colorScheme = useColorScheme();
+/*
+  The Navigation component renders the Sidebar. Its content can be found in the DrawerContent component.
+ */
 
+export default function Navigation({
+  colorScheme,
+}: {
+  colorScheme: ColorSchemeName;
+}) {
   return (
-    <Tab.Navigator
-      initialRouteName="Feed"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+    <NavigationContainer
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      {modules.map((module) => {
-        const customApi = getAPI(module.customApi, false);
-        return (
-          <Tab.Screen
-            key={module.moduleName}
-            name={module.customName || module.moduleName}
-            children={() => getModuleView(module, customApi)}
-            options={{
-              tabBarLabel: () => (
-                <Text>{module.customName || module.moduleName}</Text>
-              ),
-              tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons
-                  name={module.iconName}
-                  color={color}
-                  size={size}
-                />
-              ),
-            }}
-          />
-        );
-      })}
-    </Tab.Navigator>
+      <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
+        <Drawer.Screen name="Home" component={SideDeviceNavigation} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
+
+/*
+  The SideDeviceNavigation component iterates all devices of the config file and creates routes for each one of them. The routes are named after the device names.
+  These can be used in the app now.
+  The device is wrapped in the MainLayout of the app, which basically contains the app header. Now the detailed BottomModuleNavigation component is rendered.
+
+ */
 
 function SideDeviceNavigation() {
   return (
@@ -85,18 +78,44 @@ function SideDeviceNavigation() {
   );
 }
 
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName;
-}) {
+/*
+  After a device has been chosen, the BottomModuleNavigation component creates a bottom-navigation-bar with all modules connected to the device.
+ */
+
+export function BottomModuleNavigation({ modules }: { modules: Module[] }) {
+  const colorScheme = useColorScheme();
+
   return (
-    <NavigationContainer
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    <Tab.Navigator
+      initialRouteName="Feed"
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
-      <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
-        <Drawer.Screen name="Home" component={SideDeviceNavigation} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+      {modules.map((module) => {
+        // if a custom api was assigned, it is fetched here
+
+        const customApi = getAPI(module.customApi, false);
+
+        // This renders the actual views. The most important part here is the getModuleView function from the register.
+        return (
+          <Tab.Screen
+            key={module.moduleName}
+            name={module.customName || module.moduleName}
+            children={() => getModuleView(module, customApi)}
+            options={{
+              tabBarLabel: () => (
+                <Text>{module.customName || module.moduleName}</Text>
+              ),
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons
+                  name={module.iconName}
+                  color={color}
+                  size={size}
+                />
+              ),
+            }}
+          />
+        );
+      })}
+    </Tab.Navigator>
   );
 }

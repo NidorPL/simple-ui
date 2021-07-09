@@ -18,6 +18,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 const queryClient = new QueryClient();
 
 export default function App() {
+  // The following parts are mainly for theme setup
+
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   const [theme, setTheme] = React.useState<"light" | "dark">(
@@ -48,6 +50,11 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   } else {
+    /*
+        Here the providers are setup, which contain the theme logic.
+        Afterwards the Navigation component is rendered, which contains the main application logic
+       */
+
     return (
       <SafeAreaProvider>
         <PreferencesContext.Provider value={preferences}>

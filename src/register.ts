@@ -16,6 +16,12 @@ const nativeModules: ModuleIndex[] = [ChatbotModule, ProgramHubModule];
 
 const nativePrograms: ProgramIndex[] = [LabeledProgressProgram];
 
+/*
+  The register knows about all components available to the application.
+ */
+
+// This function tries to find the desired module and returns its view. Every module needs to have a moduleName and getView function in its index file.
+
 function getModuleView(module: Module, customApi?: object) {
   const installedModule = [...nativeModules, ...customModules].find(
     (instModule) => instModule.moduleName === module.moduleName
@@ -27,6 +33,8 @@ function getModuleView(module: Module, customApi?: object) {
 
   return installedModule.getView(module, customApi);
 }
+
+// This function tries to find and return the desired api by its name. The remaining functions work in a similar manner.
 
 function getCustomAPI(name: string) {
   const installedApi = customApis.find((api) => api.name === name);

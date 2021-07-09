@@ -7,6 +7,8 @@
 
 To run the application with expo you need to
 
+- Have node, npm and yarn installed on your system
+
 - Run ```yarn``` to install the required npm packages
 
 - Run ```yarn start``` to start the expo client
@@ -14,7 +16,7 @@ To run the application with expo you need to
 Then you can choose to open a web application or use mobile devices/ simulators.
 To use the simulators they need to be installed via Android Studio and XCode.
 
-
+Main entrypoint in the code is the ```App.tsx``` file
 
 
 ### Basic configuration
